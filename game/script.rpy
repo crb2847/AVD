@@ -124,12 +124,13 @@ init python:
 # eg. image eileen happy = "eileen_happy.png"
 image bg policeLobby = "images/Policelobby_1.png"
 image bg policeInterogationRoom = "images/PoliceInterrogation_1.png"
-image bg party = "images/Ballroom_1.png"
+image bg party = "images/Ballroom_l.png"
 image bg policeCaptainsOffice = "images/captainsOffice.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
 #image harold normal ".png"
+image policebaton = "images/baton.png"
 
 # Declare characters used by this game.
 define angelica = Character('Angelica Hall', color="#c8ffc8",
@@ -199,13 +200,13 @@ label start:
             "Examine the room.":
                 show screen newspaper
                 show screen baton
-                "We're even in the the tabloids. How about that."
-                "The Chief's Baton is really too indulgent for my tastes. Can't even do anything with it, you'd scratch up the paint. It's basically a usless decoration."
+                "I see a newspaper, and a baton..."
+                "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
                 hide screen newspaper
                 hide screen baton
                 jump newsbaton
             "Done examining":
-                "(Well, I've got the jist. I'm done larking about.->I'm done looking around)"
+                "(Well, I've got the jist. I'm done larking about.)"
                 hide screen newspaper
                 hide screen baton
                 jump captainWalksIn
@@ -214,35 +215,36 @@ label start:
         show arthur chinanimation at left
         with dissolve
         play sound "sounds/Door_close.ogg"
-        "The Captain walks in."
-        angelica "Chief, what the bloody hell is going on?"
+        angelica "Sir, what the bloody hell is going on?"
         ar "Miss Hall. This assassin case is our top priority. Absolute top! Nothing else to bother with!"
-        angelica "Absolutely, sir. I'm ready for an assignment."
-        ar "Great. Tip top. I have an imporant assignment for you! We've got to investigate all of this man's contacts, you see? There could be a consipracy... a whole spider web just waiting for Her Majesty to get tangled up in! And I don't like spiders. Not at all."
-        angelica "Honestly the entire force knows you don't like spiders Chief. We've all heard the screams."
+        angelica "You're awfully excited about an attempted murder..."
+        ar "It's remarkable! Unreal! We've detained a member of Parliament for trying to murder the Queen!"
+        angelica "Impressive police work, sir. I'm ready to help however I can."
+        ar "Great. Tip top! I have an important assignment for you! We've got to investigate all of this man's contacts, you see? There could be a conspiracy... a whole spider web just waiting for Her Majesty to get tangled up in! And I don't like spiders. Not at all."
+        angelica "Honestly, the entire force knows you don't like spiders, Commissioner. We've all heard the screams."
         ar "In any case! There's an important part of the web I need you to investigate -- the assassin's wife! Befriend her. See what she knows! She could be withholding key information. Critical stuff, my girl!"
-        angelica "(The wife? He can't be serious. Talking to a lovely lady is for my free time, it's not police work.)"
-        angelica "(I highly doube the poor wife is 'critical' to the investigation...)"
+        angelica "(The wife? He can't be serious. This isn't police work!)"
         menu:
             "Yes, sir.":
-                ar "That's what I like to hear! We'll be sending you to a society gathering tonight. Secret identity! Good chance to get prettied up, eh?"
                 jump prettiedUp
-            "With all due respect, interrogating the wife seems like something one of the younger officers would enjoy":
+            "With all due respect, interrogating the wife seems like something one of the younger officers would enjoy.":
                 jump centralCase
     label centralCase:
-        ar "Nonesense, my dear girl! Even if you were suitable for... traditional detective work, it simply couldn't happen, my dear! You're still a rookie detective! Support team, you see! You've got to work hard and pay those dues!"
+        ar "Nonsense, my dear girl! Even if you were suitable for... traditional detective work, it simply couldn't happen, my dear! You're still a rookie detective! Support team, you see! You've got to work hard and pay those dues!"
         angelica "(Ugh, pay my dues... Suitable my arse.)"
         menu: 
             "Yes, sir.":
                 jump prettiedUp
-            "Well, if you're going to be sending a Lady out after dark, how about some actual protection, sir?":
-                angelica "Well-well... Very well then. Here, but be sure to be carefull with it? Obtain weapon?"
+            "Well, if you're going to be sending a lady out after dark, how about some actual protection, sir?":
+                ar "Well-well... Very well then. Here, take my night stick -- but be sure to be careful with it! Wouldn't want to scratch that paint!"
+                show policebaton
                 angelica "Thank you very much, Sir. I'll use it with the utmost discretion."
-                #add boolean for saying you have a gun
+                hide policebaton
+                #add boolean for saying you have a weapon
                 jump prettiedUp
         
     label prettiedUp:
-        ar "That\'s what I like to hear! We\'ll be sending you to a society gathering tonight. Secret idenity! Good chance to get prettied up, eh?"
+        ar "That's what I like to hear! We'll be sending you to a society gathering tonight. Secret idenity! Good chance to get prettied up, eh?"
         menu:
             "Whatever you say, Sir.":
                 jump paperwork
@@ -250,24 +252,30 @@ label start:
                 jump prettiedUp2
         label prettiedUp2:
             ar "Central to the job, my dear! You can get in where no one else can! Gentlemen will spill all kinds of secrets to a pretty lady!"
-            angelica "Whatever you say, sir."
-            jump paperwork
-        label paperwork:
-            ar "Yes, Yes. I have some paperwork for you to file in the meantime. Hope to it, now!"
-            "The captain leaves"
-            hide arthur
-            angelica "I'll file the paperwork later. Surely there's something more I can learn about the case... The captain never gives me the truly important information. Maybe I can look in his office. Or... is the assassin still in our holding room?)"
+            angelica "Sir, are you saying you've given up secrets to a pretty lady?."
+            ar "Well I-"
+            ar "Now see here! I-I have never- I've got to be going. Just keep our of trouble, Ms. Hall!"
+            angelica "I think I just got out of busy work. Now how shall I proceed?"
             menu:
                 "Investigate the holding room":
                     jump holdingRoom
-                "Investigate captain's office":
+                "Investigate commissioner's office":
+                    jump captainsOffDead
+        label paperwork:
+            ar "Yes, Yes. I have some paperwork for you to file in the meantime. Hop to it, now!"
+            hide arthur
+            angelica "I'll file the paperwork later. Surely there's something more I can learn about the case... The commissioner never gives me the truly important information. Maybe I can look in his office. Or... is the assassin still in our holding room?)"
+            menu:
+                "Investigate the holding room":
+                    jump holdingRoom
+                "Investigate commissioner's office":
                     jump captainsOffDead
     label captainsOffDead:
         stop music
         play sound "sounds/Fast_Footsteps.ogg"
         show bg policeCaptainsOffice
         show arthur chinanimation
-        ar "Miss Hall! Are you following me? I'm afraid I'm not governess. Back to work, hm?"
+        ar "Miss Hall! Are you following me? I'm afraid I'm not your governess. Get back to work, won't you?"
         play sound "sounds/Gameover.ogg"
         menu:
             "Try again":
@@ -278,18 +286,18 @@ label start:
     return
     
 label holdingRoom:
+    hide arthur chinanimation
     stop music
     play music "sounds/dark_strings.ogg"
     show bg policeInterogationRoom
-    angelica "He's still there... I'm suprised he hasn't been turned over to the Metropolitan police. Surely no one will mind if I bring a nice cuppa tea to our restrained guest. I'm simply being hospitable-- even prisoners deserve that!"
-    angelica "*brings tea into the Interogation Room*"
+    angelica "Surely no one will mind if I bring a nice cuppa tea to our restrained guest. I'm simply being hospitable-- even prisoners deserve that!"
     "Voice: Who's there?"
     show harold hanimation at right
     with dissolve
     harold "Ah, you must be the secretary."
     harold "Why on earth would they send you in here?"
     angelica "I just thought I'd bring you some tea."
-    angelica "We're British, after all. There is no excuse to skip afternoon tea."
+    angelica "We're British, after all. There is no excuse to skip afternoon tea!"
     harold "Quite right. Bring it here, girl!"
     menu:
         "First, how 'bout you tell me what I want to know?":
@@ -297,93 +305,135 @@ label holdingRoom:
             harold "If you want to serve me tea, fine. But get on with it."
             menu:
                 "But of course. Anything for a charmer like you.":
-                    angelica "*Spills the tea on his lap*"
+                    "Angelica spills hot tea on his lap."
                     harold "BLAST! That's scalding!"
                     angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
                     angelica "Today must really not be your day!"
                     harold "Get me a towel, you fool!"
                     angelica "I'm afraid we don't have any."
                     harold "BLAST! Can't get any good help these days"
-                    angelica "I know, I'm so sorry, I just started"
+                    angelica "I know! I'm so sorry, I just started."
                     harold "It's one blunder after another!"
                     harold "Why must I always suffer for others' mistakes?"
                     angelica "That must be so hard for you..."
-                    angelica "If only you were in charge; perhaps things would go your way?"
+                    angelica "If only you were in charge. Perhaps things would go your way?"
                     harold "That's bloody right!"
-                    angelica "(The Chief was right. He's not working alone. He was caught so easily after his attempt on the Queen's life. He can't be the ringleader of the operation... the leader wouldn't want to take the fall.)"
+                    angelica "(The Chief was right. He's not working alone. And he isn't the leader...)"
                     angelica "And they all threw you to the dogs"
                     angelica "What a sad spectacle"
                     harold "Spectacle! Bloody spectacles, that's all they..."
                     "Harold fell silent, looking down to the table."
-                    angelica "(Harold isn't the leader, but he's an important member of Parliament. Why would his conspirators send him to assassinate the Queen? It was a bloody spectacle, as they said, but hardly effective. The Queen was well protected."
+                    angelica "(This man is a Member of Parliament. Why would conspirators send him to assassinate the Queen? He didn't have much chance of succeeding.)"
                     angelica "It's a distraction, isn't it?"
                     angelica "There's going to be another assasination attempt!"
                     harold "What? You ridiculous girl..."
-                    harold "you..."
                     angelica "And you don't even know it, do you? They were getting you out of the way."
                     angelica "Why did they want you out of Parliament?"
                     harold "I don't know what you're talking about."
-                    angelica "*throws a towel at Harold*"
-                    angelica "Clean yourself up you buffoon."
-                    "You leave the room"
+                    "Angelica throws a towel at Harold."
+                    angelica "Clean yourself up, you buffoon."
+                    angelica "(Maybe I should check the commissioner's office for more information.)"
                     play sound "sounds/Door_Close.ogg"
                     hide harold hanimation
-                    angelica "(Maybe I should check the Chief's office for more information.)"
-                    jump party
+                    with dissolve
+                    jump chiefsoffice
 
                 "Tell me what you know or no tea!":
                     harold "You must think me a bloody fool. No tea's that tempting. Off with you!"
                     angelica "How rude!"
-                    "Angelica pours hot tea on him"
+                    "Angelica pours hot tea on him."
                     harold "BLAST! That's scalding! Why am I always suffering for other people's screw ups! Get out of here, I'll call one of the officers!"
                     angelica "(Aha! He's not working alone! That's enough for me.)"
                     angelica "You think hot tea is the worst that's in store for you?"
-                    angelica "(I should go look in the Chief's Office and find out more about the case.)"
-                    jump party
+                    angelica "(Maybe I should check the commissioner's office for more information.)"
+                    "You leave the room."
+                    play sound "sounds/Door_Close.ogg"
+                    hide harold hanimation
+                    with dissolve
+                    jump chiefsoffice
                     
         "Well, aren't you charming. Here.":
-            "Angelica spills the tea on his lap"
-            harold "BLAST! That's scalding!"
-            angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
-            angelica "Today must really not be your day!"
-            harold "Get me a towel, you fool!"
-            angelica "I'm afraid we don't have any."
-            harold "BLAST! Can't get any good help these days."
-            angelica "I know, I'm so sorry, I just started"
-            harold "It's one blunder after another!"
-            harold "Why must I always suffer for others\' mistakes?"
-            angelica "That must be so hard for you..."
-            angelica "If only you were in charge; perhaps things would go your way?"
-            harold "That's bloody right!"
-            angelica "(The Chief was right. He's not working alone. He was caught so easily after his attempt on the Queen's life. He can't be the ringleader of the operation... the leader wouldn't want to take the fall.)"
-            angelica "And they all threw you to the dogs."
-            angelica "What a sad spectacle."
-            harold "Spectacle! Bloody spectacles, that's all they..."
-            "Harold fell silent, looking down to the table."
-            angelica "(Harold isn't the leader, but he's an important member of Parliament. Why would his conspirators send him to assassinate the Queen? It was a bloody spectacle, as they said, but hardly effective. The Queen was well protected.)"
-            angelica "It's a distraction, isn't it?"
-            angelica "There's going to be another assasination attempt!"
-            harold "What? You ridiculous girl..."
-            harold "you..."
-            angelica "And you don't even know it, do you? They were getting you out of the way."
-            angelica "Why did they want you out of Parliament?"
-            harold "I don't know what you're talking about."
-            "Angelica throws a towel at him"
-            angelica "Clean yourself up, you buffoon."
-            "angelica leaves"
-            angelica "(Maybe I should check the Chief's office for more information.)"
+                    "Angelica spills hot tea on his lap."
+                    harold "BLAST! That's scalding!"
+                    angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
+                    angelica "Today must really not be your day!"
+                    harold "Get me a towel, you fool!"
+                    angelica "I'm afraid we don't have any."
+                    harold "BLAST! Can't get any good help these days"
+                    angelica "I know! I'm so sorry, I just started."
+                    harold "It's one blunder after another!"
+                    harold "Why must I always suffer for others' mistakes?"
+                    angelica "That must be so hard for you..."
+                    angelica "If only you were in charge. Perhaps things would go your way?"
+                    harold "That's bloody right!"
+                    angelica "(The Chief was right. He's not working alone. And he isn't the leader...)"
+                    angelica "And they all threw you to the dogs."
+                    angelica "What a sad spectacle."
+                    harold "Spectacle! Bloody spectacles, that's all they..."
+                    "Harold fell silent, looking down to the table."
+                    angelica "(This man is a Member of Parliament. Why would conspirators send him to assassinate the Queen? He didn't have much chance of succeeding.)"
+                    angelica "It's a distraction, isn't it?"
+                    angelica "There's going to be another assasination attempt!"
+                    harold "What? You ridiculous girl..."
+                    angelica "And you don't even know it, do you? They were getting you out of the way."
+                    angelica "Why did they want you out of Parliament?"
+                    harold "I don't know what you're talking about."
+                    "Angelica throws a towel at Harold."
+                    angelica "Clean yourself up, you buffoon."
+                    angelica "(Maybe I should check the commissioner's office for more information.)"
+                    "You leave the room."
+                    play sound "sounds/Door_Close.ogg"
+                    hide harold hanimation
+                    with dissolve
+                    jump chiefsoffice
+
+label chiefsoffice:
+    show bg policeCaptainsOffice
+    stop music
+    play music "sounds/Busy_Music.ogg" loop
+    show arthur chinanimation at left
+    with dissolve
+    ar "Oho! Did you need something?"
+    angelica "I was hoping you could give me more information on my assignment, sir."
+    ar "Ah! Of course! Yes, it's quite exciting. I'm sending you to quite a shindig."
+    ar "The Countess of Worthington is hosting her annual gala tomorrow night. You will be Miss Elizabeth Kent. Quite brilliant, yes?"
+    angelica "What, a fake name?"
+    ar "Quite right! No one will know your true identity!"
+    angelica "Sir, they didn't know my original identity."
+    angelica "In any case, how do you know the suspect's wife will be there?"
+    ar "One of our agents has befriended Mrs. Fredrickson's coachman. He says she is intent on going to the party tomorrow."
+    angelica "I don't know anything about her. How am I supposed to befriend her?"
+    ar "I'm sure you have your ways! Feminine wiles, yes?"
+    angelica "My feminine wiles usually work on *men*, sir."
+    ar "Of course, my dear! But I did hear quite a rumor. From the coachman, you know! He said Mrs. Fredrickson has been down to entertain many ladies late into the night."
+    angelica "I'm not sure I understand. Entertain?"
+    ar "Quite scandalous, yes? Ha! Well now. Perhaps your feminine wiles will be of service after all!"
+    menu:
+        "Ohh. Well, I'll, uh, do my best, sir.":
+            ar "That's what I like to hear! Find out what she knows!"
+            angelica "(Time to go to that party!)"
+            hide arthur chinanimation
+            with dissolve
+            jump party
+                
+        "Sir, this might be an innocent woman... perhaps that's going a bit far.":
+            ar "Innocent! Well, perhaps of the crime! Ha! Do as you wish, my dear! Just get any information she knows!"
+            angelica "(Time to go to that party!)"
+            hide arthur chinanimation
+            with dissolve
             jump party
 
 label party:
-    play music "sounds/OfficeMusic.ogg"
     show bg party
+    stop music
+    play music "sounds/gameover.ogg"
     angelica "(This is the fanciest event I've ever been to. Thankfully, I have a fancy dress to match. Let's see if I can blend in with high society long enough to find the would-be killer's wife?)"
     angelica "(There's a woman in the corner, by herself. Everyone's ignoring her. I wonder if that's Mrs. Fredrickson?)"
     "A woman enters"
+    "Woman: It's unbecoming to stare, my dear."
+    angelica "I'm sure I don't know what you mean."
     show countess countanimation
     with dissolve
-    countess "It's unbecoming to stare, my dear."
-    angelica "I'm sure I don't know what you mean."
     countess "You're staring at that woman in the corner, dear. It is most unbecoming."
     countess "Quite improper."
     menu:
@@ -397,7 +447,8 @@ label party:
                     countess "Here's a lesson, little girl: lords and ladies might hold the key to your marriage prospects, so treat them well as though your life depends on it!"
                     countess "But perhaps you don't care about those things. Go talk to Mrs. Fredrickson, then-- you should find yourself quite comfortable amongst her and her ilk."
                     angelica "Perhaps I shall show her some better company."
-                    hide countess
+                    hide countess countanimation
+                    with dissolve
                     jump ladyFredrickson
                 "Please, My Lady, do share your wisdom with me.":
                     countess "That's Mrs. Fredrickson hiding in the corner over there. The poor dear--her husband is the member of parliament who tried to kill the Queen."
@@ -414,12 +465,14 @@ label party:
                                 "You love to tell terrible tales, don't you?":
                                     jump worldthisway
                                 "I could converse with her, perhaps.":
-                                    hide countess
+                                    hide countess countanimation
+                                    with dissolve
                                     jump ladyFredrickson
                     label worldthisway:
                         countess "I didn't make the world this way, darling, that's just the way things are. I'm sure you'll learn that soon."
                         "Countess leaves."
                         hide countess countanimation
+                        with dissolve
                         angelica "(What a dreadful woman! Shall I look for better company?)"
                         jump ladyFredrickson
                             
@@ -464,6 +517,7 @@ label ladyFredrickson:
     show beat banimation
     menu:
         "Lady Fredrickson, what on earth are you doing here?":
+            
             beat "Are you here to tell me how ashamed I should be of my husband? How I should hide my face in public? How I should be embarrased to simply exist?"
             menu:
                 "Of course not, I simply wished to know why you would put up with these judgmental society louses.":
@@ -508,8 +562,5 @@ label ladyFredrickson:
             beat "I appreciate your kindness. Few have shown it to me tonight. It is unfortunate that our fates are so tied with those of our husbands; we put on a ring and lose our individual selves."
             angelica "A true tragedy. It seems you have need of more loyal friends than those who've abandoned you."
             jump morethanafriend
-
-
-
 
 return
