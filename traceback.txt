@@ -1,0 +1,43 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 381, in script
+    angelica "(This is the fanciest event I've ever been to. Thankfully, I have a fancy dress to match. Let's see if I can blend in with high society long enough to find the would-be killer's wife?)"
+IOError: Couldn't find file 'OfficeMusic.ogg'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 381, in script
+    angelica "(This is the fanciest event I've ever been to. Thankfully, I have a fancy dress to match. Let's see if I can blend in with high society long enough to find the would-be killer's wife?)"
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ast.py", line 594, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\exports.py", line 1032, in say
+    who(what, interact=interact)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 826, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 688, in do_display
+    **display_args)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 491, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ui.py", line 277, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2346, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2633, in interact_core
+    renpy.audio.audio.interact()
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\audio\audio.py", line 790, in interact
+    periodic()
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\audio\audio.py", line 724, in periodic
+    c.periodic()
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\audio\audio.py", line 340, in periodic
+    topf = load(self.file_prefix + topq.filename + self.file_suffix)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\audio\audio.py", line 74, in load
+    rv = renpy.loader.load(fn)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\loader.py", line 517, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'OfficeMusic.ogg'.
+
+Windows-7-6.1.7601-SP1
+Ren'Py 6.99.6.739
+Angelica Victorian Detective 0.2
