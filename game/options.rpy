@@ -96,23 +96,23 @@ init -1 python hide:
     ## are the size of the left/right and top/bottom borders,
     ## respectively.
 
-    # style.window.background = Frame("frame.png", 12, 12)
+    # style.window.background = Frame("frame.png", 25, 25)
 
     ## Margin is space surrounding the window, where the background
     ## is not drawn.
 
-    # style.window.left_margin = 6
-    # style.window.right_margin = 6
-    # style.window.top_margin = 6
-    # style.window.bottom_margin = 6
+    # style.window.left_margin = 20
+    # style.window.right_margin = 20
+    # style.window.top_margin = 20
+    # style.window.bottom_margin = 20
 
     ## Padding is space inside the window, where the background is
     ## drawn.
 
-    # style.window.left_padding = 6
-    # style.window.right_padding = 6
-    # style.window.top_padding = 6
-    # style.window.bottom_padding = 6
+    # style.window.left_padding = 20
+    # style.window.right_padding = 20
+    # style.window.top_padding = 20
+    # style.window.bottom_padding = 20
 
     ## This is the minimum height of the window, including the margins
     ## and padding.
@@ -149,7 +149,7 @@ init -1 python hide:
 
     ## The default size of text.
 
-    style.default.size = 30
+    style.default.size = 35
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
@@ -187,7 +187,7 @@ init -1 python hide:
 
     ## Music that is played while the user is at the main menu.
 
-    # config.main_menu_music = "main_menu_theme.ogg"
+    config.main_menu_music = "sounds/music_1.ogg"
 
 
     #########################################
@@ -350,4 +350,8 @@ init python:
 
     build.documentation('*.html')
     build.documentation('*.txt')
+    
+    
+init:
+    $ style.menu_choice.size = 40
     

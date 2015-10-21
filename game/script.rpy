@@ -123,9 +123,10 @@ init python:
 # Declare images below this line, using the image statement.
 # eg. image eileen happy = "eileen_happy.png"
 image bg policeLobby = "images/Policelobby_1.png"
-image bg policeInterogationRoom = "images/PoliceInterrogation_1.png"
+image bg policeInterrogationRoom = "images/PoliceInterrogation_1.png"
 image bg party = "images/Ballroom_l.png"
 image bg policeCaptainsOffice = "images/captainsOffice.png"
+image bg policeInterrogationRoomSpill = "images/SpiltTea.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -133,6 +134,10 @@ image arthur normal = "images/arthursingle.png"
 image policebaton = "images/baton.png"
 
 # Declare characters used by this game.
+#define angelica = Character('Angelica Hall', color="#c8ffc8",
+#                            window_left_padding=300,
+#                            show_side_image=Image("images/angelica/Angelica_Corner_Idle.png",
+#                            xalign=0.0, yalign=1.0))
 define angelica = Character('Angelica Hall', color="#c8ffc8",
                             window_left_padding=300,
                             show_side_image=Image("images/angelica/Angelica_Corner_Idle.png",
@@ -141,9 +146,9 @@ define ar = Character('Arthur Charleston', image="arthur")
 define harold = Character('Harold Fredrickson', color="#a7ffc8")
 define countess = Character('Countess', color="#a7ffc8")
 define beat = Character('Beatrice Fredrickson', color="#a7ffc8")
-
+define shady = Character('Shady Man', color="#a7ffc8")
 #stop music
-#play sound "effect.oog"
+#play sound "effect.ogg"
 
 init:
     image arthur chinanimation = Animation("images/Arthur_Idle_Edit/Arthur_Idle0001_Filter.png", .08,
@@ -170,12 +175,19 @@ init:
                                           "images/beatrice/Beatrice_Test0004.png", .16,
                                           "images/beatrice/Beatrice_Test0005.png", .16,
                                           "images/beatrice/Beatrice_Test0006.png", .16)
+    image beat cryanimation = Animation("images/beatricecry/Beatrice_Cry0001_Filter.png", .16,
+                                          "images/beatricecry/Beatrice_Cry0002_Filter.png", .16,
+                                          "images/beatricecry/Beatrice_Cry0003_Filter.png", .16,
+                                          "images/beatricecry/Beatrice_Cry0004_Filter.png", .16,
+                                          "images/beatricecry/Beatrice_Cry0005_Filter.png", .16,
+                                          "images/beatricecry/Beatrice_Cry0006_Filter.png", .16)
     image countess countanimation = Animation("images/Countess_Indifferent/Countess_Indifferent0001.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0002.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0003.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0004.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0005.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0006.png", .16,)
+    image shady shadimation = Animation("images/shady/skeleton.png", .16,)
 screen newspaper:
     add Appearing("images/police_news.png", (720,300), 40, 100)
 screen baton:
@@ -255,6 +267,8 @@ label start:
             angelica "Sir, are you saying you've given up secrets to a pretty lady?."
             ar "Well I-"
             ar "Now see here! I-I have never- I've got to be going. Just keep our of trouble, Ms. Hall!"
+            hide arthur chinanimation
+            with dissolve
             angelica "I think I just got out of busy work. Now how shall I proceed?"
             menu:
                 "Investigate the holding room":
@@ -264,6 +278,7 @@ label start:
         label paperwork:
             ar "Yes, Yes. I have some paperwork for you to file in the meantime. Hop to it, now!"
             hide arthur
+            with dissolve
             angelica "I'll file the paperwork later. Surely there's something more I can learn about the case... The commissioner never gives me the truly important information. Maybe I can look in his office. Or... is the assassin still in our holding room?)"
             menu:
                 "Investigate the holding room":
@@ -273,15 +288,21 @@ label start:
     label captainsOffDead:
         stop music
         play sound "sounds/Fast_Footsteps.ogg"
+        play sound "sounds/Door_close.ogg"
+        play sound "sounds/Gameover.ogg"
         show bg policeCaptainsOffice
         show arthur chinanimation
+        with dissolve
         ar "Miss Hall! Are you following me? I'm afraid I'm not your governess. Get back to work, won't you?"
-        play sound "sounds/Gameover.ogg"
+      
+        hide arthur chinanimation
+        with dissolve
         menu:
             "Try again":
                 show bg policeLobby
                 play music "sounds/Busy_Music.ogg" loop
                 show arthur chinanimation at left
+                with dissolve
                 jump paperwork
     return
     
@@ -289,7 +310,7 @@ label holdingRoom:
     hide arthur chinanimation
     stop music
     play music "sounds/dark_strings.ogg"
-    show bg policeInterogationRoom
+    show bg policeInterrogationRoom
     angelica "Surely no one will mind if I bring a nice cuppa tea to our restrained guest. I'm simply being hospitable-- even prisoners deserve that!"
     "Voice: Who's there?"
     show harold hanimation at right
@@ -305,9 +326,16 @@ label holdingRoom:
             harold "If you want to serve me tea, fine. But get on with it."
             menu:
                 "But of course. Anything for a charmer like you.":
-                    "Angelica spills hot tea on his lap."
+                    hide harold
+                    with dissolve
+                    show bg policeInterrogationRoomSpill
+                    with dissolve
                     harold "BLAST! That's scalding!"
                     angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
+                    show bg policeInterrogationRoom
+                    with dissolve
+                    show harold hanimation at right
+                    with dissolve
                     angelica "Today must really not be your day!"
                     harold "Get me a towel, you fool!"
                     angelica "I'm afraid we don't have any."
@@ -318,7 +346,7 @@ label holdingRoom:
                     angelica "That must be so hard for you..."
                     angelica "If only you were in charge. Perhaps things would go your way?"
                     harold "That's bloody right!"
-                    angelica "(The Chief was right. He's not working alone. And he isn't the leader...)"
+                    angelica "(The Commissioner was right. He's not working alone. And he isn't the leader...)"
                     angelica "And they all threw you to the dogs"
                     angelica "What a sad spectacle"
                     harold "Spectacle! Bloody spectacles, that's all they..."
@@ -341,21 +369,34 @@ label holdingRoom:
                 "Tell me what you know or no tea!":
                     harold "You must think me a bloody fool. No tea's that tempting. Off with you!"
                     angelica "How rude!"
-                    "Angelica pours hot tea on him."
+                    hide harold
+                    with dissolve
+                    show bg policeInterrogationRoomSpill
+                    with dissolve
                     harold "BLAST! That's scalding! Why am I always suffering for other people's screw ups! Get out of here, I'll call one of the officers!"
+                    show bg policeInterrogationRoom
+                    with dissolve
+                    show harold hanimation at right
+                    with dissolve
                     angelica "(Aha! He's not working alone! That's enough for me.)"
                     angelica "You think hot tea is the worst that's in store for you?"
                     angelica "(Maybe I should check the commissioner's office for more information.)"
-                    "You leave the room."
                     play sound "sounds/Door_Close.ogg"
                     hide harold hanimation
                     with dissolve
                     jump chiefsoffice
                     
         "Well, aren't you charming. Here.":
-                    "Angelica spills hot tea on his lap."
+                    hide harold
+                    with dissolve
+                    show bg policeInterrogationRoomSpill
+                    with dissolve
                     harold "BLAST! That's scalding!"
                     angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
+                    show bg policeInterrogationRoom
+                    with dissolve
+                    show harold hanimation at right
+                    with dissolve
                     angelica "Today must really not be your day!"
                     harold "Get me a towel, you fool!"
                     angelica "I'm afraid we don't have any."
@@ -366,7 +407,7 @@ label holdingRoom:
                     angelica "That must be so hard for you..."
                     angelica "If only you were in charge. Perhaps things would go your way?"
                     harold "That's bloody right!"
-                    angelica "(The Chief was right. He's not working alone. And he isn't the leader...)"
+                    angelica "(The Commissioner was right. He's not working alone. And he isn't the leader...)"
                     angelica "And they all threw you to the dogs."
                     angelica "What a sad spectacle."
                     harold "Spectacle! Bloody spectacles, that's all they..."
@@ -381,7 +422,6 @@ label holdingRoom:
                     "Angelica throws a towel at Harold."
                     angelica "Clean yourself up, you buffoon."
                     angelica "(Maybe I should check the commissioner's office for more information.)"
-                    "You leave the room."
                     play sound "sounds/Door_Close.ogg"
                     hide harold hanimation
                     with dissolve
@@ -390,7 +430,7 @@ label holdingRoom:
 label chiefsoffice:
     show bg policeCaptainsOffice
     stop music
-    play music "sounds/Busy_Music.ogg" loop
+    play music "sounds/arthur_song.ogg" loop
     show arthur chinanimation at left
     with dissolve
     ar "Oho! Did you need something?"
@@ -426,141 +466,228 @@ label chiefsoffice:
 label party:
     show bg party
     stop music
-    play music "sounds/gameover.ogg"
+    play music "sounds/ball_room_waltz_1_.ogg" loop
     angelica "(This is the fanciest event I've ever been to. Thankfully, I have a fancy dress to match. Let's see if I can blend in with high society long enough to find the would-be killer's wife?)"
     angelica "(There's a woman in the corner, by herself. Everyone's ignoring her. I wonder if that's Mrs. Fredrickson?)"
-    "A woman enters"
-    "Woman: It's unbecoming to stare, my dear."
-    angelica "I'm sure I don't know what you mean."
-    show countess countanimation
-    with dissolve
-    countess "You're staring at that woman in the corner, dear. It is most unbecoming."
-    countess "Quite improper."
     menu:
-        "I assure you that was not my intention.":
-            countess "Who cares what you intended, my dear? Our actions speak louder than words."
-            countess "A girl ought to be careful not to offend her betters. You might end up like the woman you're staring at, and who wants that?"
-            countess "But I'm sure you're just curious, dear?"
-            countess "I'll tell you why no one's speaking to her if you'll stop making a scene with your incessant staring."
-            menu:
-                "I don't particularly care to hear your idle prattle.":
-                    countess "Here's a lesson, little girl: lords and ladies might hold the key to your marriage prospects, so treat them well as though your life depends on it!"
-                    countess "But perhaps you don't care about those things. Go talk to Mrs. Fredrickson, then-- you should find yourself quite comfortable amongst her and her ilk."
-                    angelica "Perhaps I shall show her some better company."
+        "Maybe I'll observe her for a little while":
+            show countess countanimation
+            with dissolve
+            countess "It's unbecoming to stare, child."
+            angelica "I'm sure I don't know what you mean."
+            countess "You're staring at that woman in the corner, dear. It is most improper."
+            countess "You look like a hound waiting for its meal!"
+            menu: 
+                "I assure you that was not my intention.":
+                    countess "Who cares what you intended, child? I'm the hostess of this gala, and you ought to watch what you do in my company. If you forget your manners, you might end up like the woman you're staring at, and who wants that?"
+                    angelica "What, did she pick up the wrong spoon at a fancy dinner?"
+                    countess "Hmph! Really! But I'm sure you're curious, child? I'll tell you why no one's speaking to her if you'll stop making a scene with your incessant staring."
+                    menu:
+                        "I don't particularly care to hear your idle prattle":
+                            jump lifedull
+                        "Please, my lady, do share your wisdom with me.":
+                            countess "That's Mrs. Fredrickson hiding in the corner over there. Her husband tried to kill the queen, you know."
+                            countess "And she still has the gall to come to my party. Clearly she doesn't realize she's nobody of importance anymore! Almost like you, dear!"
+                            menu:
+                                "You're more of a scoundrel than a lady, aren't you?":
+                                    jump supermean
+                                "Truly, her decisions seem ill-advised.":
+                                    jump shesdumb
+                "One might say those who compare ladies to dogs are most improper.":
+                    jump hostesses
+            label hostesses:
+                countess "Hmph! You would think guests might treat their hostesses with a bit more respect!"
+                angelica "So you're the Countess of Worthington?"
+                countess "Hmph! Really! You've come to my party without an inkling of who I am?"
+                angelica "You don't know who I am either!"
+                countess "It hardly matters, does it? I'm somebody of importance... If I don't know you already, then you're clearly no one significant... I know everyone worth knowing. And if you're nobody at all, how on earth were you invited to my gala?"
+                angelica "(uh oh.)"
+                angelica "Isn't it your job to know who's invited to your own party?"
+                countess "People like me, child, have other people to do that for us. I'm sure you don't know what that's like. You probably busy yourself with crude embroidery and entertaining your poor marriage prospects."
+                angelica "You seem a little bitter."
+                countess "Bitter! Hmph! How dare you! I'm worth ten of you! No, fifteen!"
+                menu:
+                    "I'll keep that in mind for moments when life seems too dull.":
+                        jump lifedull
+                
+                    "Forgive my rudeness. Weren't you going to tell me something?":
+                        jump tellsomething
+                        
+                label lifedull:
+                    countess "Hmph! You petulant child! You clearly don't belong at society gatherings."
+                    countess "Go talk to Mrs. Fredrickson, then-- you should find yourself quite comfortable amongst her and her ilk."
+                    angelica "Perhaps I shall show Mrs. Fredrickson some better company."
                     hide countess countanimation
                     with dissolve
-                    jump ladyFredrickson
-                "Please, My Lady, do share your wisdom with me.":
-                    countess "That's Mrs. Fredrickson hiding in the corner over there. The poor dear--her husband is the member of parliament who tried to kill the Queen."
-                    countess "And she still has the gall to come here tonight and expect to be treated like every other parliament member's wife!"
-                    countess "Perhaps she's just naive. Either way, I hope she's learned her lesson now. People like her don't mingle with people like me."
-                    countess "Not anymore."
-                    menu:
-                        "My my, even ladies can act like scoundrels, can't they?":
-                            jump worldthisway
-                        "Truly, her decisions seem ill-advised.":
-                            countess "Truly. The poor dear doesn't realize her society life is over. But you, little girl, you know how the world works."
-                            countess "Do you know what would be quite fun, girl? You ought to go talk to her. I confess, I'd like to know what on earth she was thinking by coming here tonight. But someone of my stature talking to someone like her... it would be most unbecoming."
-                            menu:
-                                "You love to tell terrible tales, don't you?":
-                                    jump worldthisway
-                                "I could converse with her, perhaps.":
-                                    hide countess countanimation
-                                    with dissolve
-                                    jump ladyFredrickson
-                    label worldthisway:
-                        countess "I didn't make the world this way, darling, that's just the way things are. I'm sure you'll learn that soon."
-                        "Countess leaves."
-                        hide countess countanimation
-                        with dissolve
-                        angelica "(What a dreadful woman! Shall I look for better company?)"
-                        jump ladyFredrickson
-                            
-        "One might think many things are improper. Chastising strangers, for instance.":
-            countess "You naive little girl! You are truly unaware of who I am? I am Lydia, Countess of Worthington, my dear.../ you ought to put it to memory."
-            countess "People like me, dear, are best treated with deference. Doe-eyed little girls like you owe a great deal to ladies like me. Here's a lesson, little girl: lords and ladies might hold the key to your marriage prospects, so treat them well as though your life depends on it!"
-            menu:
-                "I'll keep that in mind for moments when life seems too dull. ":
-                    "Go talk to Mrs. Fredrickson, then-- you should find yourself quite comfortable amongst her and her ilk."
-                    angelica "Perhaps I shall show her some better company."
-                    hide countess countanimation
-                    jump ladyFredrickson
+                    jump followbeatrice
                     
-                "Forgive my rudeness. Share your wisdom with me, my Lady.":
-                    show countess countanimation
-                    with dissolve
-                    countess "That's Mrs. Fredrickson hiding in the corner over there. The poor dear--her husband is the member of parliament who tried to kill the Queen."
-                    countess "And she still has the gall to come here tonight and expect to be treated like every other parliament member's wife!"
-                    countess "Perhaps she's just naive. Either way, I hope she's learned her lesson now. People like her don't mingle with people like me."
-                    countess "Not anymore."
-                    menu:
-                        "My my, even ladies can act like scoundrels, can't they?":
-                            countess "I didn't make the world this way, darling, that's just the way things are. I'm sure you'll learn that soon."
-                            hide countess countanimation
-                            "Countess leaves"
-                            angelica "(What a dreadful woman! Shall I look for better company?)"
-                            jump ladyFredrickson
-                        "Truly, her decisions seem ill-advised.":
-                            countess "Truly. The poor dear doesn't realize her society life is over. But you, little girl, you know how the world works."
-                            countess "Do you know what would be quite fun, girl? You ought to go talk to her. I confess, I'd like to know what on earth she was thinking by coming here tonight. But someone of my stature talking to someone like her... it would be most unbecoming."
-                            menu:
-                                "You love to tell terrible tales, don't you?":
-                                    countess "I didn't make the world this way, darling, that's just the way things are. I'm sure you'll learn that soon."
-                                    "Countess leaves"
-                                    hide countess countanimation
-                                    jump ladyFredrickson
-                                "I could converse with her, perhaps.":
-                                    hide countess countanimation
-                                    jump ladyFredrickson
-
-label ladyFredrickson:
-    show beat banimation
-    menu:
-        "Lady Fredrickson, what on earth are you doing here?":
-            
-            beat "Are you here to tell me how ashamed I should be of my husband? How I should hide my face in public? How I should be embarrased to simply exist?"
+        "Shall I go and speak with her?":
+            jump beatriceskip
+                
+        "Oh look, a drunkard in the corner!":
+            show shady shadimation
+            with dissolve
+            angelica "(Well this should be good for a laugh)"
+            angelica "And how are you tonight, good sir?"
+            shady "Lovely, my fair lady! Everything is lovely! Should you care to drink with me?"
+            angelica "Why, I think not. Here we are celebrating after our own Queen was only just subject to an assassination attempt. \ Don't you find it crass?"
+            shady "This is why we must celebrate, my dear! \ She was not assassinated, she lives on, as must we all!"
+            angelica "That is a good way to look at things. \ Poor Lady Fredrickson, I don't suppose she can see it that way!"
+            shady "Oh, I think that might be exactly how she sees it!"
+            angelica "What do you mean?"
+            shady "The girl despised her husband, I hear! \ All those people thinking she could've had something to do with that. \ They're all daft!"
+            angelica "Yes, I suppose so."
+            angelica "(I guess I'm not the only one who thinks this assignment is pointless.)"
+            shady "Anyone who pays attention knows that the young lady has no appreciation for... a man's company, should I say?"
+            angelica "Oh, you think?"
+            angelica "(Maybe this won't be such a waste...\ For me, anyway.)"
+            hide shady shadimation
+            with dissolve
             menu:
-                "Of course not, I simply wished to know why you would put up with these judgmental society louses.":
-                    beat "Forgive my skepticism, then, as I just saw you speaking with the Countess. I cannot imagine the woman said anything complementary about me. She is notoriously obsessed with reputation."
+                "Maybe I should find out if the rumors are true?":
+                    jump followbeatrice
+                     
+                "Perhaps I should question other guests first.":
+                    show countess countanimation
+                    angelica "How are you enjoying the party?"
+                    countess "Certainly I am not. Ilk of all kinds are present here! That disgusting man, and that foolish child of a lady!"
+                    menu:
+                        "And who are you to cast such harsh judgement?":
+                            jump hostesses
+                        "You seem like a very wise judge of character.":
+                            jump shesdumb
+
+label tellsomething:
+    countess "That's Mrs. Fredrickson hiding in the corner over there. Her husband tried to kill the queen, you know. \ And she still has the gall to come to my party."
+    countess "Clearly she doesn't realize she's nobody of importance anymore! Almost like you, dear!"
+    menu:
+        "You're more of a scoundrel than a lady, aren't you?":
+            jump supermean
+        
+        "Truly, her decisions seem ill-advised":
+            jump shesdumb
+            
+    label supermean:
+        countess "I didn't make the world this way, darling, that's just the way things are!"
+        hide countess countanimation
+        with dissolve
+        angelica "What a dreadful woman! Shall I look for better company?"
+        jump followbeatrice
+    
+    label shesdumb:
+        countess "Truly! The silly thing doesn't realize her society life is over. It's quite amusing!"
+        countess "Do you know what would be fun, child? You ought to go talk to her. I'd like to know what she was thinking by coming here tonight. \ But someone of my stature talking to someone like her... ha! \You would be a more appropriate match for her."
+        menu:
+            "You love to tell terrible tales, don't you?":
+                jump supermean
+            
+            "I could converse with her, perhaps.":
+                hide countess countanimation
+                with dissolve 
+                jump followbeatrice
+        
+label followbeatrice:
+    hide countess countanimation
+    with dissolve
+    angelica "(It looks like Mrs. Fredrickson has gone to freshen up. Perhaps I can start up a conversation with her.)"
+    "The shady man stops Mrs. Fredrickson in the hall."
+    angelica "(Oh no, that drunken man from before has stopped her.)"
+    "The shady man hands something to Mrs. Fredrickson."
+    beat "What are these?"
+    shady "Just some documents, ma'am. Give my best to your husband."
+    angelica "Wait, what was that? Is it possible that she had something to do with this after all? I'll strike up a conversation..."
+    show beat banimation
+    with dissolve
+    menu:
+        "Mrs. Fredrickson, what on earth are you doing here?":
+            hide beat banimation
+            show beat cryanimation
+            angelica "(Oh, lovely.)"
+            beat "Are you here to tell me how ashamed I should be of my husband? How I should be embarassed to simply exist?"
+            menu:
+                "Of course not! Please stop crying...":
+                    hide beat cryanimation
+                    show beat banimation
+                    beat "I just saw you speaking with the Countess. She is notoriously obsessed with reputation, which means she decides everyone else's reputation. \ I think she told everyone at the party to avoid me!"
+                    hide beat banimation
+                    show beat cryanimation
+                    angelica "(Oh, don't start crying again!)"
                     menu:
                         "She did seem to be one for idle gossip and foolishness.":
-                            beat "The countess is an woman of great reputation, but I'm afraid it doesn't mean much for her moral character. I had hoped she might show a speck of kindness to me, after what I have been through. It is hard enough to lose one's husband, but perhaps it is even worse to lose one's friends."
-                            angelica "Good friends are hard to come by, but they are the finest things in life."
-                            jump morethanafriend
+                            beat "The countess is a woman of great reputation, which means she decides what everyone else's reputation is. \ Now I'm without a husband and without friends."
+                            angelica "Good friends are hard to come by, and I don't think she was ever a good one."
+                            beat "No, she was rotten. But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife. So lonely..."
+                            jump dontcry
+                            
+                            
                         "I won't pretend she didn't prattle like a madwoman about you.":
-                            beat "Yes, and I'm sure my misfortunes were quite amusing to you. Almost as good as the tabloids, yes? How lovely of you to show an interest in my suffering."
-                            angelica "I didn't mean to offend, Lady Fredrickson!"
-                            angelica "Your strength in these times is truly admirable. "
-                            beat "I appreciate your kindness. Few have shown it to me tonight. It is unfortunate that our fates are so tied with those of our husbands; we put on a ring and lose our individual selves."
-                            angelica "A true tragedy. It seems you have need of more loyal friends than those who've abandoned you."
-                            jump morethanafriend
-                    label morethanafriend:
-                        beat "I could use more than a friend. I could use a new husband."
-                        beat "I pray that the Queen will execute him so that I might become a widow and remarry."
-                        beat "But I shouldn't say such things."
-                        beat "But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife."
-                        angelica "On the contrary, I quite love your musings."
-                        angelica "Still, a new husband, a new scoundrel. Wouldn't it be better to find companionship in a true equal?"
-                        angelica "More like you and I?"
-                        jump findyou
+                            beat "I'm sure you found my misfortunes quite amusing. Almost as good as the tabloids, yes?"
+                            hide beat banimation
+                            show beat cryanimation
+                            angelica "(Uh oh...)"
+                            angelica "I didn't mean to offend, Mrs. Fredrickson! \ Your strength in these times is truly admirable."
+                            hide beat cryanimation
+                            show beat banimation
+                            beat "Call me Beatrice, won't you? I appreciate your kindness. Few have shown it to me tonight."
+                            angelica "Good friends are hard to come by, and I don't think anyone here is a good friend."
+                            beat "No, they're all rotten. Except for you, it seems. \ But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife. So lonely..."
+                            jump dontcry
+                                      
+                        
                 "Maybe you should learn to be a better judge of character.":
-                    beat "I had no idea what my husband intended. I accepted his hand in marriage because my parents thought it advantageous. I am not a killer simply because I was near one, no more than you are a countess because you were talking to one just a moment ago."
-                    angelica "I spoke out of turn, my apologies."
-                    beat "I'm a person, a person distinct from my husband. No one seems to remember that."
-                    angelica "Marriage means the death of our independent lives. But perhaps now you can return to that life, and find comfort in your companions and friends."
-                    beat "I see now that my old \"friends\" were not true ones. It is difficult enough to accept the loss of one's husband, but without friends..."
-                    beat "I find no comfort in anyone. I find myself quite alone."
+                    beat "Judge of character?! Do you think I am clairvoyant? How on earth would I have predicted that my husband would try to kill the Queen? That's insanity!"
+                    angelica "I spoke out of turn, my apologies. If you could just... stop crying... please."
+                    beat "I'm my own person! Why does no one believe that?"
+                    angelica "I believe you. But it seems like your own friends don't."
+                    hide beat cryanimation
+                    show beat banimation
+                    beat "I think these 'friends' are only loyal in fair weather. Without a husband, without friends... I find no comfort in anyone. \ I am quite alone."
                     angelica "I've been told, in passing, I can be a great source of comfort."
-            label findyou:
-                beat "I know there have been rumors about my... impropriety... in the past."
-                beat "I can assure you that true ladies are never more than friends with one another."
-                beat "That said, I am not opposed to recieving ladies in my parlor. Perhaps, if you feel as unwelcome at this party as I do, you might retire with me."
-                angelica "(Perhaps Lady Fredrickson's 'impropriety' isn't so long past?)"
-                angelica "(While not entirely sanctioned by my mission, her invitation is far too... tempting an opportunity. To look into Lord Fredrickson's house, of course!)"
-                angelica "Once this party becomes too much for my conscience, I'll be sure to come find you!"
+                    beat "I know there have been rumors about my ...  impropriety ... in the past. \ I can assure you that true ladies are never more than friends with one another."
+                    beat "That said, I am not opposed to recieving ladies in my parlor. Perhaps, if you feel as unwelcome at this party as I do, you might retire with me."
+                    angelica "(Perhaps Mrs. Fredrickson's 'impropriety' isn't so long past?)"
+                    angelica "(Although not entirely sanctioned by my mission, her invitation is far too... tempting an opportunity. To look into Lord Fredrickson's house, of course!)"
+                    angelica "That seems like a lovely idea."
+                    hide beat banimation
+                    with dissolve
+                    "End of Demo"
+                    return
+                    
         "A lady as lovely as you shouldn't be left alone.":
-            beat "I appreciate your kindness. Few have shown it to me tonight. It is unfortunate that our fates are so tied with those of our husbands; we put on a ring and lose our individual selves."
-            angelica "A true tragedy. It seems you have need of more loyal friends than those who've abandoned you."
-            jump morethanafriend
-
+            jump sorryignoring
+        
+label beatriceskip:
+    angelica "(It looks like Mrs. Fredrickson has gone to freshen up. Perhaps I can start up a conversation with her.)"
+    "The shady man stops Mrs. Fredrickson in the hall."
+    angelica "(Oh no, that drunken man from before has stopped her.)"
+    "The shady man hands something to Mrs. Fredrickson."
+    beat "What are these?"
+    shady "Just some documents, ma'am. Give my best to your husband."
+    angelica "Wait, what was that? Is it possible that she had something to do with this after all? I'll strike up a conversation..."
+    show beat banimation
+    with dissolve
+    angelica "A lady as lovely as you shouldn't be left alone."
+    jump sorryignoring
+  
+label sorryignoring:
+    beat "I appreciate your kindness. Few have shown it to me tonight. But you probably just don't know who I am..."
+    angelica "I do, Mrs. Fredrickson. It just seemed a shame that everyone else here decided to judge you for someone else's crime."
+    beat "Call me Beatrice, please. Everyone is rotten here. Except for you, it seems! But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife. So lonely..."
+    jump dontcry
+    
+label dontcry:
+    hide beat banimation
+    show beat cryanimation
+    angelica "No, no! I love your musings! Why don't I keep you company?"
+    hide beat cryanimation
+    show beat banimation
+    angelica "I think you need better companions. Perhaps I could escort you from the party?"
+    beat "I know there have been rumors about my ... impropriety ... in the past. \I can assure you that true ladies are never more than friends with one another."
+    beat "That said, I am not opposed to recieving ladies in my parlor. Perhaps, if you feel as unwelcome at this party as I do, you might retire with me."
+    angelica "(Perhaps Beatrice's 'impropriety' isn't so long past? \ While not entirely sanctioned by my mission,  her invitation is far too... tempting an opportunity. To look into Lord Fredrickson's house, of course!"
+    angelica "That seems like a lovely idea."
+    hide beat banimation
+    with dissolve
+    "End of Demo"
+    
 return
