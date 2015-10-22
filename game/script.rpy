@@ -214,6 +214,8 @@ label start:
     
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
+    
+    "this is here to show lillie how to push to github"
     "London, 1875.\n\n A Member of Parliament, Harold Fredrickson, has tried to kill Her Majesty Queen Victoria.
      \n\nA league of private detectives thwarted the attempt, and took the would-be killer into custody.
      \n\nYou are Angelica Hall, the first female private eye in Britain. You're bright, but underestimated by your peers. Maybe this case is the chance you need to prove yourself."
