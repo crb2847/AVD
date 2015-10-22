@@ -133,6 +133,10 @@ image arthur normal = "images/arthursingle.png"
 #image harold normal ".png"
 image policebaton = "images/baton.png"
 
+#angelica's corner image stuff
+image angelica normal hidden = Null()
+image angelica angry hidden = Null()
+
 # Declare characters used by this game.
 #define angelica = Character('Angelica Hall', color="#c8ffc8",
 #                            window_left_padding=300,
@@ -140,7 +144,9 @@ image policebaton = "images/baton.png"
 #                            xalign=0.0, yalign=1.0))
 define angelica = Character('Angelica Hall', color="#c8ffc8",
                             window_left_padding=300,
-                            show_side_image=Image("images/angelica/Angelica_Corner_Idle.png",
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
                             xalign=0.0, yalign=1.0))
 define ar = Character('Arthur Charleston', image="arthur")
 define harold = Character('Harold Fredrickson', color="#a7ffc8")
@@ -200,6 +206,12 @@ screen flashlight_demo:
 label start:    
     #$ mouse_visible = False
     #call screen flashlight_demo
+    
+    #this is how you change angelica's corner image
+    show angelica normal hidden
+    show angelica angry hidden
+    show angelica normal
+    
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
     "London, 1875.\n\n A Member of Parliament, Harold Fredrickson, has tried to kill Her Majesty Queen Victoria.

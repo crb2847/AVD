@@ -1,39 +1,39 @@
-Tue Oct 20 20:11:42 2015
+Wed Oct 21 20:05:55 2015
 Windows-7-6.1.7601-SP1
 Ren'Py 6.99.6.739
  
 
 Bootstrap to the start of init.init took 0.09s
 Early init took 0.02s
-Loader init took 0.05s
+Loader init took 0.01s
 Loading error handling took 0.02s
-Loading script took 0.25s
+Loading script took 0.07s
 Loading persistent took 0.02s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.08s
-Loading analysis data took 0.02s
+Set script version to: (6, 99, 6)
+Running init code took 0.09s
+Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
 Index archives took 0.00s
-Backing up script files to u'C:\\Users\\Chris\\AppData\\Roaming/RenPy/backups\\Angelica Victorian Detective':
-Dump and make backups. took 0.06s
+Dump and make backups. took 0.04s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Creating interface object took 0.02s
+Creating interface object took 0.03s
 Cleaning stores took 0.00s
 Init translation took 0.00s
 Build styles took 0.00s
-Load screen analysis took 0.00s
-Analyze screens took 0.02s
-Save screen analysis took 0.05s
+Load screen analysis took 0.01s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
 Prepare screens took 0.06s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.04s
+Save bytecode. took 0.00s
 Running _start took 0.00s
 Performance test:
-Interface start took 0.00s
+Interface start took 0.01s
 
-Windowed mode.
-Screen sizes: virtual=(1920, 1080) physical=(960, 540) drawable=(960, 540)
+Fullscreen mode.
+Screen sizes: virtual=(1920, 1080) physical=(1366, 768) drawable=(1366, 768)
 Vendor: 'Intel'
 Renderer: 'Intel(R) HD Graphics Family'
 Version: '3.1.0 - Build 8.15.10.2559'
@@ -156,11 +156,18 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 1.20299983025s
+Total time until interface ready: 0.960000038147s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.020000 seconds.
-- Frame drawn at 0.020000 seconds.
-- Frame drawn at 0.020000 seconds.
-- Frame drawn at 0.020000 seconds.
-- 0.020000 seconds to render 5 frames.
+- Frame drawn at 0.014000 seconds.
+- Frame drawn at 0.016000 seconds.
+- Frame drawn at 0.018000 seconds.
+- Frame drawn at 0.034000 seconds.
+- 0.034000 seconds to render 5 frames.
+Cleaning stores took 0.00s
+Init translation took 0.01s
+Build styles took 0.00s
+Load screen analysis took 0.01s
+Analyze screens took 0.00s
+Prepare screens took 0.04s
+Running _start took 0.00s
