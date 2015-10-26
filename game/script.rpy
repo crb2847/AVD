@@ -28,6 +28,9 @@ init python:
             self.height = 0
             
             self.pos = pos
+            
+            #has been looked at
+            self.viewed = False
 
         def render(self, width, height, st, at):
 
@@ -47,6 +50,8 @@ init python:
             # Blit (draw) the child's render to our render.
             rcenter = (300, 100)
             render.blit(child_render, rcenter)
+            
+            # if self.viewed :
 
             # Return the render.
             return render
@@ -62,6 +67,7 @@ init python:
             # Base on the distance, figure out an alpha.
             if distance <= self.opaque_distance:
                 alpha = 1.0
+                self.viewed = True
             elif distance >= self.transparent_distance:
                 alpha = 0.0
             else:
@@ -74,6 +80,9 @@ init python:
 
             # Pass the event to our child.
             return self.child.event(ev, x, y, st)
+            
+        def getViewed(self):
+            return self.viewed
 
     def visit(self):
         return [ self.child ]
@@ -194,8 +203,8 @@ init:
                                               "images/Countess_Indifferent/Countess_Indifferent0005.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0006.png", .16,)
     image shady shadimation = Animation("images/shady/skeleton.png", .16,)
-screen newspaper:
-    add Appearing("images/police_news.png", (720,300), 40, 100)
+
+
 screen baton:
     add Appearing("images/baton.png", (1100,180), 40, 100)
 screen flashlight_demo:
@@ -204,8 +213,17 @@ screen flashlight_demo:
     
 # The game starts here.
 label start:    
+    $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
+    screen newspaper:
+        add a[0]
+    # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
+    
+    #make booleans work
+    
+    #show specific text for mouse over object
+    
     
     #this is how you change angelica's corner image
     show angelica normal hidden
@@ -215,7 +233,6 @@ label start:
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
     
-    "this is here to show lillie how to push to github"
     "London, 1875.\n\n A Member of Parliament, Harold Fredrickson, has tried to kill Her Majesty Queen Victoria.
      \n\nA league of private detectives thwarted the attempt, and took the would-be killer into custody.
      \n\nYou are Angelica Hall, the first female private eye in Britain. You're bright, but underestimated by your peers. Maybe this case is the chance you need to prove yourself."
@@ -226,7 +243,10 @@ label start:
             "Examine the room.":
                 show screen newspaper
                 show screen baton
-                "I see a newspaper, and a baton..."
+                show test
+                "You begin to examine the room"
+                if a[0].getViewed() == True:
+                    jump iseeanews
                 "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
                 hide screen newspaper
                 hide screen baton
@@ -236,6 +256,8 @@ label start:
                 hide screen newspaper
                 hide screen baton
                 jump captainWalksIn
+    label iseeanews:
+        "I see a newspaper, and a baton..."
 
     label captainWalksIn:
         show arthur chinanimation at left
