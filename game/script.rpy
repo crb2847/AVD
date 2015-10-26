@@ -216,6 +216,7 @@ label start:
     $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
     screen newspaper:
         add a[0]
+        #add Flashlight()
     # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
