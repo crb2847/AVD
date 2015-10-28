@@ -1,27 +1,27 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 246, in script
-    if a.getViewed :
-  File "game/script.rpy", line 246, in <module>
-    if a.getViewed :
-NameError: name 'a' is not defined
+  File "game/script.rpy", line 955, in script
+    if blueprints[0].getViewed() == True:
+  File "game/script.rpy", line 955, in <module>
+    if blueprints[0].getViewed() == True:
+NameError: name 'blueprints' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 246, in script
-    if a.getViewed :
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ast.py", line 1612, in execute
+  File "game/script.rpy", line 955, in script
+    if blueprints[0].getViewed() == True:
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1612, in execute
     if renpy.python.py_eval(condition):
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\python.py", line 1477, in py_eval
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1477, in py_eval
     return py_eval_bytecode(code, globals, locals)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\python.py", line 1472, in py_eval_bytecode
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1472, in py_eval_bytecode
     return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 246, in <module>
-    if a.getViewed :
-NameError: name 'a' is not defined
+  File "game/script.rpy", line 955, in <module>
+    if blueprints[0].getViewed() == True:
+NameError: name 'blueprints' is not defined
 
-Windows-7-6.1.7601-SP1
+Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
 Angelica Victorian Detective 0.2
