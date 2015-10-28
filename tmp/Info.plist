@@ -30,9 +30,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>AngelicaVictorianDetective-1.0</string>
+	<string>AngelicaVictorianDetective-0.4</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1445233316</string>
+	<string>1.0.1446071614</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.simulation-games</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>

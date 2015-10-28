@@ -136,6 +136,9 @@ image bg policeInterrogationRoom = "images/PoliceInterrogation_1.png"
 image bg party = "images/Ballroom_l.png"
 image bg policeCaptainsOffice = "images/captainsOffice.png"
 image bg policeInterrogationRoomSpill = "images/SpiltTea.png"
+image bg parlor = "images/Parlor_02.png"
+image bg office = "images/haroldoffice.png"
+image bg bedroom = "images/bedroom.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -214,17 +217,55 @@ screen flashlight_demo:
 # The game starts here.
 label start:    
     $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
+    $ glasses = [Appearing("images/SearchItems/glasses.png", (300,500), 40, 100)]
+    $ blueprint = [Appearing("images/SearchItems/blueprint.png", (300,300), 40, 100)]
+    $ cipher = [Appearing("images/SearchItems/cipher.png", (100,500), 40, 100)]
+    $ cryphoto = [Appearing("images/SearchItems/cryphoto.png", (1000,400), 40, 100)]
+    $ jewelrybox = [Appearing("images/SearchItems/jewelrybox.png", (800,300), 40, 100)]
+    $ letters = [Appearing("images/SearchItems/letters.png", (500,200), 40, 100)]
+    $ mirror = [Appearing("images/SearchItems/mirror.png", (500,400), 40, 100)]
+    $ sword = [Appearing("images/SearchItems/sword.png", (300,300), 40, 100)]
+    #$ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
+    
     screen newspaper:
         add a[0]
         #add Flashlight()
+    screen bedroom:
+        add mirror[0]
+        add jewelrybox[0]
+        add blueprint[0]
+    screen officedesk:
+        add cipher[0]
+        add letters[0]
+        add glasses[0]
+    screen bedroomFlashlight:
+        add Flashlight()
+        add mirror[0]
+        add jewelrybox[0]
+        add blueprint[0]
+    screen officedeskFlashlight:
+        add Flashlight()
+        add cipher[0]
+        add letters[0]
+        add glasses[0]
+    screen parlor:
+        add cryphoto[0]
+        #add book[0]
+        add sword[0]
+    screen parlorFlashlight:
+        add Flashlight()
+        add cryphoto[0]
+        #add book[0]
+        add sword[0]    
+    screen darkness:
+        add Flashlight()
+        
+        
     # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
     
-    #make booleans work
-    
-    #show specific text for mouse over object
-    
+    jump examineoffice
     
     #this is how you change angelica's corner image
     show angelica normal hidden
@@ -244,7 +285,6 @@ label start:
             "Examine the room.":
                 show screen newspaper
                 show screen baton
-                show test
                 "You begin to examine the room"
                 if a[0].getViewed() == True:
                     jump iseeanews
@@ -719,70 +759,116 @@ label dontcry:
     jump beatricehouse
 #end ballroom scene
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #start beatrice house scenes
 
 # beatrice fail route 
 label beatricefail:
+    show screen darkness
+    show bg parlor
     stop music
     angelica "(I've got to be quiet. Can't risk being found or I could risk the entire investigation. \ I'll have to use a lantern so as not to alert anyone of my presence."
     menu:
         "Examine Parlor":
+            hide screen darkness
             jump parlorlantern
         "Examine Bedroom":
+            hide screen darkness
             jump bedroomcantgetin
         "Examine Office":
+            hide screen darkness
             jump officelantern
        
 label parlorlantern:
+    show screen parlorFlashlight
+    show bg parlor
     angelica "Let's see what I can find in here."
-    #search flashlight
+    #search no flashlight
     #item 1, wedding photo
-    angelica "Of course she's crying..."
+    if cryphoto[0].getViewed() == True:
+        angelica "Of course she's crying..."
     #item 2, book of travels
-    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #if book[0].getViewed() == True:
+    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
     #item 3, sword
-    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
-    #end investigation
+    if sword[0].getViewed() == True:
+        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    
     menu:
         "Investigate again?":
             jump parlorlantern
         "I'm done here.":
             menu:
                 "Examine Bedroom":
+                    hide screen parlorFlashlight
                     jump bedroomcantgetin
                 "Examine Office":
+                    hide screen parlorFlashlight
                     jump officelantern
                     
 label bedroomcantgetin:
+    screen darkness
+    show bg parlor
     beat "*snoring*"
     angelica "Oh my. She's already home! \ I can't search in there. \ Hopefully there's nothing important in the bedroom..."
     menu:
         "Examine Parlor":
+            hide screen darkness
             jump parlorlantern
         "Examine Office":
+            hide screen darkness
             jump officelantern
 
 label officelantern:
+    show screen officedeskFlashlight
+    show bg office
     angelica "I wonder what's hidden in here."
     #search flashlight
     #item 1: letter
-    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
+    if letters[0].getViewed() == True:
+        angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
     #item 2: womens reading glasses
-    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
+    if glasses[0].getViewed() == True:
+        angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
     #item 3: cipher
-    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+    if cipher[0].getViewed() == True:
+        angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
     #end investigation
     angelica "I think that's all there is here. I suppose I should go."
     menu:
         "Did I examine the parlor thoroughly?":
+            hide screen officedeskFlashlight
             jump parlorlantern
         "Perhaps one last check of the bedroom.":
+            hide screen officedeskFlashlight
             jump bedroomcantgetin
         "I should visit the address on that letter.":
+            hide screen officedeskFlashlight
             jump parliamentarianoffice
+            
+  
 
 #beatrice success route
 label beatricehouse:
+    show bg parlor
     stop music
     show beat banimation
     with dissolve
@@ -808,6 +894,7 @@ label beatricehouse:
 
 #tell beatrice the truth            
 label detectivework:
+    show bg parlor
     angelica "This isn't right. I can't do this to you. \ I'm not who I say I am."
     beat "What do you mean?"
     angelica "I am a detective assigned to investigate you. I was to see if I could find any leads about the assassination case.  \ I am truly sorry for misleading you, but if you let me, I can help you."
@@ -843,9 +930,12 @@ label angelicanongenuine:
             jump parlorangrybeatrice
         "Examine Office":
             jump officeangrybeatrice
-            
+    
+    
 #search routes when beatrice gets mad at you. no flashlight.
 label officeangrybeatrice:
+    show screen officedesk
+    show bg office
     angelica "I wonder what's hidden in here."
     #search no flashlight
     #item 1: letter
@@ -858,26 +948,35 @@ label officeangrybeatrice:
     angelica "I think that's all there is here. I suppose I should go."
     menu:
         "Did I examine the parlor thoroughly?":
+            hide screen officedesk
             jump parlorangrybeatrice
         "I should visit the address on that letter.":
+            hide screen officedesk
             jump parliamentarianoffice
 
 label parlorangrybeatrice:
+    show bg parlor
+    show screen parlor
     angelica "Let's see what I can find in here."
     #search no flashlight
     #item 1, wedding photo
-    angelica "Of course she's crying..."
+    if cryphoto[0].getViewed() == True:
+        angelica "Of course she's crying..."
     #item 2, book of travels
-    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #if book[0].getViewed() == True:
+    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
     #item 3, sword
-    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    if sword[0].getViewed() == True:
+        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
     #end investigation
+    "I'm done here."
     menu:
         "Investigate again?":
             jump parlorlantern
         "I'm done here.":
             menu:
                 "Examine Office":
+                    hide screen parlor
                     jump officeangrybeatrice
                     
 #be honest with beatrice but still seduce
@@ -896,7 +995,10 @@ label angelicaandbeatrice:
     #fade to black
     hide beat banimation
     with dissolve
-    #show bedroom background with beatrice
+    hide bg parlor
+    with dissolve
+    show bg bedroom
+    with dissolve
     angelica "She should be sleeping soundly for a good few hours. Suprisingly agressive for such a teary woman...\ Now let me take a look around and see what I can find."
     menu:
         "Examine Bedroom":
@@ -908,58 +1010,80 @@ label angelicaandbeatrice:
             
 #search post seducy stuff- flashlight in bedroom only
 label examinebedroom:
+    show screen bedroomFlashlight
+    show bg bedroom
     #show bedroom
     angelica "Time to take a look around. I have to be careful not to wake Beatrice."
     #search with flashlight
     #item 1, jewelry box
-    angelica "Some ladies have so many ornaments to drape over themselves...\ In my profession, it's not good to jingle when you walk."
+    if jewelrybox[0].getViewed() == True:
+        angelica "Some ladies have so many ornaments to drape over themselves...\ In my profession, it's not good to jingle when you walk."
     #item 2, mirror
-    angelica "Is that what I look like right now? It's been a long night, indeed."
+    if mirror[0].getViewed() == True:
+        angelica "Is that what I look like right now? It's been a long night, indeed."
     #item 3, blueprints
-    angelica "What's this in the drawer? Schematics? They don't match this house... I suppose I'll take these with me."
+    if blueprint[0].getViewed() == True:
+        angelica "What's this in the drawer? Schematics? They don't match this house... I suppose I'll take these with me."
     #end search
     angelica "I think that's everything in here."
     menu:
         "Examine Parlor":
+            hide screen bedroomFlashlight
             jump examineparlor
         "Examine Office":
+            hide screen bedroomFlashlight
             jump examineoffice
         
 
 label examineparlor:
+    show bg parlor
+    show screen parlor
     angelica "Let's see what I can find in here."
     #search no flashlight
     #item 1, wedding photo
-    angelica "Of course she's crying..."
+    if cryphoto[0].getViewed() == True:
+        angelica "Of course she's crying..."
     #item 2, book of travels
-    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #if book[0].getViewed() == True:
+    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
     #item 3, sword
-    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    if sword[0].getViewed() == True:
+        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
     #end investigation
     "I'm done here."
     menu:
         "Examine Bedroom":
+            hide screen parlor
             jump examinebedroom
         "Examine Office":
+            hide screen parlor
             jump examineoffice
                 
 label examineoffice:
+    show screen officedesk
+    show bg office
     angelica "I wonder what's hidden in here."
     #search no flashlight
     #item 1: letter
-    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
+    if letters[0].getViewed() == True:
+        angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
     #item 2: womens reading glasses
-    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
+    if glasses[0].getViewed() == True:
+        angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
     #item 3: cipher
-    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+    if cipher[0].getViewed() == True:
+        angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
     #end investigation
     angelica "I think that's all there is here. I suppose I should go."
     menu:
         "Did I examine the parlor thoroughly?":
+            hide screen officedesk
             jump examineparlor
         "Perhaps one last check of the bedroom.":
+            hide screen officedesk
             jump examinebedroom
         "I should visit the address on that letter.":
+            hide screen officedesk
             jump parliamentarianoffice
 
 #end of beatrice house 
