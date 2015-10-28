@@ -265,8 +265,6 @@ label start:
     #$ mouse_visible = False
     #call screen flashlight_demo
     
-    jump examineoffice
-    
     #this is how you change angelica's corner image
     show angelica normal hidden
     show angelica angry hidden
