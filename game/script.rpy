@@ -28,6 +28,9 @@ init python:
             self.height = 0
             
             self.pos = pos
+            
+            #has been looked at
+            self.viewed = False
 
         def render(self, width, height, st, at):
 
@@ -47,6 +50,8 @@ init python:
             # Blit (draw) the child's render to our render.
             rcenter = (300, 100)
             render.blit(child_render, rcenter)
+            
+            # if self.viewed :
 
             # Return the render.
             return render
@@ -62,6 +67,7 @@ init python:
             # Base on the distance, figure out an alpha.
             if distance <= self.opaque_distance:
                 alpha = 1.0
+                self.viewed = True
             elif distance >= self.transparent_distance:
                 alpha = 0.0
             else:
@@ -74,6 +80,9 @@ init python:
 
             # Pass the event to our child.
             return self.child.event(ev, x, y, st)
+            
+        def getViewed(self):
+            return self.viewed
 
     def visit(self):
         return [ self.child ]
@@ -194,8 +203,8 @@ init:
                                               "images/Countess_Indifferent/Countess_Indifferent0005.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0006.png", .16,)
     image shady shadimation = Animation("images/shady/skeleton.png", .16,)
-screen newspaper:
-    add Appearing("images/police_news.png", (720,300), 40, 100)
+
+
 screen baton:
     add Appearing("images/baton.png", (1100,180), 40, 100)
 screen flashlight_demo:
@@ -204,8 +213,18 @@ screen flashlight_demo:
     
 # The game starts here.
 label start:    
+    $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
+    screen newspaper:
+        add a[0]
+        #add Flashlight()
+    # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
+    
+    #make booleans work
+    
+    #show specific text for mouse over object
+    
     
     #this is how you change angelica's corner image
     show angelica normal hidden
@@ -215,7 +234,6 @@ label start:
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
     
-    "this is here to show lillie how to push to github"
     "London, 1875.\n\n A Member of Parliament, Harold Fredrickson, has tried to kill Her Majesty Queen Victoria.
      \n\nA league of private detectives thwarted the attempt, and took the would-be killer into custody.
      \n\nYou are Angelica Hall, the first female private eye in Britain. You're bright, but underestimated by your peers. Maybe this case is the chance you need to prove yourself."
@@ -226,7 +244,10 @@ label start:
             "Examine the room.":
                 show screen newspaper
                 show screen baton
-                "I see a newspaper, and a baton..."
+                show test
+                "You begin to examine the room"
+                if a[0].getViewed() == True:
+                    jump iseeanews
                 "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
                 hide screen newspaper
                 hide screen baton
@@ -236,6 +257,8 @@ label start:
                 hide screen newspaper
                 hide screen baton
                 jump captainWalksIn
+    label iseeanews:
+        "I see a newspaper, and a baton..."
 
     label captainWalksIn:
         show arthur chinanimation at left
@@ -651,20 +674,11 @@ label followbeatrice:
                 "Maybe you should learn to be a better judge of character.":
                     beat "Judge of character?! Do you think I am clairvoyant? How on earth would I have predicted that my husband would try to kill the Queen? That's insanity!"
                     angelica "I spoke out of turn, my apologies. If you could just... stop crying... please."
-                    beat "I'm my own person! Why does no one believe that?"
-                    angelica "I believe you. But it seems like your own friends don't."
+                    beat "Leave me be!"
                     hide beat cryanimation
-                    show beat banimation
-                    beat "I think these 'friends' are only loyal in fair weather. Without a husband, without friends... I find no comfort in anyone. \ I am quite alone."
-                    angelica "I've been told, in passing, I can be a great source of comfort."
-                    beat "I know there have been rumors about my ...  impropriety ... in the past. \ I can assure you that true ladies are never more than friends with one another."
-                    beat "That said, I am not opposed to recieving ladies in my parlor. Perhaps, if you feel as unwelcome at this party as I do, you might retire with me."
-                    angelica "(Perhaps Mrs. Fredrickson's 'impropriety' isn't so long past?)"
-                    angelica "(Although not entirely sanctioned by my mission, her invitation is far too... tempting an opportunity. To look into Lord Fredrickson's house, of course!)"
-                    angelica "That seems like a lovely idea."
-                    hide beat banimation
                     with dissolve
-                    "End of Demo"
+                    angelica "Lovely. I've wasted my chance to talk to my target. But she's still at the party... maybe if I rush back to her house, I could investigate before she comes home? Then tonight won't be an entire waste."
+                    jump beatricefail
                     return
                     
         "A lady as lovely as you shouldn't be left alone.":
@@ -702,6 +716,256 @@ label dontcry:
     angelica "That seems like a lovely idea."
     hide beat banimation
     with dissolve
-    "End of Demo"
-    
-return
+    jump beatricehouse
+#end ballroom scene
+
+#start beatrice house scenes
+
+# beatrice fail route 
+label beatricefail:
+    stop music
+    angelica "(I've got to be quiet. Can't risk being found or I could risk the entire investigation. \ I'll have to use a lantern so as not to alert anyone of my presence."
+    menu:
+        "Examine Parlor":
+            jump parlorlantern
+        "Examine Bedroom":
+            jump bedroomcantgetin
+        "Examine Office":
+            jump officelantern
+       
+label parlorlantern:
+    angelica "Let's see what I can find in here."
+    #search flashlight
+    #item 1, wedding photo
+    angelica "Of course she's crying..."
+    #item 2, book of travels
+    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #item 3, sword
+    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    #end investigation
+    menu:
+        "Investigate again?":
+            jump parlorlantern
+        "I'm done here.":
+            menu:
+                "Examine Bedroom":
+                    jump bedroomcantgetin
+                "Examine Office":
+                    jump officelantern
+                    
+label bedroomcantgetin:
+    beat "*snoring*"
+    angelica "Oh my. She's already home! \ I can't search in there. \ Hopefully there's nothing important in the bedroom..."
+    menu:
+        "Examine Parlor":
+            jump parlorlantern
+        "Examine Office":
+            jump officelantern
+
+label officelantern:
+    angelica "I wonder what's hidden in here."
+    #search flashlight
+    #item 1: letter
+    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
+    #item 2: womens reading glasses
+    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
+    #item 3: cipher
+    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+    #end investigation
+    angelica "I think that's all there is here. I suppose I should go."
+    menu:
+        "Did I examine the parlor thoroughly?":
+            jump parlorlantern
+        "Perhaps one last check of the bedroom.":
+            jump bedroomcantgetin
+        "I should visit the address on that letter.":
+            jump parliamentarianoffice
+
+#beatrice success route
+label beatricehouse:
+    stop music
+    show beat banimation
+    with dissolve
+    angelica "You have a truly lovely home."
+    beat "Yes, I've come to like it. \ But who knows how much longer I'll be able to live here."
+    hide beat banimation
+    show beat cryanimation
+    angelica "No no, my dear, your situation is not so bleak! \ A lovely lady like you, with all your husband's money at your disposal...\ You have the world at your fingertips now!"
+    beat "Do you think so?"
+    hide beat cryanimation
+    show beat banimation
+    beat "Yes, maybe now I can travel."
+    angelica "Of course you can. See exciting things, meet new people..."
+    beat "Oh, that sounds nice. \ Away from all these horrible people. But perhaps I can take one familiar face with me..."
+    "Beatrice clasps Angelica's hand."
+    angelica "(Perhaps this is gone too far... she's a sweet girl... \ There's no way she could have anything to do with this. \I might actually like her. \Should I be doing this?)"
+    menu:
+        "I have to be honest with her!":
+            jump detectivework
+        "The mission is more important.":
+            jump angelicaandbeatrice
+
+
+#tell beatrice the truth            
+label detectivework:
+    angelica "This isn't right. I can't do this to you. \ I'm not who I say I am."
+    beat "What do you mean?"
+    angelica "I am a detective assigned to investigate you. I was to see if I could find any leads about the assassination case.  \ I am truly sorry for misleading you, but if you let me, I can help you."
+    hide beat banimation
+    show beat cryanimation
+    angelica "(Not again! Now I've done it...)"
+    beat "How can you possibly help me? You're a liar!"
+    angelica "If you help me to figure out who is behind this mess, it will help clear your name! You will be vindicated in the eyes of the public."
+    beat "Do you truly think so?"
+    angelica "I do. Will you help me?"
+    beat "I... I suppose I will help you. What can I do?"
+    angelica "Who was the man you spoke with earlier tonight?"
+    beat "I do not know him. \ He took me aside and wished the best for my scoundrel husband. \ Surely he's a dangerous man! What if he comes after me?"
+    angelica "Don't fret, I will protect you."
+    hide beat cryanimation
+    show beat banimation
+    beat "How can I trust you? Were your... advances... towards me just a part of your investigation?"
+    menu:
+        "Of course not!":
+            jump angelicagenuine
+        "Yes. I'm truly sorry.":
+            jump angelicanongenuine
+
+# make beatrice angry at you
+label angelicanongenuine:
+    beat "Then I can't trust you at all! Just get out! Take a look around if you must, but stay away from me!"
+    hide beat banimation
+    #door slam
+    #show parlor rather than bedroom
+    angelica "(Bloody hell. I've made a good mess of things. \ I didn't even ask about the papers! Well, I should still have a look around.)"
+    menu:
+        "Examine Parlor":
+            jump parlorangrybeatrice
+        "Examine Office":
+            jump officeangrybeatrice
+            
+#search routes when beatrice gets mad at you. no flashlight.
+label officeangrybeatrice:
+    angelica "I wonder what's hidden in here."
+    #search no flashlight
+    #item 1: letter
+    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
+    #item 2: womens reading glasses
+    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
+    #item 3: cipher
+    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+    #end investigation
+    angelica "I think that's all there is here. I suppose I should go."
+    menu:
+        "Did I examine the parlor thoroughly?":
+            jump parlorangrybeatrice
+        "I should visit the address on that letter.":
+            jump parliamentarianoffice
+
+label parlorangrybeatrice:
+    angelica "Let's see what I can find in here."
+    #search no flashlight
+    #item 1, wedding photo
+    angelica "Of course she's crying..."
+    #item 2, book of travels
+    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #item 3, sword
+    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    #end investigation
+    menu:
+        "Investigate again?":
+            jump parlorlantern
+        "I'm done here.":
+            menu:
+                "Examine Office":
+                    jump officeangrybeatrice
+                    
+#be honest with beatrice but still seduce
+label angelicagenuine:
+    angelica "I'll stay with you all night if I have to."
+    beat "Oh will you? \ It will get quite boring, just staying and watching over me."
+    angelica "Well, I'm sure we can find other ways to pass the time."
+    beat "The things you say...\ I wish I you would take responsibility for them."
+    jump angelicaandbeatrice
+
+# seduce beatrice
+label angelicaandbeatrice:
+    angelica "A virtous young lady entertaining a commoner? \ You seek to truly ruin yourself, my lady! I would love ot be the one who ruins you."
+    beat "I'm afraid I've already been tarnished."
+    angelica "The one I see before me is nothing but pristine. Let me fix that."
+    #fade to black
+    hide beat banimation
+    with dissolve
+    #show bedroom background with beatrice
+    angelica "She should be sleeping soundly for a good few hours. Suprisingly agressive for such a teary woman...\ Now let me take a look around and see what I can find."
+    menu:
+        "Examine Bedroom":
+            jump examinebedroom
+        "Examine Parlor":
+            jump examineparlor
+        "Examine Office":
+            jump examineoffice
+            
+#search post seducy stuff- flashlight in bedroom only
+label examinebedroom:
+    #show bedroom
+    angelica "Time to take a look around. I have to be careful not to wake Beatrice."
+    #search with flashlight
+    #item 1, jewelry box
+    angelica "Some ladies have so many ornaments to drape over themselves...\ In my profession, it's not good to jingle when you walk."
+    #item 2, mirror
+    angelica "Is that what I look like right now? It's been a long night, indeed."
+    #item 3, blueprints
+    angelica "What's this in the drawer? Schematics? They don't match this house... I suppose I'll take these with me."
+    #end search
+    angelica "I think that's everything in here."
+    menu:
+        "Examine Parlor":
+            jump examineparlor
+        "Examine Office":
+            jump examineoffice
+        
+
+label examineparlor:
+    angelica "Let's see what I can find in here."
+    #search no flashlight
+    #item 1, wedding photo
+    angelica "Of course she's crying..."
+    #item 2, book of travels
+    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
+    #item 3, sword
+    angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
+    #end investigation
+    "I'm done here."
+    menu:
+        "Examine Bedroom":
+            jump examinebedroom
+        "Examine Office":
+            jump examineoffice
+                
+label examineoffice:
+    angelica "I wonder what's hidden in here."
+    #search no flashlight
+    #item 1: letter
+    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
+    #item 2: womens reading glasses
+    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
+    #item 3: cipher
+    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+    #end investigation
+    angelica "I think that's all there is here. I suppose I should go."
+    menu:
+        "Did I examine the parlor thoroughly?":
+            jump examineparlor
+        "Perhaps one last check of the bedroom.":
+            jump examinebedroom
+        "I should visit the address on that letter.":
+            jump parliamentarianoffice
+
+#end of beatrice house 
+
+#beginning parliamentarian office
+
+label parliamentarianoffice:
+"End of Demo"
+return 
