@@ -270,6 +270,8 @@ label start:
     show angelica angry hidden
     show angelica normal
     
+    jump examineparlor
+    
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
     
