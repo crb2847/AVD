@@ -218,13 +218,13 @@ screen flashlight_demo:
 label start:    
     $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
     $ glasses = [Appearing("images/SearchItems/glasses.png", (300,500), 40, 100)]
-    $ blueprint = [Appearing("images/SearchItems/blueprint.png", (300,300), 40, 100)]
+    $ blueprint = [Appearing("images/SearchItems/blueprint.png", (100,230), 40, 100)]
     $ cipher = [Appearing("images/SearchItems/cipher.png", (100,500), 40, 100)]
-    $ cryphoto = [Appearing("images/SearchItems/cryphoto.png", (1000,400), 40, 100)]
+    $ cryphoto = [Appearing("images/SearchItems/cryphoto.png", (1500,70), 40, 100)]
     $ jewelrybox = [Appearing("images/SearchItems/jewelrybox.png", (800,300), 40, 100)]
-    $ letters = [Appearing("images/SearchItems/letters.png", (500,200), 40, 100)]
+    $ letters = [Appearing("images/SearchItems/letters.png", (80,170), 40, 100)]
     $ mirror = [Appearing("images/SearchItems/mirror.png", (500,400), 40, 100)]
-    $ sword = [Appearing("images/SearchItems/sword.png", (300,300), 40, 100)]
+    $ sword = [Appearing("images/SearchItems/sword.png", (70,60), 40, 100)]
     #$ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
     
     screen newspaper:
@@ -260,6 +260,7 @@ label start:
     screen darkness:
         add Flashlight()
         
+    jump examineoffice
         
     # make this work
     #$ mouse_visible = False
