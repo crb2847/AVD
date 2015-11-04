@@ -48,7 +48,7 @@ init python:
             render = renpy.Render(self.width, self.height)
 
             # Blit (draw) the child's render to our render.
-            rcenter = (300, 100)
+            rcenter = (0, 0)
             render.blit(child_render, rcenter)
             
             # if self.viewed :
@@ -62,7 +62,7 @@ init python:
             # the mouse pointer. The mouse pointer is supplied in x and y,
             # relative to the upper-left corner of the displayable.
             px,py = self.pos
-            distance = math.hypot(x - (self.width / 2)-px, y - (self.height / 2)-py)
+            distance = math.hypot(x-px, y-py)
 
             # Base on the distance, figure out an alpha.
             if distance <= self.opaque_distance:
@@ -139,7 +139,7 @@ image bg policeInterrogationRoomSpill = "images/SpiltTea.png"
 image bg parlor = "images/Parlor_02.png"
 image bg office = "images/haroldoffice.png"
 image bg bedroom = "images/bedroom.png"
-image bg cutscene1 = "images/alley_cutscene/Beatrice_and_Con01.png"
+image bg cutscene1 = "images/alley_cutscene/Beatrice_and_Con_01.png"
 image bg cutscene2 = "images/alley_cutscene/Angelica_Face_Off_02.png"
 image bg cutscene3 = "images/alley_cutscene/Go_Towards_03.png"
 image bg cutscene4 = "images/alley_cutscene/Fight_04.png"
@@ -151,7 +151,7 @@ image bg alley = "images/Alleyway_01.png"
 image bg angelicacipher = "images/AngelicaCipher.png"
 image bg angelicadress = "images/AngelicaDress.png"
 image bg tryagain = "images/GameOver_Restart.png"
-image bg youdied = "images/GameOverDeath.png"
+image bg youdied = "images/GameOver_Death.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -205,11 +205,11 @@ init:
                                         "images/harold/Harold4.png", .16,
                                         "images/harold/Harold5.png", .16,
                                         "images/harold/Harold6.png", .16,)
-    image beat banimation = Animation("images/beatrice/Beatrice_Sad0001_Filter.png.png", .16,
+    image beat banimation = Animation("images/beatrice/Beatrice_Sad0001_Filter.png", .16,
                                           "images/beatrice/Beatrice_Sad0002_Filter.png", .16,
                                           "images/beatrice/Beatrice_Sad0003_Filter.png", .16,
-                                          "images/beatrice/Beatrice_Sad0004_Filter.png.png", .16,
-                                          "images/beatrice/Beatrice_Sad0005_Filter.png.png", .16,
+                                          "images/beatrice/Beatrice_Sad0004_Filter.png", .16,
+                                          "images/beatrice/Beatrice_Sad0005_Filter.png", .16,
                                           "images/beatrice/Beatrice_Sad0006_Filter.png", .16)
     image beat cryanimation = Animation("images/beatricecry/Beatrice_Cry0001_Filter.png", .16,
                                           "images/beatricecry/Beatrice_Cry0002_Filter.png", .16,
@@ -239,23 +239,24 @@ init:
 
 
 screen baton:
-    add Appearing("images/baton.png", (1100,180), 40, 100)
+    add Appearing("images/baton.png", (1550,700), 40, 100)
 screen flashlight_demo:
     textbutton "continue" xpos 300 ypos 300 action Return()
     add Flashlight()
     
 # The game starts here.
 label start:    
-    $ a = [Appearing("images/police_news.png", (720,300), 40, 100)]
-    $ glasses = [Appearing("images/SearchItems/glasses.png", (300,500), 40, 100)]
-    $ blueprint = [Appearing("images/SearchItems/blueprint.png", (100,230), 40, 100)]
-    $ cipher = [Appearing("images/SearchItems/cipher.png", (100,500), 40, 100)]
-    $ cryphoto = [Appearing("images/SearchItems/cryphoto.png", (1500,70), 40, 100)]
-    $ jewelrybox = [Appearing("images/SearchItems/jewelrybox.png", (800,300), 40, 100)]
-    $ letters = [Appearing("images/SearchItems/letters.png", (80,170), 40, 100)]
-    $ mirror = [Appearing("images/SearchItems/mirror.png", (500,400), 40, 100)]
-    $ sword = [Appearing("images/SearchItems/sword.png", (70,60), 40, 100)]
+    $ a = [Appearing("images/police_news.png", (1320,700), 40, 100)]
+    $ glasses = [Appearing("images/SearchItems/glasses.png", (620,570), 40, 100)]
+    $ blueprint = [Appearing("images/SearchItems/blueprint.png", (150,1030), 100, 500)]
+    $ cipher = [Appearing("images/SearchItems/cipher.png", (1450,490), 40, 100)]
+    $ cryphoto = [Appearing("images/SearchItems/cryphoto.png", (1830,400), 40, 100)]
+    $ jewelrybox = [Appearing("images/SearchItems/jewelrybox.png", (1370,670), 40, 100)]
+    $ letters = [Appearing("images/SearchItems/letters.png", (390,600), 40, 100)]
+    $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
+    $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     #$ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
+    $ warnbeatrice = False
     
     screen newspaper:
         add a[0]
@@ -300,8 +301,6 @@ label start:
     show angelica normal hidden
     show angelica angry hidden
     show angelica normal
-    
-    jump examineparlor
     
     play music "sounds/Busy_Music.ogg" loop
     show bg policeLobby
@@ -930,6 +929,7 @@ label beatricehouse:
 
 #tell beatrice the truth            
 label detectivework:
+    $ warnbeatrice = True
     show bg parlor
     angelica "This isn't right. I can't do this to you. \ I'm not who I say I am."
     beat "What do you mean?"
@@ -1308,7 +1308,7 @@ show bg cutscene5
 with dissolve
 beat "And I'm about to pull everything right out from under the one making all the rules!"
 angelica "That's it! *clank*"
-show bg cutscene 6
+show bg cutscene6
 with dissolve
 angelica "I know where the bomb is! Boys, take care of her."
 beat "What? You brought reinforcements?"
@@ -1319,7 +1319,8 @@ jump buckinghampalace
 label buckinghampalace:
 
 #If you warned beatrice or broke into her house
-    jump buckinghamnoblueprint
+    if blueprint[0].getViewed() == True:
+        jump buckinghamnoblueprint
 #if you didn't warn beatrice
     #jump buckinghamblueprint
 
@@ -1327,28 +1328,28 @@ label buckinghampalace:
 
 label buckinghamnoblueprint:
 
-#show bg buckinghampalace
-#with dissolve
-#show guard guardimation at right
-#with dissolve
-guard "Excuse me, what is your business here?"
-#show angry angelica
-angelica "I'm with the police, this is an emergency!"
-guard "Madam--"
-show arthur chinanimation at left
-ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
-angelica "Let us through!"
-guard "R-right! Sound the alarms!"
-ar "We have to get everyone out! We have no idea how large this explosive might be."
-menu:
-    "I'll come with you to evacuate the queen!":
-        hide arthur chinanimation
-        with dissolve
-        #hide guard guardimation
-        #with dissolve
-        jump evacuatevictoria
-    "There may not be enough time! I'll try to disarm the bomb!":
-        jump bombdead
+    #show bg buckinghampalace
+    #with dissolve
+    #show guard guardimation at right
+    #with dissolve
+    guard "Excuse me, what is your business here?"
+    #show angry angelica
+    angelica "I'm with the police, this is an emergency!"
+    guard "Madam--"
+    show arthur chinanimation at left
+    ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
+    angelica "Let us through!"
+    guard "R-right! Sound the alarms!"
+    ar "We have to get everyone out! We have no idea how large this explosive might be."
+    menu:
+        "I'll come with you to evacuate the queen!":
+            hide arthur chinanimation
+            with dissolve
+            #hide guard guardimation
+            #with dissolve
+            jump evacuatevictoria
+        "There may not be enough time! I'll try to disarm the bomb!":
+            jump bombdead
           
 
 
@@ -1365,17 +1366,20 @@ label evacuatevictoria:
     angelica "(sigh)"
     hide victoria victoranimation
     with dissolve
-    ar "Absolutely remarkable! Top police work, my dear!"
-    ar "We'll be charging Lord Aldredge with heading the conspiracy!"
-    angelica "Sorry, who?"
-    ar "The man with the mustache, my dear!"
-    angelica "But he wasn't in charge-- it was Beatrice!"
-    ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
-    angelica "(Maybe I should'nt have trusted Beatrice...)"
-    ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
-    angelica "But..."
-    ar "No buts! It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
-    angelica "Thank you sir. I'm ready for my next assignment!"
+    if warnbeatrice == True:
+        ar "Absolutely remarkable! Top police work, my dear!"
+        ar "We'll be charging Lord Aldredge with heading the conspiracy!"
+        angelica "Sorry, who?"
+        ar "The man with the mustache, my dear!"
+        angelica "But he wasn't in charge-- it was Beatrice!"
+        ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
+        angelica "(Maybe I should'nt have trusted Beatrice...)"
+        ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
+        angelica "But..."
+        ar "No buts! It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
+        angelica "Thank you sir. I'm ready for my next assignment!"
+        #jump betrayedbybeatrice
+    
     "End"
     return
 

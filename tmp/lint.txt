@@ -1,13 +1,15 @@
 ﻿
-Ren'Py 6.99.6.739 lint report, generated at: Wed Oct 28 13:56:20 2015
+Ren'Py 6.99.6.739 lint report, generated at: Wed Nov  4 15:46:11 2015
+
+game/script.rpy:1327 The jump is to nonexistent label 'buckinghamblueprint'.
 
 
 Statistics:
 
-The game contains 272 dialogue blocks, containing 3,798 words and 20,540
-characters, for an average of 14.0 words and 76 characters per block.
+The game contains 364 dialogue blocks, containing 4,686 words and 25,354
+characters, for an average of 12.9 words and 70 characters per block.
 
-The game contains 37 menus, 15 images, and 20 screens.
+The game contains 40 menus, 33 images, and 23 screens.
 
 
 Remember to set config.developer to False before releasing.
