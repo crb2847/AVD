@@ -152,6 +152,7 @@ image bg angelicacipher = "images/AngelicaCipher.png"
 image bg angelicadress = "images/AngelicaDress.png"
 image bg tryagain = "images/GameOver_Restart.png"
 image bg youdied = "images/GameOver_Death.png"
+image bg buckingham = "images/BuckinghamPalace_01.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -236,10 +237,10 @@ init:
                                              "images/assistant/Parliament_Assistant_Neutral0005.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0006.png", .16,)
     image victoria victoranimation = Animation ("images/Queen_Victoria.png", .16,)
+    
+    image guard guardimation = Animation ("images/shady/skeleton.png", .16,)
 
 
-screen baton:
-    add Appearing("images/baton.png", (1550,700), 40, 100)
 screen flashlight_demo:
     textbutton "continue" xpos 300 ypos 300 action Return()
     add Flashlight()
@@ -247,6 +248,7 @@ screen flashlight_demo:
 # The game starts here.
 label start:    
     $ a = [Appearing("images/police_news.png", (1320,700), 40, 100)]
+    $ baton = [Appearing("images/baton.png", (1550,700), 40, 100)]
     $ glasses = [Appearing("images/SearchItems/glasses.png", (620,570), 40, 100)]
     $ blueprint = [Appearing("images/SearchItems/blueprint.png", (150,1030), 100, 500)]
     $ cipher = [Appearing("images/SearchItems/cipher.png", (1450,490), 40, 100)]
@@ -290,6 +292,8 @@ label start:
         add sword[0]    
     screen darkness:
         add Flashlight()
+    screen baton:
+        add baton[0]
         
     # make this work
     #$ mouse_visible = False
@@ -315,8 +319,9 @@ label start:
                 show screen baton
                 "You begin to examine the room"
                 if a[0].getViewed() == True:
-                    jump iseeanews
-                "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
+                    "I see a newspaper, and a baton..."
+                if baton[0].getViewed() == True:
+                    "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
                 hide screen newspaper
                 hide screen baton
                 jump newsbaton
@@ -325,8 +330,6 @@ label start:
                 hide screen newspaper
                 hide screen baton
                 jump captainWalksIn
-    label iseeanews:
-        "I see a newspaper, and a baton..."
 
     label captainWalksIn:
         show arthur chinanimation at left
@@ -818,6 +821,7 @@ label beatricefail:
     show screen darkness
     show bg parlor
     stop music
+    play music "sounds/dark_strings.ogg"
     angelica "(I've got to be quiet. Can't risk being found or I could risk the entire investigation. \ I'll have to use a lantern so as not to alert anyone of my presence."
     menu:
         "Examine Parlor":
@@ -836,15 +840,7 @@ label parlorlantern:
     angelica "Let's see what I can find in here."
     #search no flashlight
     #item 1, wedding photo
-    if cryphoto[0].getViewed() == True:
-        angelica "Of course she's crying..."
-    #item 2, book of travels
-    #if book[0].getViewed() == True:
-    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
-    #item 3, sword
-    if sword[0].getViewed() == True:
-        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
-    
+
     menu:
         "Investigate again?":
             jump parlorlantern
@@ -863,6 +859,8 @@ label bedroomcantgetin:
     beat "*snoring*"
     angelica "Oh my. She's already home! \ I can't search in there. \ Hopefully there's nothing important in the bedroom..."
     menu:
+        "Examine Again?":
+            jump bedroomcantgetin
         "Examine Parlor":
             hide screen darkness
             jump parlorlantern
@@ -874,19 +872,12 @@ label officelantern:
     show screen officedeskFlashlight
     show bg office
     angelica "I wonder what's hidden in here."
-    #search flashlight
-    #item 1: letter
-    if letters[0].getViewed() == True:
-        angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
-    #item 2: womens reading glasses
-    if glasses[0].getViewed() == True:
-        angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
-    #item 3: cipher
-    if cipher[0].getViewed() == True:
-        angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
+  
     #end investigation
     angelica "I think that's all there is here. I suppose I should go."
     menu:
+        "Examine again":
+            jump officelantern
         "Did I examine the parlor thoroughly?":
             hide screen officedeskFlashlight
             jump parlorlantern
@@ -903,6 +894,7 @@ label officelantern:
 label beatricehouse:
     show bg parlor
     stop music
+    play music "sounds/Beatrice_Sweet.ogg"
     show beat banimation
     with dissolve
     angelica "You have a truly lovely home."
@@ -960,6 +952,8 @@ label angelicanongenuine:
     #show parlor rather than bedroom
     angelica "(Bloody hell. I've made a good mess of things. \ I didn't even ask about the papers! Well, I should still have a look around.)"
     menu:
+        "Examine Again":
+            jump angelicanongenuine
         "Examine Parlor":
             jump parlorangrybeatrice
         "Examine Office":
@@ -971,16 +965,10 @@ label officeangrybeatrice:
     show screen officedesk
     show bg office
     angelica "I wonder what's hidden in here."
-    #search no flashlight
-    #item 1: letter
-    angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
-    #item 2: womens reading glasses
-    angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
-    #item 3: cipher
-    angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
-    #end investigation
-    angelica "I think that's all there is here. I suppose I should go."
+
     menu:
+        "Examine again":
+            jump officeangrybeatrice
         "Did I examine the parlor thoroughly?":
             hide screen officedesk
             jump parlorangrybeatrice
@@ -992,18 +980,7 @@ label parlorangrybeatrice:
     show bg parlor
     show screen parlor
     angelica "Let's see what I can find in here."
-    #search no flashlight
-    #item 1, wedding photo
-    if cryphoto[0].getViewed() == True:
-        angelica "Of course she's crying..."
-    #item 2, book of travels
-    #if book[0].getViewed() == True:
-    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
-    #item 3, sword
-    if sword[0].getViewed() == True:
-        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
-    #end investigation
-    "I'm done here."
+   
     menu:
         "Investigate again?":
             jump parlorlantern
@@ -1048,19 +1025,11 @@ label examinebedroom:
     show bg bedroom
     #show bedroom
     angelica "Time to take a look around. I have to be careful not to wake Beatrice."
-    #search with flashlight
-    #item 1, jewelry box
-    if jewelrybox[0].getViewed() == True:
-        angelica "Some ladies have so many ornaments to drape over themselves...\ In my profession, it's not good to jingle when you walk."
-    #item 2, mirror
-    if mirror[0].getViewed() == True:
-        angelica "Is that what I look like right now? It's been a long night, indeed."
-    #item 3, blueprints
-    if blueprint[0].getViewed() == True:
-        angelica "What's this in the drawer? Schematics? They don't match this house... I suppose I'll take these with me."
-    #end search
+    
     angelica "I think that's everything in here."
     menu:
+        "Examine Again?":
+            jump examinebedroom
         "Examine Parlor":
             hide screen bedroomFlashlight
             jump examineparlor
@@ -1073,19 +1042,10 @@ label examineparlor:
     show bg parlor
     show screen parlor
     angelica "Let's see what I can find in here."
-    #search no flashlight
-    #item 1, wedding photo
-    if cryphoto[0].getViewed() == True:
-        angelica "Of course she's crying..."
-    #item 2, book of travels
-    #if book[0].getViewed() == True:
-    #    angelica "Huh, look at this. Perhaps Lord Fredrickson was preparing to flee?"
-    #item 3, sword
-    if sword[0].getViewed() == True:
-        angelica "Look at this sword... it's quite well taken care of. A little on the light side though. I suppose he wasn't much of a fighter."
-    #end investigation
-    "I'm done here."
+
     menu:
+        "Examine Again?":
+            jump examineparlor
         "Examine Bedroom":
             hide screen parlor
             jump examinebedroom
@@ -1097,19 +1057,11 @@ label examineoffice:
     show screen officedesk
     show bg office
     angelica "I wonder what's hidden in here."
-    #search no flashlight
-    #item 1: letter
-    if letters[0].getViewed() == True:
-        angelica "Is this the letter Beatrice recieved at the party? 'Your husband will be remembered, you forgotten.' What on earth? I should go to this address to investigate."
-    #item 2: womens reading glasses
-    if glasses[0].getViewed() == True:
-        angelica "These are very small framed reading glasses. I had thought Fredrickson's head was much larger than this."
-    #item 3: cipher
-    if cipher[0].getViewed() == True:
-        angelica "Look at this! It seems like some kind of cipher. I wonder what coded messages it might unravel... I'll keep this for later."
-    #end investigation
+
     angelica "I think that's all there is here. I suppose I should go."
     menu:
+        "Examine Again?":
+            jump examineoffice
         "Did I examine the parlor thoroughly?":
             hide screen officedesk
             jump examineparlor
@@ -1141,6 +1093,8 @@ label examineoffice:
 
 label parliamentarianoffice:
     #show bg parliamentexterior
+    stop music
+    play music "sounds/Palace_Fugue.ogg"
     angelica "The palace of Westminster... I've never been inside the Parliament building before. The letter I found came from an office in here. I'll have to take a good look around... I really think I'm getting close."
     show bg parliamenthallway
     with dissolve
@@ -1182,6 +1136,7 @@ label searchfire:
     angelica "Let's see what we can find."
     #show screen
     #screen random papers, papers, and typewriter
+    angelica "I see a lot of papers... hold on... this is written in some kind of code!"
     menu: 
         "Examine again?":
             jump searchfire
@@ -1191,6 +1146,7 @@ label searchfire:
             with dissolve
             angelica "If I transpose each letter..."
             #show cipher with solved paper
+            angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
             angelica "That's tomorrow morning! Who is he meeting with?"
             angelica "I have to spy on this secret meeting!"
             #hide cipehr with solved paper
@@ -1215,9 +1171,10 @@ label searchpapers:
     angelica "Let's see what we can find."
     #show screen
     #screen random papers, papers, and typewriter
+    angelica "I see a lot of papers... hold on... this is written in some kind of code!"
     menu: 
         "Examine again?":
-            jump searchfire
+            jump searchpapers
         "I think I'm done examining.":
             angelica "That's everything. Let's see if this cipher can decipher the message."
             show bg angelicacipher
@@ -1225,6 +1182,7 @@ label searchpapers:
             angelica "If I transpose each letter..."
             #hide cipher
             #show cipher with solved paper
+            angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
             angelica "That's tomorrow morning! Who is he meeting with?"   
             #hide cipher with solved paper
             show bg parliamentoffice
@@ -1260,6 +1218,8 @@ label alley:
 #cutscene
 show bg alley
 with dissolve
+stop music
+play music "sounds/Beatrice_Bitter.ogg"
 angelica "This is their meeting spot. Better hide before someone gets here!"
 
 show shady shadimation at left 
@@ -1320,16 +1280,76 @@ label buckinghampalace:
     if blueprint[0].getViewed() == True:
         jump buckinghamnoblueprint
 #if you didn't warn beatrice
-    #jump buckinghamblueprint
-
-          
+    jump buckinghamblueprint
+    
+label buckinghamblueprint:
+    show bg buckingham
+    with dissolve
+    show guard guardimation at right
+    with dissolve
+    guard "Excuse me, what is your business here?"
+    #show angry angelica
+    angelica "I'm with the police, this is an emergency!"
+    guard "Madam--"
+    show arthur chinanimation at left
+    ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
+    angelica "Let us through!"
+    guard "R-right! Sound the alarms!"
+    ar "We have to get everyone out! We have no idea how large this explosive might be."
+    angelica "Guard! Take a look at this map. What room is on this blueprint?"
+    guard "Ma'am, that's this room. This is where the Queen recieves the Prime Minister for meetings."
+    hide guard guardimation
+    with dissolve
+    show victoria victoranimation at right
+    with dissolve
+    angelica "Your majesty, you are in grave danger!"
+    ar "Come with me, your majesty! We're evacuating the palace!"
+    angelica "I'll stay behind and see if I can disarm the bomb."
+    hide victoria victoranimation
+    with dissolve
+    hide arthur chinanimation
+    with dissolve
+    angelica "If this is that wall... the bomb must be behind that painting!"
+    angelica "Found it! Look at all these gears... it must be set to explode when the clock reaches a certain time. If I can take out the right gear, the clock will stop ticking."
+    angelica "Got it! We're safe!"
+    with dissolve
+    show arthur chinanimation at left
+    with dissolve
+    show victoria victoranimation at right
+    with dissolve
+    queen "I cannot sufficiently express my gratitude for your service. Although the destruction of Buckingham Palace marks a dark day for the British Empire, I have faith that we will prevail against the evils conspiring to defeat us."
+    queen "All the men here shall be knighted!"
+    angelica "(sigh)"
+    hide victoria victoranimation
+    with dissolve
+    if warnbeatrice == True:
+        ar "Absolutely remarkable! Top police work, my dear!"
+        ar "We'll be charging Lord Aldredge with heading the conspiracy!"
+        angelica "Sorry, who?"
+        ar "The man with the mustache, my dear!"
+        angelica "But he wasn't in charge-- it was Beatrice!"
+        ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
+        angelica "(Maybe I should'nt have trusted Beatrice...)"
+        ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
+        angelica "But..."
+        ar "No buts! It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
+        angelica "Thank you sir. I'm ready for my next assignment!"
+        jump betrayedbybeatricewin
+    ar "Absolutely remarkable! Top police work, my dear!"
+    ar "We'll be charging Lady Fredrickson with heading the conspiracy!"
+    ar "It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
+    angelica "Thank you sir. I'm ready for my next assignment!"
+    "Congratulations! You prevented the destruction of Buckingham Palace, caught the head conspirator and saved the Queen!  Excellent work, detective."
+    return
+    
+    
 
 label buckinghamnoblueprint:
 
-    #show bg buckinghampalace
-    #with dissolve
-    #show guard guardimation at right
-    #with dissolve
+    show bg buckingham
+    with dissolve
+    show guard guardimation at right
+    with dissolve
     guard "Excuse me, what is your business here?"
     #show angry angelica
     angelica "I'm with the police, this is an emergency!"
@@ -1343,8 +1363,8 @@ label buckinghamnoblueprint:
         "I'll come with you to evacuate the queen!":
             hide arthur chinanimation
             with dissolve
-            #hide guard guardimation
-            #with dissolve
+            hide guard guardimation
+            with dissolve
             jump evacuatevictoria
         "There may not be enough time! I'll try to disarm the bomb!":
             jump bombdead
@@ -1376,19 +1396,33 @@ label evacuatevictoria:
         angelica "But..."
         ar "No buts! It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
         angelica "Thank you sir. I'm ready for my next assignment!"
-        #jump betrayedbybeatrice
-    
-    "End"
+        jump betrayedbybeatrice
+    ar "Absolutely remarkable! Top police work, my dear!"
+    ar "We'll be charging Lady Fredrickson with heading the conspiracy!"
+    ar "It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
+    angelica "Thank you sir. I'm ready for my next assignment!"
+    "Congratulations! Maybe you didn't save the palace, but you caught the head conspirator and saved the Queen! Good work, detective."
     return
 
     
 
 label bombdead:
+    hide arthur chinanimation
+    with dissolve
     show bg youdied
     with dissolve
     "You don't know where the bomb is. You died in explosion. If only you had found a clue about the bomb's location..."
     "Try again?"
     jump buckinghamnoblueprint
+
+
+label betrayedbybeatrice:
+    "Congratulations! Even if you didn't save the palace... or convict the right conspirator... you still saved the Queen! It's the thought that counts, right?"
+    return
+
+label betrayedbybeatricewin:
+    "Congratulations! You may not have secured Beatrice's place behind bars, but you saved the Queen and prevented the destruction of Buckingham Palace! Good work, detective."
+    return
 
 "End of Demo"
 return 
