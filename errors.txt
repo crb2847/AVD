@@ -2,8 +2,20 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 251: screen expects a non-empty block.
-    screen parlor:
-                  ^
+File "game/script.rpy", line 1183: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Examine again?"
+                    ^
+
+File "game/script.rpy", line 1216: Line is followed by a block, despite not being a menu choice. Did you forget a colon at the end of the line?
+    "Examine again?"
+                    ^
+
+File "game/script.rpy", line 1247: expected statement.
+    assistant: "Guards!"
+             ^
+
+File "game/script.rpy", line 1266: end of line expected.
+    angelica "(Who is he talking to?")
+                                     ^
 
 Ren'Py Version: Ren'Py 6.99.6.739

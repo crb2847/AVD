@@ -139,6 +139,19 @@ image bg policeInterrogationRoomSpill = "images/SpiltTea.png"
 image bg parlor = "images/Parlor_02.png"
 image bg office = "images/haroldoffice.png"
 image bg bedroom = "images/bedroom.png"
+image bg cutscene1 = "images/alley_cutscene/Beatrice_and_Con01.png"
+image bg cutscene2 = "images/alley_cutscene/Angelica_Face_Off_02.png"
+image bg cutscene3 = "images/alley_cutscene/Go_Towards_03.png"
+image bg cutscene4 = "images/alley_cutscene/Fight_04.png"
+image bg cutscene5 = "images/alley_cutscene/Realize_05.png"
+image bg cutscene6 = "images/alley_cutscene/Leave_Beatrice_06.png"
+image bg parliamentoffice = "images/OfficeP_01.png"
+image bg parliamenthallway = "images/ParliamentHall_01.png"
+image bg alley = "images/Alleyway_01.png"
+image bg angelicacipher = "images/AngelicaCipher.png"
+image bg angelicadress = "images/AngelicaDress.png"
+image bg tryagain = "images/GameOver_Restart.png"
+image bg youdied = "images/GameOverDeath.png"
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -165,6 +178,7 @@ define harold = Character('Harold Fredrickson', color="#a7ffc8")
 define countess = Character('Countess', color="#a7ffc8")
 define beat = Character('Beatrice Fredrickson', color="#a7ffc8")
 define shady = Character('Shady Man', color="#a7ffc8")
+define assistant = Character('Assistant', color="#a7ffc8")
 #stop music
 #play sound "effect.ogg"
 
@@ -205,7 +219,18 @@ init:
                                               "images/Countess_Indifferent/Countess_Indifferent0004.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0005.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0006.png", .16,)
-    image shady shadimation = Animation("images/shady/skeleton.png", .16,)
+    image shady shadimation = Animation("images/shady/ShadyMan_Drunk10001_Filter.png", .16,
+                                        "images/shady/ShadyMan_Drunk10002_Filter.png", .16,
+                                        "images/shady/ShadyMan_Drunk10003_Filter.png", .16,
+                                        "images/shady/ShadyMan_Drunk10004_Filter.png", .16,
+                                        "images/shady/ShadyMan_Drunk10005_Filter.png", .16,
+                                        "images/shady/ShadyMan_Drunk10006_Filter.png", .16,)
+    image assistant asanimation = Animation ("images/assistant/Parliament_Assistant_Neutral0001.png", .16,
+                                             "images/assistant/Parliament_Assistant_Neutral0002.png", .16,
+                                             "images/assistant/Parliament_Assistant_Neutral0003.png", .16,
+                                             "images/assistant/Parliament_Assistant_Neutral0004.png", .16,
+                                             "images/assistant/Parliament_Assistant_Neutral0005.png", .16,
+                                             "images/assistant/Parliament_Assistant_Neutral0006.png", .16,)
 
 
 screen baton:
@@ -375,15 +400,17 @@ label start:
       
         hide arthur chinanimation
         with dissolve
-        menu:
-            "Try again":
-                show bg policeLobby
-                play music "sounds/Busy_Music.ogg" loop
-                show arthur chinanimation at left
-                with dissolve
-                jump paperwork
-    return
-    
+        show bg tryagain
+        with dissolve
+        "Try again?"
+        show bg policeLobby
+        with dissolve
+        play music "sounds/Busy_Music.ogg" loop
+        show arthur chinanimation at left
+        with dissolve
+        jump paperwork
+
+
 label holdingRoom:
     hide arthur chinanimation
     stop music
@@ -542,10 +569,13 @@ label chiefsoffice:
             jump party
 
 label party:
-    show bg party
+    show bg angelicadress
+    with dissolve
     stop music
     play music "sounds/ball_room_waltz_1_.ogg" loop
     angelica "(This is the fanciest event I've ever been to. Thankfully, I have a fancy dress to match. Let's see if I can blend in with high society long enough to find the would-be killer's wife?)"
+    show bg party
+    with dissolve
     angelica "(There's a woman in the corner, by herself. Everyone's ignoring her. I wonder if that's Mrs. Fredrickson?)"
     menu:
         "Maybe I'll observe her for a little while":
@@ -1091,6 +1121,217 @@ label examineoffice:
 
 #beginning parliamentarian office
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+#beginning parliamentarian office
+
 label parliamentarianoffice:
+    #show bg parliamentexterior
+    angelica "The palace of Westminster... I've never been inside the Parliament building before. The letter I found came from an office in here. I'll have to take a good look around... I really think I'm getting close."
+    show bg parliamenthallway
+    with dissolve
+    angelica "Here it is! There have to be answers behind this door."
+    show bg parliamentoffice
+    with dissolve
+    show assistant asanimation
+    with dissolve
+    assistant "What are you doing here?"
+    angelica "Er..."
+    menu:
+        "There's a fire, you have to evacuate!":
+            jump fire
+        "I'm here to pick up some papers":
+            jump papers
+        "Your boss is downstairs, he said to come get you immediately!":
+            jump downstairs
+            
+            
+            
+label fire:
+    assistant "A fire?! Not again! We must go now!"
+    #angryangelicasprite
+    show bg parliamenthallway
+    with dissolve
+    angelica "Please, exit quietly and calmly. \ No need to start a panic."
+    assistant "I can't possibly just leave you behind!"
+    angelica " I still have to evacuate the rest of the building. Try to lead out as many people on your way as you can."
+    assistant "A-Alright. Be careful, ma'am."
+    hide assistant asanimation
+    with dissolve
+    angelica " Good. Now down to business."
+    
+    jump searchfire
+    
+label searchfire:
+    show bg parliamentoffice
+    with dissolve
+    angelica "Let's see what we can find."
+    #show screen
+    #screen random papers, papers, and typewriter
+    menu: 
+        "Examine again?":
+            jump searchfire
+        "I think I'm done examining.":
+            angelica "That's everything. Let's see if this cipher can decipher the message."
+            show bg angelicacipher 
+            with dissolve
+            angelica "If I transpose each letter..."
+            #show cipher with solved paper
+            angelica "That's tomorrow morning! Who is he meeting with?"
+            angelica "I have to spy on this secret meeting!"
+            #hide cipehr with solved paper
+            jump alley
+            
+        
+label papers:
+    assistant "What papers?"
+    angelica "Sir, I'm just the secretary. How should I know which papers he was referring to?"
+    assistant "Who's 'he'? Who do you work for?"
+    angelica "Mr... Smith. (The odds are with me, at least)"
+    assistant "Oh, I see. the one down the hall, then? Or on the fourth floor?"
+    angelica "Fourth floor."
+    assistant "I see. I certainly don't know what papers you're talking about. I shall check in our filing room, I won't be a moment."
+    angelica "Of course. I will wait here for you."
+    #hide assistant sprite
+    jump searchpapers
+
+label searchpapers:
+    show bg parliamentoffice
+    with dissolve
+    angelica "Let's see what we can find."
+    #show screen
+    #screen random papers, papers, and typewriter
+    menu: 
+        "Examine again?":
+            jump searchfire
+        "I think I'm done examining.":
+            angelica "That's everything. Let's see if this cipher can decipher the message."
+            show bg angelicacipher
+            with dissolve
+            angelica "If I transpose each letter..."
+            #hide cipher
+            #show cipher with solved paper
+            angelica "That's tomorrow morning! Who is he meeting with?"   
+            #hide cipher with solved paper
+            show bg parliamentoffice
+            with dissolve
+            show assistant asanimation
+            with dissolve
+            assistant "What on earth are you doing? These are private documents!"
+            angelica "Oh, I'm terribly sorry. I seem to have gotten fidgety waiting."
+            assistant "If I told Mr. Aldredge a stranger had looked through his desk, I'd be out of a job! I didn't find any papers in the back, so just get out of here and we'll pretend this never happened!"
+            hide assistant asanimation
+            with dissolve
+            jump alley
+            
+            
+label downstairs:
+    assistant "His lordship isn't in the city right now, so I can hardly believe that."
+    angelica "Oh! Well, I assure you I am--"
+    assistant "A lying scoundrel?"
+    #angelica sad face
+    angelica "I... I am terribly sorry for trying to decieve you but--"
+    assistant "I think it's best you leave."
+    angelica "No, please, you don't understand!"
+    assistant "Guards!"
+    show bg tryagain
+    with dissolve
+    "You were arrested for breaking into Parliament."
+    "Try again?"
+    jump parliamentarianoffice
+
+
+label alley:
+
+#cutscene
+show bg alley
+with dissolve
+angelica "This is their meeting spot. Better hide before someone gets here!"
+
+show shady shadimation at left 
+with dissolve
+angelica "(It's the shady man from the party... he's definitely up to skullduggery. \ Is he still drunk, or does he just look like that?)"
+shady "I have confirmed the Queen's meeting with the Prime Minister tomorrow."
+angelica "(Who is he talking to?)"
+shady "The weapon has been planted. Tomorrow marks the dawn of a new age."
+show beat banimation at right
+with dissolve
+beat "And it will be a firey dawn indeed."
+
+angelica "What?"
+hide shady shadimation
+with dissolve
+hide beat banimation 
+with dissolve
+
+show bg cutscene1
+with dissolve
+angelica "B-Beatrice? You're leading the conspiracy?"
+beat "Well well, looks like you're more than just a secretary after all."
+shady "Ma'am--"
+beat "Hush dear, the ladies are talking now."
+show bg cutscene2
+with dissolve
+angelica "You know, now that I think about it, it all seems very obvious."
+beat "Naturally. But of course, you were blinded by your own views."
+angelica "Is that so? Well--"
+show bg cutscene3
+with dissolve
+angelica "Allow me to rectify that mistake!"
+beat "My pleasure!"
+show bg cutscene4
+with dissolve
+beat "Honestly... I would have thought of you as an ally!"
+angelica "Why would I want the Queen dead? Why do you?"
+beat "Oh, Angelica. You make your own way, but you will always be stifled. \ I have a riddle for you."
+angelica "Never cared for riddles."
+beat "One person plays the game, but ignores the rules. The other follows the rules but isn't really playing the game. Who wins? The one playing, right?"
+angelica "This isn't a game, Beatrice!"
+beat "Unless someone flips over the board!"
+show bg cutscene5
+with dissolve
+beat "And I'm about to pull everything right out from under the one making all the rules!"
+angelica "That's it! *clank*"
+show bg cutscene 6
+with dissolve
+angelica "I know where the bomb is! Boys, take care of her."
+beat "What? You brought reinforcements?"
+angelica "Beatrice, you're under arrest for conspiracy to assassinate the Queen."
+angelica "Commissioner, we have a Queen to save. Come with me!"
+jump buckinghampalace
+
+label buckinghampalace:
+
+#If you warned beatrice
+    jump buckinghamnoblueprint
+#if you didn't warn beatrice
+    #jump buckinghamblueprint
+
+#if you broke into beatrice's house
+    #jump buckinghamthief 
+          
+
+label buckinghamnoblueprint:
+
+
+          
+          
+          
+
+
+
+
+
 "End of Demo"
 return 
