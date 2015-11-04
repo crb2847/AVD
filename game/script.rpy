@@ -179,6 +179,10 @@ define countess = Character('Countess', color="#a7ffc8")
 define beat = Character('Beatrice Fredrickson', color="#a7ffc8")
 define shady = Character('Shady Man', color="#a7ffc8")
 define assistant = Character('Assistant', color="#a7ffc8")
+define guard = Character ('Palace Guard', color = "#a7ffc8")
+define queen = Character ('HRM Queen Victoria', color = "#a7ffc8")
+
+
 #stop music
 #play sound "effect.ogg"
 
@@ -201,12 +205,12 @@ init:
                                         "images/harold/Harold4.png", .16,
                                         "images/harold/Harold5.png", .16,
                                         "images/harold/Harold6.png", .16,)
-    image beat banimation = Animation("images/beatrice/Beatrice_Test0001.png", .16,
-                                          "images/beatrice/Beatrice_Test0002.png", .16,
-                                          "images/beatrice/Beatrice_Test0003.png", .16,
-                                          "images/beatrice/Beatrice_Test0004.png", .16,
-                                          "images/beatrice/Beatrice_Test0005.png", .16,
-                                          "images/beatrice/Beatrice_Test0006.png", .16)
+    image beat banimation = Animation("images/beatrice/Beatrice_Sad0001_Filter.png.png", .16,
+                                          "images/beatrice/Beatrice_Sad0002_Filter.png", .16,
+                                          "images/beatrice/Beatrice_Sad0003_Filter.png", .16,
+                                          "images/beatrice/Beatrice_Sad0004_Filter.png.png", .16,
+                                          "images/beatrice/Beatrice_Sad0005_Filter.png.png", .16,
+                                          "images/beatrice/Beatrice_Sad0006_Filter.png", .16)
     image beat cryanimation = Animation("images/beatricecry/Beatrice_Cry0001_Filter.png", .16,
                                           "images/beatricecry/Beatrice_Cry0002_Filter.png", .16,
                                           "images/beatricecry/Beatrice_Cry0003_Filter.png", .16,
@@ -231,6 +235,7 @@ init:
                                              "images/assistant/Parliament_Assistant_Neutral0004.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0005.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0006.png", .16,)
+    image victoria victoranimation = Animation ("images/Queen_Victoria.png", .16,)
 
 
 screen baton:
@@ -1313,25 +1318,75 @@ jump buckinghampalace
 
 label buckinghampalace:
 
-#If you warned beatrice
+#If you warned beatrice or broke into her house
     jump buckinghamnoblueprint
 #if you didn't warn beatrice
     #jump buckinghamblueprint
 
-#if you broke into beatrice's house
-    #jump buckinghamthief 
           
 
 label buckinghamnoblueprint:
 
-
+#show bg buckinghampalace
+#with dissolve
+#show guard guardimation at right
+#with dissolve
+guard "Excuse me, what is your business here?"
+#show angry angelica
+angelica "I'm with the police, this is an emergency!"
+guard "Madam--"
+show arthur chinanimation at left
+ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
+angelica "Let us through!"
+guard "R-right! Sound the alarms!"
+ar "We have to get everyone out! We have no idea how large this explosive might be."
+menu:
+    "I'll come with you to evacuate the queen!":
+        hide arthur chinanimation
+        with dissolve
+        #hide guard guardimation
+        #with dissolve
+        jump evacuatevictoria
+    "There may not be enough time! I'll try to disarm the bomb!":
+        jump bombdead
           
-          
-          
 
 
+label evacuatevictoria:
+    "(Future Cutscene) Angelica helps Queen Victoria flee the palace just as a substantial portion of it is blown to smithereens."
+    show bg policeLobby
+    with dissolve
+    show arthur chinanimation at left
+    with dissolve
+    show victoria victoranimation at right
+    with dissolve
+    queen "I cannot sufficiently express my gratitude for your service. Although the destruction of Buckingham Palace marks a dark day for the British Empire, I have faith that we will prevail against the evils conspiring to defeat us."
+    queen "All the men here shall be knighted!"
+    angelica "(sigh)"
+    hide victoria victoranimation
+    with dissolve
+    ar "Absolutely remarkable! Top police work, my dear!"
+    ar "We'll be charging Lord Aldredge with heading the conspiracy!"
+    angelica "Sorry, who?"
+    ar "The man with the mustache, my dear!"
+    angelica "But he wasn't in charge-- it was Beatrice!"
+    ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
+    angelica "(Maybe I should'nt have trusted Beatrice...)"
+    ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
+    angelica "But..."
+    ar "No buts! It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
+    angelica "Thank you sir. I'm ready for my next assignment!"
+    "End"
+    return
 
+    
 
+label bombdead:
+    show bg youdied
+    with dissolve
+    "You don't know where the bomb is. You died in explosion. If only you had found a clue about the bomb's location..."
+    "Try again?"
+    jump buckinghamnoblueprint
 
 "End of Demo"
 return 
