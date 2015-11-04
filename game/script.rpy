@@ -291,8 +291,6 @@ label start:
     screen darkness:
         add Flashlight()
         
-    jump examineoffice
-        
     # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
