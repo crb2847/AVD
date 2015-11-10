@@ -1,18 +1,18 @@
-Wed Nov  4 17:46:30 2015
+Tue Nov 10 02:07:24 2015
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
  
 
 Bootstrap to the start of init.init took 0.07s
-Early init took 0.01s
+Early init took 0.02s
 Loader init took 0.01s
 Loading error handling took 0.02s
-Loading script took 0.33s
-Loading persistent took 0.02s
+Loading script took 0.37s
+Loading persistent took 0.03s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Set script version to: (6, 99, 6)
 Running init code took 0.08s
-Loading analysis data took 0.02s
+Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
 Index archives took 0.00s
 Dump and make backups. took 0.03s
@@ -25,12 +25,12 @@ Build styles took 0.00s
 Load screen analysis took 0.00s
 Analyze screens took 0.01s
 Save screen analysis took 0.04s
-Prepare screens took 0.04s
+Prepare screens took 0.03s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.03s
+Save bytecode. took 0.04s
 Running _start took 0.00s
 Performance test:
-Interface start took 0.00s
+Interface start took 0.01s
 
 Fullscreen mode.
 Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
@@ -180,11 +180,23 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 0.998259067535s
+Total time until interface ready: 1.04937386513s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.022666 seconds.
-- Frame drawn at 0.037935 seconds.
-- Frame drawn at 0.047815 seconds.
-- Frame drawn at 0.063318 seconds.
-- 0.063318 seconds to render 5 frames.
+- Frame drawn at 0.026129 seconds.
+- Frame drawn at 0.035228 seconds.
+- Frame drawn at 0.048765 seconds.
+- Frame drawn at 0.066435 seconds.
+- 0.066435 seconds to render 5 frames.
+Traceback (most recent call last):
+  File "/Applications/renpy-6.99.6-sdk/renpy/execution.py", line 374, in run
+    node.execute()
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1612, in execute
+    if renpy.python.py_eval(condition):
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1477, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1472, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/script.rpy", line 1338, in <module>
+    if warnbeatrice == True:
+NameError: name 'warnbeatrice' is not defined

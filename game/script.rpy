@@ -236,9 +236,19 @@ init:
                                              "images/assistant/Parliament_Assistant_Neutral0004.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0005.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0006.png", .16,)
-    image victoria victoranimation = Animation ("images/Queen_Victoria.png", .16,)
+    image victoria victoranimation = Animation ("images/Queen_Concerned/Queen_Concerned0001_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0002_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0003_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0004_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0005_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0006_Filter.png", .16,)
     
-    image guard guardimation = Animation ("images/shady/skeleton.png", .16,)
+    image guard guardimation = Animation ("images/Guard_Neutral/Guard_Neutral0001_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0002_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0003_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0004_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0005_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0006_Filter.png", .16,)
 
 
 screen flashlight_demo:
@@ -1162,7 +1172,8 @@ label papers:
     angelica "Fourth floor."
     assistant "I see. I certainly don't know what papers you're talking about. I shall check in our filing room, I won't be a moment."
     angelica "Of course. I will wait here for you."
-    #hide assistant sprite
+    hide assistant asanimation
+    with dissolve
     jump searchpapers
 
 label searchpapers:
@@ -1206,6 +1217,8 @@ label downstairs:
     assistant "I think it's best you leave."
     angelica "No, please, you don't understand!"
     assistant "Guards!"
+    hide assistant asanimation
+    with dissolve
     show bg tryagain
     with dissolve
     "You were arrested for breaking into Parliament."
