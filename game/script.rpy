@@ -267,7 +267,7 @@ label start:
     $ letters = [Appearing("images/SearchItems/letters.png", (390,600), 40, 100)]
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
-    #$ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
+    $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
     $ warnbeatrice = False
     
     screen newspaper:
@@ -293,12 +293,12 @@ label start:
         add glasses[0]
     screen parlor:
         add cryphoto[0]
-        #add book[0]
+        add book[0]
         add sword[0]
     screen parlorFlashlight:
         add Flashlight()
         add cryphoto[0]
-        #add book[0]
+        add book[0]
         add sword[0]    
     screen darkness:
         add Flashlight()

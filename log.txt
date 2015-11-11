@@ -1,13 +1,13 @@
-Tue Nov 10 16:05:09 2015
+Tue Nov 10 21:29:39 2015
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
  
 
-Bootstrap to the start of init.init took 0.08s
-Early init took 0.03s
-Loader init took 0.04s
+Bootstrap to the start of init.init took 0.07s
+Early init took 0.01s
+Loader init took 0.01s
 Loading error handling took 0.02s
-Loading script took 0.10s
+Loading script took 0.34s
 Loading persistent took 0.02s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Set script version to: (6, 99, 6)
@@ -18,19 +18,19 @@ Index archives took 0.00s
 Dump and make backups. took 0.03s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Creating interface object took 0.08s
+Creating interface object took 0.10s
 Cleaning stores took 0.00s
 Init translation took 0.00s
 Build styles took 0.00s
-Load screen analysis took 0.04s
-Analyze screens took 0.00s
-Save screen analysis took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.04s
 Prepare screens took 0.03s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.00s
+Save pyanalysis. took 0.04s
+Save bytecode. took 0.03s
 Running _start took 0.00s
 Performance test:
-Interface start took 0.00s
+Interface start took 0.01s
 
 Fullscreen mode.
 Screen sizes: virtual=(1920, 1080) physical=(1440, 900) drawable=(1440, 900)
@@ -180,11 +180,54 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 0.87047791481s
+Total time until interface ready: 1.06511616707s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.022643 seconds.
-- Frame drawn at 0.034929 seconds.
-- Frame drawn at 0.047478 seconds.
-- Frame drawn at 0.064896 seconds.
-- 0.064896 seconds to render 5 frames.
+- Frame drawn at 0.021542 seconds.
+- Frame drawn at 0.034006 seconds.
+- Frame drawn at 0.047924 seconds.
+- Frame drawn at 0.065300 seconds.
+- 0.065300 seconds to render 5 frames.
+Traceback (most recent call last):
+  File "/Applications/renpy-6.99.6-sdk/renpy/execution.py", line 374, in run
+    node.execute()
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 594, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/exports.py", line 1032, in say
+    who(what, interact=interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 826, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 688, in do_display
+    **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 491, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/Applications/renpy-6.99.6-sdk/renpy/ui.py", line 277, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2346, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 386, in visit_all
+    callback(self)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 396, in per_interact
+    self.update()
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 565, in update
+    self.screen.function(**self.scope)
+  File "/Applications/renpy-6.99.6-sdk/renpy/sl2/slast.py", line 1944, in __call__
+    self.const_ast.execute(context)
+  File "/Applications/renpy-6.99.6-sdk/renpy/sl2/slast.py", line 1899, in execute
+    SLBlock.execute(self, context)
+  File "/Applications/renpy-6.99.6-sdk/renpy/sl2/slast.py", line 387, in execute
+    i.execute(context)
+  File "/Applications/renpy-6.99.6-sdk/renpy/sl2/slast.py", line 707, in execute
+    positional = eval(positional_exprs, context.globals, context.scope)
+  File "<screen language>", line 296, in <module>
+NameError: name 'book' is not defined
