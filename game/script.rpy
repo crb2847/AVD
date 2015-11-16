@@ -211,6 +211,8 @@ image bg chapter6 = "images/Transitions/Chapter6.png"
 image arthur normal = "images/arthursingle.png"
 #image harold normal ".png"
 image policebaton = "images/baton.png"
+image notedeciphered = "images/SearchItems/notedeciphered.png"
+image noteundeciphered = "images/SearchItems/noteunciphered.png"
 
 #angelica's corner image stuff
 image angelica normal hidden = Null()
@@ -302,8 +304,6 @@ init:
                                         "images/Guard_Neutral/Guard_Neutral0004_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0005_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0006_Filter.png", .16,)
-    image note deciphered = Animation ("images/SearchItems/notedeciphered.png", .16,)
-    image note unciphered = Animation ("images/SearchItems/noteunciphered.png", .16,)
 
 screen flashlight_demo:
     textbutton "continue" xpos 300 ypos 300 action Return()
@@ -322,13 +322,6 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    $ warnbeatrice = False
->>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
->>>>>>> aad27bc94b0dbc5d7e2e44015e5fb1d411d76f2f
     
     screen newspaper:
         add a[0]
@@ -1226,20 +1219,20 @@ label searchfire:
             jump searchfire
         "I think I'm done examining.":
             angelica "That's everything. Let's see if this cipher can decipher the message."
-            show note undeciphered
+            show noteundeciphered
             with dissolve
             angelica "If I transpose each letter..."
-            hide note undeciphered
+            hide noteundeciphered
             with dissolve
             show bg angelicacipher
             with dissolve
             angelica "I think I've got it!"
-            show note deciphered
+            show notedeciphered
             with dissolve
             #hide cipher
             angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
             angelica "That's tomorrow morning! Who is he meeting with?"   
-            hide note deciphered 
+            hide notedeciphered 
             with dissolve
             jump alley
             
@@ -1269,20 +1262,20 @@ label searchpapers:
             jump searchpapers
         "I think I'm done examining.":
             angelica "That's everything. Let's see if this cipher can decipher the message."
-            show note undeciphered
+            show noteundeciphered
             with dissolve
             angelica "If I transpose each letter..."
-            hide note undeciphered
+            hide noteundeciphered
             with dissolve
             show bg angelicacipher
             with dissolve
             angelica "I think I've got it!"
-            show note deciphered
+            show notedeciphered
             with dissolve
             #hide cipher
             angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
             angelica "That's tomorrow morning! Who is he meeting with?"   
-            hide note deciphered 
+            hide notedeciphered 
             with dissolve
             #hide cipher with solved paper
             show bg parliamentoffice
