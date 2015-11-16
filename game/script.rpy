@@ -321,7 +321,7 @@ label start:
     $ letters = [Appearing("images/SearchItems/letters.png", (390,600), 40, 100)]
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
-    $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
+    $ book = [Appearing("images/SearchItems/book.png", (1160,740), 40, 100)]
     
     screen newspaper:
         add a[0]
@@ -358,7 +358,7 @@ label start:
         add Flashlight()
     screen baton:
         add baton[0]
-        
+    
     # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
@@ -378,9 +378,11 @@ label start:
     with dissolve
     angelica "(Huh, everyone's in the interrogation room with the would-be assassin. It's just like them not to tell me anything. Well, if I look around I should be able to figure it out for myself.)"
     label newsbaton:
+        $ mouse_visible = True
         menu:
             #change this to examine room later
             "Examine the room.":
+                $ mouse_visible = False
                 show screen newspaper
                 show screen baton
                 "You begin to examine the room"
