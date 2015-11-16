@@ -229,15 +229,46 @@ define angelica = Character('Angelica Hall', color="#c8ffc8",
                                                           "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
                                                           None, Null(),
                             xalign=0.0, yalign=1.0))
-define ar = Character('Arthur Charleston', image="arthur")
-define harold = Character('Harold Fredrickson', color="#a7ffc8")
-define countess = Character('Countess', color="#a7ffc8")
-define beat = Character('Beatrice Fredrickson', color="#a7ffc8")
-define shady = Character('Shady Man', color="#a7ffc8")
-define assistant = Character('Assistant', color="#a7ffc8")
-define guard = Character ('Palace Guard', color = "#a7ffc8")
-define queen = Character ('HRM Queen Victoria', color = "#a7ffc8")
-
+define ar = Character('Arthur Charleston', image="arthur", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define harold = Character('Harold Fredrickson', color="#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define countess = Character('Countess', color="#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define beat = Character('Beatrice Fredrickson', color="#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define shady = Character('Shady Man', color="#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define assistant = Character('Assistant', color="#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define guard = Character ('Palace Guard', color = "#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
+define queen = Character ('HRM Queen Victoria', color = "#a7ffc8", window_left_padding=300,
+                            show_side_image=ShowingSwitch("angelica normal", "images/angelica/Angelica_Corner_Idle.png",
+                                                          "angelica angry", "images/angelica/Angelica_Corner_Idle2.png",
+                                                          None, Null(),
+                            xalign=0.0, yalign=1.0))
 
 #stop music
 #play sound "effect.ogg"
@@ -404,6 +435,8 @@ label start:
         with dissolve
         play sound "sounds/Door_close.ogg"
         angelica "Sir, what the bloody hell is going on?"
+        show angelica normal hidden
+        show angelica angry
         ar "Miss Hall. This assassin case is our top priority. Absolute top! Nothing else to bother with!"
         angelica "You're awfully excited about an attempted murder..."
         ar "It's remarkable! Unreal! We've detained a member of Parliament for trying to murder the Queen!"
