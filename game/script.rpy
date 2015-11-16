@@ -2,6 +2,8 @@
 init python:
 
     import math
+    
+    warnbeatrice = False
 
     class Appearing(renpy.Displayable):
 
@@ -94,6 +96,48 @@ init python:
             # This image should be twice the width and twice the height
             # of the screen.
             self.child = Image("images/flashlight.png")
+
+            # (-1, -1) is the way the event system represents
+            # "outside the game window".
+            self.pos = (-1, -1)
+
+        def render(self, width, height, st, at):
+            render = renpy.Render(config.screen_width, config.screen_height)
+            
+            if self.pos == (-1, -1):
+                # If we don't know where the cursor is, render pure black.
+                render.canvas().rect("#000", (0, 0, config.screen_width, config.screen_height))
+                return render
+
+            # Render the flashlight image.
+            child_render = renpy.render(self.child, width, height, st, at)
+
+            # Draw the image centered on the cursor.
+            flashlight_width, flashlight_height = child_render.get_size()
+            x, y = self.pos
+            x -= flashlight_width / 2
+            y -= flashlight_height / 2
+            render.blit(child_render, (x, y))
+            return render
+
+        def event(self, ev, x, y, st):
+            # Re-render if the position changed.
+            if self.pos != (x, y):
+                renpy.redraw(self, 0)
+
+            # Update stored position
+            self.pos = (x, y)
+
+        def visit(self):
+            return [ self.child ]
+            
+    class Cursor(renpy.Displayable):
+        def __init__(self, img):
+            super(Cursor, self).__init__()
+            
+            # This image should be twice the width and twice the height
+            # of the screen.
+            self.child = Image(img)
 
             # (-1, -1) is the way the event system represents
             # "outside the game window".
@@ -236,9 +280,19 @@ init:
                                              "images/assistant/Parliament_Assistant_Neutral0004.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0005.png", .16,
                                              "images/assistant/Parliament_Assistant_Neutral0006.png", .16,)
-    image victoria victoranimation = Animation ("images/Queen_Victoria.png", .16,)
+    image victoria victoranimation = Animation ("images/Queen_Concerned/Queen_Concerned0001_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0002_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0003_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0004_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0005_Filter.png", .16,
+                                                "images/Queen_Concerned/Queen_Concerned0006_Filter.png", .16,)
     
-    image guard guardimation = Animation ("images/shady/skeleton.png", .16,)
+    image guard guardimation = Animation ("images/Guard_Neutral/Guard_Neutral0001_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0002_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0003_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0004_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0005_Filter.png", .16,
+                                        "images/Guard_Neutral/Guard_Neutral0006_Filter.png", .16,)
 
 
 screen flashlight_demo:
@@ -257,11 +311,11 @@ label start:
     $ letters = [Appearing("images/SearchItems/letters.png", (390,600), 40, 100)]
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
-    #$ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
-    $ warnbeatrice = False
+    $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
     
     screen newspaper:
         add a[0]
+        add Cursor("images/magnifyingglass_UI.png")
         #add Flashlight()
     screen bedroom:
         add mirror[0]
@@ -283,12 +337,12 @@ label start:
         add glasses[0]
     screen parlor:
         add cryphoto[0]
-        #add book[0]
+        add book[0]
         add sword[0]
     screen parlorFlashlight:
         add Flashlight()
         add cryphoto[0]
-        #add book[0]
+        add book[0]
         add sword[0]    
     screen darkness:
         add Flashlight()
@@ -1162,7 +1216,8 @@ label papers:
     angelica "Fourth floor."
     assistant "I see. I certainly don't know what papers you're talking about. I shall check in our filing room, I won't be a moment."
     angelica "Of course. I will wait here for you."
-    #hide assistant sprite
+    hide assistant asanimation
+    with dissolve
     jump searchpapers
 
 label searchpapers:
@@ -1206,6 +1261,8 @@ label downstairs:
     assistant "I think it's best you leave."
     angelica "No, please, you don't understand!"
     assistant "Guards!"
+    hide assistant asanimation
+    with dissolve
     show bg tryagain
     with dissolve
     "You were arrested for breaking into Parliament."

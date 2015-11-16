@@ -1,21 +1,64 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 294, in script
-    jump bedroom
-ScriptError: could not find label 'bedroom'.
+  File "game/script.rpy", line 373, in script
+    "You begin to examine the room"
+  File "game/script.rpy", line 315, in execute
+    screen newspaper:
+  File "game/script.rpy", line 315, in execute
+    screen newspaper:
+  File "game/script.rpy", line 317, in execute
+    add Cursor()
+  File "game/script.rpy", line 134, in __init__
+    super(Flashlight, self).__init__()
+TypeError: super(type, obj): obj must be an instance or subtype of type
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 294, in script
-    jump bedroom
-  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1497, in execute
-    rv = renpy.game.script.lookup(target)
-  File "/Applications/renpy-6.99.6-sdk/renpy/script.py", line 843, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'bedroom'.
+  File "game/script.rpy", line 373, in script
+    "You begin to examine the room"
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ast.py", line 594, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\exports.py", line 1032, in say
+    who(what, interact=interact)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 826, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 688, in do_display
+    **display_args)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 491, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ui.py", line 277, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2346, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2602, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 386, in visit_all
+    callback(self)
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2602, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 396, in per_interact
+    self.update()
+  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 565, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 315, in execute
+    screen newspaper:
+  File "game/script.rpy", line 315, in execute
+    screen newspaper:
+  File "game/script.rpy", line 317, in execute
+    add Cursor()
+  File "<screen language>", line 317, in <module>
+  File "game/script.rpy", line 134, in __init__
+    super(Flashlight, self).__init__()
+TypeError: super(type, obj): obj must be an instance or subtype of type
 
-Darwin-14.5.0-x86_64-i386-64bit
+Windows-7-6.1.7601-SP1
 Ren'Py 6.99.6.739
 Angelica Victorian Detective 0.2
