@@ -314,6 +314,10 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
+<<<<<<< HEAD
+=======
+    $ warnbeatrice = False
+>>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
     
     screen newspaper:
         add a[0]

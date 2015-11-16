@@ -1,6 +1,7 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
+<<<<<<< HEAD
   File "game/script.rpy", line 373, in script
     "You begin to examine the room"
   File "game/script.rpy", line 315, in execute
@@ -12,10 +13,22 @@ While running game code:
   File "game/script.rpy", line 134, in __init__
     super(Flashlight, self).__init__()
 TypeError: super(type, obj): obj must be an instance or subtype of type
+=======
+  File "game/script.rpy", line 1054, in script
+    angelica "Let's see what I can find in here."
+  File "game/script.rpy", line 294, in execute
+    screen parlor:
+  File "game/script.rpy", line 294, in execute
+    screen parlor:
+  File "game/script.rpy", line 296, in execute
+    add book[0]
+NameError: name 'book' is not defined
+>>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
+<<<<<<< HEAD
   File "game/script.rpy", line 373, in script
     "You begin to examine the room"
   File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ast.py", line 594, in execute
@@ -58,6 +71,48 @@ Full traceback:
   File "game/script.rpy", line 134, in __init__
     super(Flashlight, self).__init__()
 TypeError: super(type, obj): obj must be an instance or subtype of type
+=======
+  File "game/script.rpy", line 1054, in script
+    angelica "Let's see what I can find in here."
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 594, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/exports.py", line 1032, in say
+    who(what, interact=interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 826, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 688, in do_display
+    **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 491, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/Applications/renpy-6.99.6-sdk/renpy/ui.py", line 277, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2346, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
+    d.visit_all(callback)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 386, in visit_all
+    callback(self)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 396, in per_interact
+    self.update()
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 565, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 294, in execute
+    screen parlor:
+  File "game/script.rpy", line 294, in execute
+    screen parlor:
+  File "game/script.rpy", line 296, in execute
+    add book[0]
+  File "<screen language>", line 296, in <module>
+NameError: name 'book' is not defined
+>>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
 
 Windows-7-6.1.7601-SP1
 Ren'Py 6.99.6.739
