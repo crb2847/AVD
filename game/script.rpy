@@ -1421,7 +1421,7 @@ label buckinghamblueprint:
     with dissolve
     show victoria victoranimation at right
     with dissolve
-    queen "I cannot sufficiently express my gratitude for your service. Although the destruction of Buckingham Palace marks a dark day for the British Empire, I have faith that we will prevail against the evils conspiring to defeat us."
+    queen "I cannot sufficiently express my gratitude for your service. I have faith that we will prevail against the evils conspiring to defeat us."
     queen "All the men here shall be knighted!"
     angelica "(sigh)"
     hide victoria victoranimation
