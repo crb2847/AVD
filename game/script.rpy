@@ -153,6 +153,13 @@ image bg angelicadress = "images/AngelicaDress.png"
 image bg tryagain = "images/GameOver_Restart.png"
 image bg youdied = "images/GameOver_Death.png"
 image bg buckingham = "images/BuckinghamPalace_01.png"
+image bg chapter1 = "images/Transitions/Chapter1.png"
+image bg chapter2 = "images/Transitions/Chapter2.png"
+image bg chapter3 = "images/Transitions/Chapter3.png"
+image bg chapter4 = "images/Transitions/Chapter4.png"
+image bg chapter5 = "images/Transitions/Chapter5.png"
+image bg chapter6 = "images/Transitions/Chapter6.png"
+
 
 #image angelica smile ".png"
 image arthur normal = "images/arthursingle.png"
@@ -249,7 +256,8 @@ init:
                                         "images/Guard_Neutral/Guard_Neutral0004_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0005_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0006_Filter.png", .16,)
-
+    image note deciphered = Animation ("images/SearchItems/notedeciphered.png", .16,)
+    image note unciphered = Animation ("images/SearchItems/noteunciphered.png", .16,)
 
 screen flashlight_demo:
     textbutton "continue" xpos 300 ypos 300 action Return()
@@ -268,7 +276,6 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (300,300), 40, 100)]
-    $ warnbeatrice = False
     
     screen newspaper:
         add a[0]
@@ -315,11 +322,13 @@ label start:
     show angelica normal
     
     play music "sounds/Busy_Music.ogg" loop
-    show bg policeLobby
+    show bg chapter1
     
     "London, 1875.\n\n A Member of Parliament, Harold Fredrickson, has tried to kill Her Majesty Queen Victoria.
      \n\nA league of private detectives thwarted the attempt, and took the would-be killer into custody.
      \n\nYou are Angelica Hall, the first female private eye in Britain. You're bright, but underestimated by your peers. Maybe this case is the chance you need to prove yourself."
+    show bg policeLobby
+    with dissolve
     angelica "(Huh, everyone's in the interrogation room with the would-be assassin. It's just like them not to tell me anything. Well, if I look around I should be able to figure it out for myself.)"
     label newsbaton:
         menu:
@@ -584,6 +593,9 @@ label chiefsoffice:
             jump party
 
 label party:
+    show bg chapter2
+    with dissolve
+    " To the party!"
     show bg angelicadress
     with dissolve
     stop music
@@ -828,6 +840,9 @@ label dontcry:
 
 # beatrice fail route 
 label beatricefail:
+    show bg chapter3
+    with dissolve
+    "Searching the house"
     show screen darkness
     show bg parlor
     stop music
@@ -902,6 +917,9 @@ label officelantern:
 
 #beatrice success route
 label beatricehouse:
+    show bg chapter3
+    with dissolve
+    "Searching the house"
     show bg parlor
     stop music
     play music "sounds/Beatrice_Sweet.ogg"
@@ -926,7 +944,7 @@ label beatricehouse:
         "The mission is more important.":
             jump angelicaandbeatrice
 
-
+$ warnbeatrice = False
 #tell beatrice the truth            
 label detectivework:
     $ warnbeatrice = True
@@ -1102,6 +1120,8 @@ label examineoffice:
 #beginning parliamentarian office
 
 label parliamentarianoffice:
+    show bg chapter4
+    with dissolve
     #show bg parliamentexterior
     stop music
     play music "sounds/Palace_Fugue.ogg"
@@ -1152,14 +1172,21 @@ label searchfire:
             jump searchfire
         "I think I'm done examining.":
             angelica "That's everything. Let's see if this cipher can decipher the message."
-            show bg angelicacipher 
+            show note undeciphered
             with dissolve
             angelica "If I transpose each letter..."
-            #show cipher with solved paper
+            hide note undeciphered
+            with dissolve
+            show bg angelicacipher
+            with dissolve
+            angelica "I think I've got it!"
+            show note deciphered
+            with dissolve
+            #hide cipher
             angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
-            angelica "That's tomorrow morning! Who is he meeting with?"
-            angelica "I have to spy on this secret meeting!"
-            #hide cipehr with solved paper
+            angelica "That's tomorrow morning! Who is he meeting with?"   
+            hide note deciphered 
+            with dissolve
             jump alley
             
         
@@ -1188,13 +1215,21 @@ label searchpapers:
             jump searchpapers
         "I think I'm done examining.":
             angelica "That's everything. Let's see if this cipher can decipher the message."
-            show bg angelicacipher
+            show note undeciphered
             with dissolve
             angelica "If I transpose each letter..."
+            hide note undeciphered
+            with dissolve
+            show bg angelicacipher
+            with dissolve
+            angelica "I think I've got it!"
+            show note deciphered
+            with dissolve
             #hide cipher
-            #show cipher with solved paper
             angelica "Meet before dawn on Thursday the 27th... between Charlotte and Rathbone."
             angelica "That's tomorrow morning! Who is he meeting with?"   
+            hide note deciphered 
+            with dissolve
             #hide cipher with solved paper
             show bg parliamentoffice
             with dissolve
@@ -1229,10 +1264,14 @@ label downstairs:
 label alley:
 
 #cutscene
+show bg chapter5
+with dissolve
+"The Meeting"
 show bg alley
 with dissolve
 stop music
 play music "sounds/Beatrice_Bitter.ogg"
+play sound "sounds/Alley_Sounds.ogg"
 angelica "This is their meeting spot. Better hide before someone gets here!"
 
 show shady shadimation at left 
@@ -1296,6 +1335,9 @@ label buckinghampalace:
     jump buckinghamblueprint
     
 label buckinghamblueprint:
+    show bg chapter6
+    with dissolve
+    "Stop the bomb!"
     show bg buckingham
     with dissolve
     show guard guardimation at right
@@ -1335,7 +1377,9 @@ label buckinghamblueprint:
     angelica "(sigh)"
     hide victoria victoranimation
     with dissolve
-    if warnbeatrice == True:
+    show bg policeLobby
+    with dissolve
+    if warnbeatrice:
         ar "Absolutely remarkable! Top police work, my dear!"
         ar "We'll be charging Lord Aldredge with heading the conspiracy!"
         angelica "Sorry, who?"
@@ -1358,7 +1402,9 @@ label buckinghamblueprint:
     
 
 label buckinghamnoblueprint:
-
+    show bg chapter6
+    with dissolve
+    "Stop the bomb!"
     show bg buckingham
     with dissolve
     show guard guardimation at right
@@ -1396,6 +1442,8 @@ label evacuatevictoria:
     queen "All the men here shall be knighted!"
     angelica "(sigh)"
     hide victoria victoranimation
+    with dissolve
+    show bg policeLobby
     with dissolve
     if warnbeatrice == True:
         ar "Absolutely remarkable! Top police work, my dear!"

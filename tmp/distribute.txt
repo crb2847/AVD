@@ -96,12 +96,14 @@ game/images/Beatrice_Happy_Final/Beatrice_Happy0004_Filter.png matches ** ([u'al
 game/images/Beatrice_Happy_Final/Beatrice_Happy0005_Filter.png matches ** ([u'all']).
 game/images/Beatrice_Happy_Final/Beatrice_Happy0006_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/ matches ** ([u'all']).
+game/images/BeatriceCry/.DS_Store matches **/.** (None).
 game/images/BeatriceCry/Beatrice_Cry0001_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/Beatrice_Cry0002_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/Beatrice_Cry0003_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/Beatrice_Cry0004_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/Beatrice_Cry0005_Filter.png matches ** ([u'all']).
 game/images/BeatriceCry/Beatrice_Cry0006_Filter.png matches ** ([u'all']).
+game/images/BeatriceCry/Iconmatches ** ([u'all']).
 game/images/bedroom.png matches ** ([u'all']).
 game/images/BuckinghamPalace_01.png matches ** ([u'all']).
 game/images/captainsOffice.png matches ** ([u'all']).
@@ -116,6 +118,15 @@ game/images/Countess_Indifferent/Thumbs.db matches **/thumbs.db (None).
 game/images/flashlight.png matches ** ([u'all']).
 game/images/GameOver_Death.png matches ** ([u'all']).
 game/images/GameOver_Restart.png matches ** ([u'all']).
+game/images/Guard_Neutral/ matches ** ([u'all']).
+game/images/Guard_Neutral/.DS_Store matches **/.** (None).
+game/images/Guard_Neutral/Guard_Neutral0001_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Guard_Neutral0002_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Guard_Neutral0003_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Guard_Neutral0004_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Guard_Neutral0005_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Guard_Neutral0006_Filter.png matches ** ([u'all']).
+game/images/Guard_Neutral/Iconmatches ** ([u'all']).
 game/images/Harold/ matches ** ([u'all']).
 game/images/Harold/Harold1.png matches ** ([u'all']).
 game/images/Harold/Harold2.png matches ** ([u'all']).
@@ -142,17 +153,30 @@ game/images/Parlor_02.png matches ** ([u'all']).
 game/images/police_news.png matches ** ([u'all']).
 game/images/PoliceInterrogation_1.png matches ** ([u'all']).
 game/images/Policelobby_1.png matches ** ([u'all']).
+game/images/Queen_Concerned/ matches ** ([u'all']).
+game/images/Queen_Concerned/.DS_Store matches **/.** (None).
+game/images/Queen_Concerned/Iconmatches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0001_Filter.png matches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0002_Filter.png matches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0003_Filter.png matches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0004_Filter.png matches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0005_Filter.png matches ** ([u'all']).
+game/images/Queen_Concerned/Queen_Concerned0006_Filter.png matches ** ([u'all']).
 game/images/Queen_Victoria.png matches ** ([u'all']).
 game/images/SearchItems/ matches ** ([u'all']).
 game/images/SearchItems/.DS_Store matches **/.** (None).
 game/images/SearchItems/blueprint.afphoto matches ** ([u'all']).
 game/images/SearchItems/blueprint.png matches ** ([u'all']).
+game/images/SearchItems/book.png matches ** ([u'all']).
 game/images/SearchItems/cipher.png matches ** ([u'all']).
 game/images/SearchItems/cryphoto.png matches ** ([u'all']).
 game/images/SearchItems/glasses.png matches ** ([u'all']).
+game/images/SearchItems/jewelrybox.afphoto matches ** ([u'all']).
 game/images/SearchItems/jewelrybox.png matches ** ([u'all']).
 game/images/SearchItems/letters.png matches ** ([u'all']).
 game/images/SearchItems/mirror.png matches ** ([u'all']).
+game/images/SearchItems/notedeciphered.png matches ** ([u'all']).
+game/images/SearchItems/noteunciphered.png matches ** ([u'all']).
 game/images/SearchItems/sword.png matches ** ([u'all']).
 game/images/SearchItems/Thumbs.db matches **/thumbs.db (None).
 game/images/shady/ matches ** ([u'all']).
@@ -168,6 +192,14 @@ game/images/skeleton.png matches ** ([u'all']).
 game/images/SpiltTea.png matches ** ([u'all']).
 game/images/Thumbs.db matches **/thumbs.db (None).
 game/images/Title_screen1.png matches ** ([u'all']).
+game/images/Transitions/ matches ** ([u'all']).
+game/images/Transitions/.DS_Store matches **/.** (None).
+game/images/Transitions/chapter1.png matches ** ([u'all']).
+game/images/Transitions/chapter2.png matches ** ([u'all']).
+game/images/Transitions/chapter3.png matches ** ([u'all']).
+game/images/Transitions/chapter4.png matches ** ([u'all']).
+game/images/Transitions/chapter5.png matches ** ([u'all']).
+game/images/Transitions/chapter6.png matches ** ([u'all']).
 game/options.rpy matches ** ([u'all']).
 game/options.rpy.bak matches **.bak (None).
 game/options.rpyc matches ** ([u'all']).
@@ -180,6 +212,7 @@ game/script.rpyc matches ** ([u'all']).
 game/script_version.txt matches ** ([u'all']).
 game/sounds/ matches ** ([u'all']).
 game/sounds/.DS_Store matches **/.** (None).
+game/sounds/Alley_Sounds.ogg matches ** ([u'all']).
 game/sounds/Arthur's_Song.ogg matches ** ([u'all']).
 game/sounds/Arthur_Song.ogg matches ** ([u'all']).
 game/sounds/Ball_Room_Waltz.ogg matches ** ([u'all']).
@@ -201,6 +234,7 @@ game/sounds/Palace_Fugue.ogg matches ** ([u'all']).
 game/sounds/Pen_Scribble.ogg matches ** ([u'all']).
 game/sounds/Sad_Atmospheric.ogg matches ** ([u'all']).
 game/sounds/Type_Click.ogg matches ** ([u'all']).
+game/sounds/Wind.ogg matches ** ([u'all']).
 log.txt matches log.txt (None).
 project.json matches project.json (None).
 README.html matches ** ([u'all']).
