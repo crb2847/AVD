@@ -979,8 +979,8 @@ label parlorlantern:
 label bedroomcantgetin:
     screen darkness
     show bg parlor
-    beat "*snoring*"
-    angelica "Oh my. She's already home! \ I can't search in there. \ Hopefully there's nothing important in the bedroom..."
+    angelica "The door is locked! Maybe I can pick this..."
+    angelica "I can't get it open! Hopefully there's nothing important in there..."
     menu:
         "Examine Again?":
             jump bedroomcantgetin
