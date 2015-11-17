@@ -205,6 +205,7 @@ image bg chapter3 = "images/Transitions/Chapter3.png"
 image bg chapter4 = "images/Transitions/Chapter4.png"
 image bg chapter5 = "images/Transitions/Chapter5.png"
 image bg chapter6 = "images/Transitions/Chapter6.png"
+image bg beatriceandshady = "images/beatriceandshady.png"
 
 
 #image angelica smile ".png"
@@ -353,6 +354,8 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (1160,740), 40, 100)]
+    $ note2 = [Appearing("images/SearchItems/note2.png", (1160,740), 40, 100)]
+    $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1050,700), 40, 100)]
     
     screen newspaper:
         add a[0]
@@ -362,33 +365,46 @@ label start:
         add mirror[0]
         add jewelrybox[0]
         add blueprint[0]
+        add Cursor("images/magnifyingglass_UI.png")
     screen officedesk:
         add cipher[0]
         add letters[0]
         add glasses[0]
+        add Cursor("images/magnifyingglass_UI.png")
     screen bedroomFlashlight:
         add Flashlight()
         add mirror[0]
         add jewelrybox[0]
         add blueprint[0]
+        add Cursor("images/magnifyingglass_UI.png")
     screen officedeskFlashlight:
         add Flashlight()
         add cipher[0]
         add letters[0]
         add glasses[0]
+        add Cursor("images/magnifyingglass_UI.png")
     screen parlor:
         add cryphoto[0]
         add book[0]
         add sword[0]
+        add Cursor("images/magnifyingglass_UI.png")
     screen parlorFlashlight:
         add Flashlight()
         add cryphoto[0]
         add book[0]
-        add sword[0]    
+        add sword[0] 
+        add Cursor("images/magnifyingglass_UI.png")
     screen darkness:
         add Flashlight()
+        add Cursor("images/magnifyingglass_UI.png")
     screen baton:
         add baton[0]
+        add Cursor("images/magnifyingglass_UI.png")
+    screen parliamentarian:
+        add note2[0]
+        add typewriter [0]
+        add Cursor("images/magnifyingglass_UI.png")
+    
     
     # make this work
     #$ mouse_visible = False
@@ -807,11 +823,13 @@ label followbeatrice:
     hide countess countanimation
     with dissolve
     angelica "(It looks like Mrs. Fredrickson has gone to freshen up. Perhaps I can start up a conversation with her.)"
-    "The shady man stops Mrs. Fredrickson in the hall."
+    show bg beatriceandshady
+    with dissolve
     angelica "(Oh no, that drunken man from before has stopped her.)"
-    "The shady man hands something to Mrs. Fredrickson."
     beat "What are these?"
     shady "Just some documents, ma'am. Give my best to your husband."
+    show bg party
+    with dissolve
     angelica "Wait, what was that? Is it possible that she had something to do with this after all? I'll strike up a conversation..."
     show beat banimation
     with dissolve
@@ -866,11 +884,13 @@ label followbeatrice:
         
 label beatriceskip:
     angelica "(It looks like Mrs. Fredrickson has gone to freshen up. Perhaps I can start up a conversation with her.)"
-    "The shady man stops Mrs. Fredrickson in the hall."
+    show bg beatriceandshady
+    with dissolve
     angelica "(Oh no, that drunken man from before has stopped her.)"
-    "The shady man hands something to Mrs. Fredrickson."
     beat "What are these?"
     shady "Just some documents, ma'am. Give my best to your husband."
+    show bg party
+    with dissolve
     angelica "Wait, what was that? Is it possible that she had something to do with this after all? I'll strike up a conversation..."
     show beat banimation
     with dissolve
@@ -1246,13 +1266,14 @@ label searchfire:
     show bg parliamentoffice
     with dissolve
     angelica "Let's see what we can find."
-    #show screen
+    show screen parliamentarian
     #screen random papers, papers, and typewriter
-    angelica "I see a lot of papers... hold on... this is written in some kind of code!"
+    angelica "I hope that's everything."
     menu: 
         "Examine again?":
             jump searchfire
         "I think I'm done examining.":
+            hide screen parliamentarian
             angelica "That's everything. Let's see if this cipher can decipher the message."
             show noteundeciphered
             with dissolve
@@ -1289,13 +1310,14 @@ label searchpapers:
     show bg parliamentoffice
     with dissolve
     angelica "Let's see what we can find."
-    #show screen
+    show screen parliamentarian
     #screen random papers, papers, and typewriter
-    angelica "I see a lot of papers... hold on... this is written in some kind of code!"
+    angelica "I hope that's everything."
     menu: 
         "Examine again?":
             jump searchpapers
         "I think I'm done examining.":
+            hide screen parliamentarian
             angelica "That's everything. Let's see if this cipher can decipher the message."
             show noteundeciphered
             with dissolve

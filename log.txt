@@ -1,17 +1,17 @@
-Mon Nov 16 14:25:29 2015
+Tue Nov 17 11:24:38 2015
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
  
 
-Bootstrap to the start of init.init took 0.09s
-Early init took 0.01s
+Bootstrap to the start of init.init took 0.08s
+Early init took 0.02s
 Loader init took 0.01s
-Loading error handling took 0.02s
-Loading script took 0.37s
+Loading error handling took 0.01s
+Loading script took 0.36s
 Loading persistent took 0.02s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Set script version to: (6, 99, 6)
-Running init code took 0.08s
+Running init code took 0.07s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
 Index archives took 0.00s
@@ -26,8 +26,8 @@ Load screen analysis took 0.00s
 Analyze screens took 0.01s
 Save screen analysis took 0.05s
 Prepare screens took 0.04s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.03s
+Save pyanalysis. took 0.05s
+Save bytecode. took 0.02s
 Running _start took 0.00s
 Performance test:
 Interface start took 0.00s
@@ -180,11 +180,11 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 1.05320501328s
+Total time until interface ready: 1.07719111443s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.026247 seconds.
-- Frame drawn at 0.033052 seconds.
-- Frame drawn at 0.047781 seconds.
-- Frame drawn at 0.063510 seconds.
-- 0.063510 seconds to render 5 frames.
+- Frame drawn at 0.021275 seconds.
+- Frame drawn at 0.033614 seconds.
+- Frame drawn at 0.048461 seconds.
+- Frame drawn at 0.064822 seconds.
+- 0.064822 seconds to render 5 frames.

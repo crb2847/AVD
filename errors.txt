@@ -2,28 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 325: expected statement.
-    <<<<<<< HEAD
-                ^
-
-File "game/script.rpy", line 326: expected statement.
-    =======
-          ^
-
-File "game/script.rpy", line 327: expected statement.
-    <<<<<<< HEAD
-                ^
-
-File "game/script.rpy", line 328: expected statement.
-    =======
-          ^
-
-File "game/script.rpy", line 330: expected statement.
-    >>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
-                                                    ^
-
-File "game/script.rpy", line 331: expected statement.
-    >>>>>>> aad27bc94b0dbc5d7e2e44015e5fb1d411d76f2f
-                                                    ^
+File "game/script.rpy", line 396: Line is indented, but the preceding screen statement does not expect a block. Please check this line's indentation.
+    add note2[0]
+    ^
 
 Ren'Py Version: Ren'Py 6.99.6.739
