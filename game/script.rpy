@@ -344,7 +344,7 @@ screen flashlight_demo:
 # The game starts here.
 label start:    
     $ a = [Appearing("images/police_news.png", (1320,700), 40, 100)]
-    $ baton = [Appearing("images/baton.png", (1550,700), 40, 100)]
+    $ baton = [Appearing("images/baton2.png", (1550,700), 40, 100)]
     $ glasses = [Appearing("images/SearchItems/glasses.png", (620,570), 40, 100)]
     $ blueprint = [Appearing("images/SearchItems/blueprint.png", (150,1030), 100, 500)]
     $ cipher = [Appearing("images/SearchItems/cipher.png", (1450,490), 40, 100)]
@@ -432,11 +432,7 @@ label start:
                 $ mouse_visible = False
                 show screen newspaper
                 show screen baton
-                "You begin to examine the room"
-                if a[0].getViewed() == True:
-                    "I see a newspaper, and a baton..."
-                if baton[0].getViewed() == True:
-                    "I see our arrest has made the tabloids. That baton belongs to the Police Commissioner. It's basically a useless decoration -- I doubt he's patrolling the streets much anymore."
+                "You begin to examine the room. Hover over objects to view them, and click to exit investigation mode."
                 hide screen newspaper
                 hide screen baton
                 jump newsbaton
