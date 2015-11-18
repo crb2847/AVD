@@ -354,8 +354,8 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (1160,740), 40, 100)]
-    $ note2 = [Appearing("images/SearchItems/note2.png", (1160,740), 40, 100)]
-    $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1050,700), 40, 100)]
+    $ note2 = [Appearing("images/SearchItems/note2.png", (1880,740), 40, 100)]
+    $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1525,540), 40, 100)]
     
     screen newspaper:
         add a[0]
@@ -405,6 +405,7 @@ label start:
         add typewriter [0]
         add Cursor("images/magnifyingglass_UI.png")
     
+    jump searchfire
     
     # make this work
     #$ mouse_visible = False
