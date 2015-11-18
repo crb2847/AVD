@@ -1374,24 +1374,23 @@ play music "sounds/Beatrice_Bitter.ogg"
 play sound "sounds/Alley_Sounds.ogg"
 angelica "This is their meeting spot. Better hide before someone gets here!"
 
-show shady shadimation at left 
+show shady shadimation at right 
 with dissolve
 angelica "(It's the shady man from the party... he's definitely up to skullduggery. \ Is he still drunk, or does he just look like that?)"
 shady "I have confirmed the Queen's meeting with the Prime Minister tomorrow."
 angelica "(Who is he talking to?)"
 shady "The weapon has been planted. Tomorrow marks the dawn of a new age."
-show beat banimation at right
-with dissolve
-beat "And it will be a firey dawn indeed."
 
-angelica "What?"
 hide shady shadimation
 with dissolve
-hide beat banimation 
-with dissolve
+
+
+
 
 show bg cutscene1
 with dissolve
+beat "And it will be a firey dawn indeed."
+angelica "What?"
 angelica "B-Beatrice? You're leading the conspiracy?"
 beat "Well well, looks like you're more than just a secretary after all."
 shady "Ma'am--"
