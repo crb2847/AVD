@@ -354,8 +354,8 @@ label start:
     $ mirror = [Appearing("images/SearchItems/mirror.png", (1050,700), 40, 100)]
     $ sword = [Appearing("images/SearchItems/sword.png", (480,340), 40, 100)]
     $ book = [Appearing("images/SearchItems/book.png", (1160,740), 40, 100)]
-    $ note2 = [Appearing("images/SearchItems/note2.png", (1160,740), 40, 100)]
-    $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1050,700), 40, 100)]
+    $ note2 = [Appearing("images/SearchItems/note2.png", (1880,740), 40, 100)]
+    $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1525,540), 40, 100)]
     
     screen newspaper:
         add a[0]
@@ -405,6 +405,7 @@ label start:
         add typewriter [0]
         add Cursor("images/magnifyingglass_UI.png")
     
+    jump searchfire
     
     # make this work
     #$ mouse_visible = False
@@ -1370,8 +1371,7 @@ with dissolve
 show bg alley
 with dissolve
 stop music
-play music "sounds/Beatrice_Bitter.ogg"
-play sound "sounds/Alley_Sounds.ogg"
+play music "sounds/Alley_Sounds.ogg" loop
 angelica "This is their meeting spot. Better hide before someone gets here!"
 
 show shady shadimation at right 
@@ -1384,7 +1384,8 @@ shady "The weapon has been planted. Tomorrow marks the dawn of a new age."
 hide shady shadimation
 with dissolve
 
-
+stop music
+queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
 
 
 show bg cutscene1
@@ -1478,6 +1479,7 @@ label buckinghamblueprint:
     with dissolve
     show bg policeLobby
     with dissolve
+    play music "sounds/Busy_Music.ogg" loop
     if warnbeatrice:
         ar "Absolutely remarkable! Top police work, my dear!"
         ar "We'll be charging Lord Aldredge with heading the conspiracy!"
@@ -1533,6 +1535,7 @@ label evacuatevictoria:
     "(Future Cutscene) Angelica helps Queen Victoria flee the palace just as a substantial portion of it is blown to smithereens."
     show bg policeLobby
     with dissolve
+    play music "sounds/Busy_Music.ogg" loop
     show arthur chinanimation at left
     with dissolve
     show victoria victoranimation at right
