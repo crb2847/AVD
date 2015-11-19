@@ -405,8 +405,6 @@ label start:
         add typewriter [0]
         add Cursor("images/magnifyingglass_UI.png")
     
-    jump searchfire
-    
     # make this work
     #$ mouse_visible = False
     #call screen flashlight_demo
@@ -448,8 +446,6 @@ label start:
         with dissolve
         play sound "sounds/Door_close.ogg"
         angelica "Sir, what the bloody hell is going on?"
-        show angelica normal hidden
-        show angelica angry
         ar "Miss Hall. This assassin case is our top priority. Absolute top! Nothing else to bother with!"
         angelica "You're awfully excited about an attempted murder..."
         ar "It's remarkable! Unreal! We've detained a member of Parliament for trying to murder the Queen!"
