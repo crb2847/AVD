@@ -149,7 +149,7 @@ init -1 python hide:
 
     ## The default size of text.
 
-    style.default.size = 35
+    style.default.size = 40
 
     ## Note that these only change the size of some of the text. Other
     ## buttons have their own styles.
@@ -274,7 +274,7 @@ init -1 python hide:
 
     ## Should we start in fullscreen mode?
 
-    config.default_fullscreen = False
+    config.default_fullscreen = True
 
     ## The default text speed in characters per second. 0 is infinite.
 
@@ -353,5 +353,5 @@ init python:
     
     
 init:
-    $ style.menu_choice.size = 40
+    $ style.menu_choice.size = 60
     

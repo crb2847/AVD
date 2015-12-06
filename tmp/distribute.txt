@@ -223,12 +223,14 @@ game/sounds/Ball_Room_Waltz_1_.ogg matches ** ([u'all']).
 game/sounds/Ballroom_SFX.ogg matches ** ([u'all']).
 game/sounds/Beatrice_Bitter.ogg matches ** ([u'all']).
 game/sounds/Beatrice_Sweet.ogg matches ** ([u'all']).
+game/sounds/Bitter_Intro.ogg matches ** ([u'all']).
 game/sounds/Busy_Music.ogg matches ** ([u'all']).
 game/sounds/Dark_Strings.ogg matches ** ([u'all']).
 game/sounds/Door_Close.ogg matches ** ([u'all']).
 game/sounds/Fast_Footsteps.ogg matches ** ([u'all']).
 game/sounds/Fugue.ogg matches ** ([u'all']).
 game/sounds/Gameover.ogg matches ** ([u'all']).
+game/sounds/Just_Bitter.ogg matches ** ([u'all']).
 game/sounds/Knife_SFX.ogg matches ** ([u'all']).
 game/sounds/Music_1.ogg matches ** ([u'all']).
 game/sounds/OfficeMusic.ogg matches ** ([u'all']).

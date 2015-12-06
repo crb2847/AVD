@@ -1,141 +1,31 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-<<<<<<< HEAD
-  File "game/script.rpy", line 1382, in script
-    if warnbeatrice:
-  File "game/script.rpy", line 1382, in <module>
-    if warnbeatrice:
-NameError: name 'warnbeatrice' is not defined
-=======
-<<<<<<< HEAD
-  File "game/script.rpy", line 373, in script
-    "You begin to examine the room"
-  File "game/script.rpy", line 315, in execute
-    screen newspaper:
-  File "game/script.rpy", line 315, in execute
-    screen newspaper:
-  File "game/script.rpy", line 317, in execute
-    add Cursor()
-  File "game/script.rpy", line 134, in __init__
-    super(Flashlight, self).__init__()
-TypeError: super(type, obj): obj must be an instance or subtype of type
-=======
-  File "game/script.rpy", line 1054, in script
-    angelica "Let's see what I can find in here."
-  File "game/script.rpy", line 294, in execute
-    screen parlor:
-  File "game/script.rpy", line 294, in execute
-    screen parlor:
-  File "game/script.rpy", line 296, in execute
-    add book[0]
-NameError: name 'book' is not defined
->>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
->>>>>>> aad27bc94b0dbc5d7e2e44015e5fb1d411d76f2f
+  File "game/script.rpy", line 1388, in script
+    queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
+  File "renpy/common/000statements.rpy", line 166, in execute_queue_music
+    eval(p["file"]),
+SyntaxError: invalid syntax (script.rpy, line 1388)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-<<<<<<< HEAD
-  File "game/script.rpy", line 1382, in script
-    if warnbeatrice:
-  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1612, in execute
-    if renpy.python.py_eval(condition):
-  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1477, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1472, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 1382, in <module>
-    if warnbeatrice:
-NameError: name 'warnbeatrice' is not defined
-=======
-<<<<<<< HEAD
-  File "game/script.rpy", line 373, in script
-    "You begin to examine the room"
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ast.py", line 594, in execute
-    renpy.exports.say(who, what, interact=self.interact)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\exports.py", line 1032, in say
-    who(what, interact=interact)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 826, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, **display_args)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 688, in do_display
-    **display_args)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\character.py", line 491, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\ui.py", line 277, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2346, in interact
-    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2602, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 386, in visit_all
-    callback(self)
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\core.py", line 2602, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 396, in per_interact
-    self.update()
-  File "C:\Users\Chris\Downloads\renpy-6.99.6-sdk\renpy\display\screen.py", line 565, in update
-    self.screen.function(**self.scope)
-  File "game/script.rpy", line 315, in execute
-    screen newspaper:
-  File "game/script.rpy", line 315, in execute
-    screen newspaper:
-  File "game/script.rpy", line 317, in execute
-    add Cursor()
-  File "<screen language>", line 317, in <module>
-  File "game/script.rpy", line 134, in __init__
-    super(Flashlight, self).__init__()
-TypeError: super(type, obj): obj must be an instance or subtype of type
-=======
-  File "game/script.rpy", line 1054, in script
-    angelica "Let's see what I can find in here."
-  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 594, in execute
-    renpy.exports.say(who, what, interact=self.interact)
-  File "/Applications/renpy-6.99.6-sdk/renpy/exports.py", line 1032, in say
-    who(what, interact=interact)
-  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 826, in __call__
-    self.do_display(who, what, cb_args=self.cb_args, **display_args)
-  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 688, in do_display
-    **display_args)
-  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 491, in display_say
-    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
-  File "/Applications/renpy-6.99.6-sdk/renpy/ui.py", line 277, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2346, in interact
-    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 394, in visit_all
-    d.visit_all(callback)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 386, in visit_all
-    callback(self)
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2602, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 396, in per_interact
-    self.update()
-  File "/Applications/renpy-6.99.6-sdk/renpy/display/screen.py", line 565, in update
-    self.screen.function(**self.scope)
-  File "game/script.rpy", line 294, in execute
-    screen parlor:
-  File "game/script.rpy", line 294, in execute
-    screen parlor:
-  File "game/script.rpy", line 296, in execute
-    add book[0]
-  File "<screen language>", line 296, in <module>
-NameError: name 'book' is not defined
->>>>>>> 6213bbd527a1445ba060b1169eb1608342a03cb5
->>>>>>> aad27bc94b0dbc5d7e2e44015e5fb1d411d76f2f
+  File "game/script.rpy", line 1388, in script
+    queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1661, in execute
+    self.call("execute")
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1679, in call
+    renpy.statements.call(method, parsed, *args, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/statements.py", line 144, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 166, in execute_queue_music
+    eval(p["file"]),
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1476, in py_eval
+    code = py_compile(code, 'eval')
+  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 512, in py_compile
+    raise e
+SyntaxError: invalid syntax (script.rpy, line 1388)
 
-Windows-7-6.1.7601-SP1
+Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
 Angelica Victorian Detective 0.2
