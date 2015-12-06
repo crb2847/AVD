@@ -32,7 +32,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>AngelicaVictorianDetective-0.4</string>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
 	<string>1.0.1447891082</string>
+=======
+	<string>1.0.1447891672</string>
+>>>>>>> 300b7076abe1ac40482b6bcc93af8365f65278ff
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.simulation-games</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>

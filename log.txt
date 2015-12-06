@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Sun Dec  6 17:29:50 2015
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
@@ -14,15 +15,38 @@ Set script version to: (6, 99, 6)
 Running init code took 0.08s
 Loading analysis data took 0.01s
 Analyze and compile ATL took 0.00s
+=======
+Wed Nov 18 18:07:48 2015
+Windows-7-6.1.7601-SP1
+Ren'Py 6.99.6.739
+ 
+
+Bootstrap to the start of init.init took 0.09s
+Early init took 0.02s
+Loader init took 0.02s
+Loading error handling took 0.13s
+Loading script took 2.45s
+Loading persistent took 0.02s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Set script version to: (6, 99, 6)
+Running init code took 0.26s
+Loading analysis data took 0.00s
+Analyze and compile ATL took 0.01s
+>>>>>>> 300b7076abe1ac40482b6bcc93af8365f65278ff
 Index archives took 0.00s
-Dump and make backups. took 0.03s
+Dump and make backups. took 0.05s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
+<<<<<<< HEAD
 Creating interface object took 0.10s
+=======
+Creating interface object took 0.02s
+>>>>>>> 300b7076abe1ac40482b6bcc93af8365f65278ff
 Cleaning stores took 0.00s
 Init translation took 0.00s
 Build styles took 0.00s
 Load screen analysis took 0.00s
+<<<<<<< HEAD
 Analyze screens took 0.03s
 Save screen analysis took 0.05s
 Prepare screens took 0.04s
@@ -188,3 +212,10 @@ Total time until interface ready: 1.09768009186s
 - Frame drawn at 0.048130 seconds.
 - Frame drawn at 0.064747 seconds.
 - 0.064747 seconds to render 5 frames.
+=======
+Analyze screens took 0.02s
+Save screen analysis took 0.05s
+Prepare screens took 0.10s
+Save pyanalysis. took 0.07s
+Save bytecode. took 0.05s
+>>>>>>> 300b7076abe1ac40482b6bcc93af8365f65278ff
