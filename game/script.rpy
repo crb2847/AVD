@@ -1412,7 +1412,11 @@ hide shady shadimation
 with dissolve
 
 stop music
+<<<<<<< HEAD
 queue music ["sounds/Bitter_Intro.ogg", "sounds/Just_Bitter.ogg"] loop
+=======
+play music "sounds/Beatrice_Bitter.ogg" loop
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 
 show bg cutscene1

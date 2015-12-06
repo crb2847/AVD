@@ -197,11 +197,11 @@ screen main_menu():
 
         has vbox
 
-        textbutton _("Start Game") action Start()
-        textbutton _("Load Game") action ShowMenu("load")
-        textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Help") action Help()
-        textbutton _("Quit") action Quit(confirm=False)
+        textbutton _("Start Game") action Start() text_size 50
+        textbutton _("Load Game") action ShowMenu("load") text_size 50
+        textbutton _("Preferences") action ShowMenu("preferences") text_size 50
+        textbutton _("Help") action Help() text_size 50
+        textbutton _("Quit") action Quit(confirm=False) text_size 50
 
 init -2:
 
