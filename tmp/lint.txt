@@ -1,5 +1,11 @@
 ﻿
+<<<<<<< HEAD
+Ren'Py 6.99.7.858 lint report, generated at: Sun Dec 06 17:43:52 2015
+
+game/script.rpy:1417 unable to evaluate filename u'["sounds/Bitter_Intro.ogg", "sounds/Just_Bitter.ogg" loop]'
+=======
 Ren'Py 6.99.6.739 lint report, generated at: Wed Nov 18 17:57:48 2015
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 
 Statistics:
@@ -7,7 +13,11 @@ Statistics:
 The game contains 388 dialogue blocks, containing 4,821 words and 26,244
 characters, for an average of 12.4 words and 68 characters per block.
 
+<<<<<<< HEAD
+The game contains 40 menus, 44 images, and 25 screens.
+=======
 The game contains 40 menus, 44 images, and 24 screens.
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 
 Remember to set config.developer to False before releasing.

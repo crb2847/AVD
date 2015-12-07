@@ -174,6 +174,32 @@ init python:
         def visit(self):
             return [ self.child ]
             
+    class Icon (renpy.Displayable):
+        def __init__(self, img, xpos, ypos):
+            super(Icon, self).__init__()
+            self.child = Image(img)
+
+            # (-1, -1) is the way the event system represents
+            # "outside the game window".
+            self.pos = (xpos, ypos)
+
+        def render(self, width, height, st, at):
+            render = renpy.Render(config.screen_width, config.screen_height)
+            
+            if self.pos == (-1, -1):
+                # If we don't know where the cursor is, render pure black.
+                render.canvas().rect("#000", (0, 0, config.screen_width, config.screen_height))
+                return render
+
+            # Render the flashlight image.
+            child_render = renpy.render(self.child, width, height, st, at)
+
+            # Draw the image in the top right hand corner
+            x, y = self.pos
+            render.blit(child_render, (x, y))
+            return render
+            
+            
 
 # Declare images below this line, using the image statement.
 # eg. image eileen happy = "eileen_happy.png"
@@ -356,6 +382,7 @@ label start:
     $ book = [Appearing("images/SearchItems/book.png", (1160,740), 40, 100)]
     $ note2 = [Appearing("images/SearchItems/note2.png", (1880,740), 40, 100)]
     $ typewriter = [Appearing("images/SearchItems/typewriter.png", (1525,540), 40, 100)]
+    $ icon = [Icon("images/Notes_UI.png", 1719, 0) ]
     
     screen newspaper:
         add a[0]
@@ -404,6 +431,8 @@ label start:
         add note2[0]
         add typewriter [0]
         add Cursor("images/magnifyingglass_UI.png")
+    screen icons:
+        add icon[0]
     
     # make this work
     #$ mouse_visible = False
@@ -413,6 +442,8 @@ label start:
     show angelica normal hidden
     show angelica angry hidden
     show angelica normal
+    
+    show screen icons
     
     play music "sounds/Busy_Music.ogg" loop
     show bg chapter1
@@ -1381,7 +1412,11 @@ hide shady shadimation
 with dissolve
 
 stop music
+<<<<<<< HEAD
+queue music ["sounds/Bitter_Intro.ogg", "sounds/Just_Bitter.ogg"] loop
+=======
 play music "sounds/Beatrice_Bitter.ogg" loop
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 
 show bg cutscene1

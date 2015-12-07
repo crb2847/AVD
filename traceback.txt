@@ -1,15 +1,37 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
+<<<<<<< HEAD
+  File "game/script.rpy", line 385, in script
+    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
+  File "game/script.rpy", line 385, in <module>
+    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
+TypeError: __init__() takes exactly 4 arguments (3 given)
+=======
   File "game/script.rpy", line 1388, in script
     queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
   File "renpy/common/000statements.rpy", line 166, in execute_queue_music
     eval(p["file"]),
 SyntaxError: invalid syntax (script.rpy, line 1388)
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
+<<<<<<< HEAD
+  File "game/script.rpy", line 385, in script
+    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
+  File "C:\Program Files (x86)\Renpy\renpy\ast.py", line 805, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Program Files (x86)\Renpy\renpy\python.py", line 1460, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/script.rpy", line 385, in <module>
+    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
+TypeError: __init__() takes exactly 4 arguments (3 given)
+
+Windows-8-6.2.9200
+Ren'Py 6.99.7.858
+=======
   File "game/script.rpy", line 1388, in script
     queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
   File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1661, in execute
@@ -28,4 +50,5 @@ SyntaxError: invalid syntax (script.rpy, line 1388)
 
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
+>>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 Angelica Victorian Detective 0.2
