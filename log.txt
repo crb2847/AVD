@@ -1,36 +1,36 @@
-Sun Dec 06 18:06:38 2015
+Sun Dec 06 18:36:42 2015
 Windows-8-6.2.9200
 Ren'Py 6.99.7.858
  
 
-Bootstrap to the start of init.init took 0.12s
+Bootstrap to the start of init.init took 0.09s
 Early init took 0.02s
-Loader init took 0.03s
+Loader init took 0.01s
 Loading error handling took 0.03s
-Loading script took 0.40s
-Loading persistent took 0.02s
+Loading script took 0.45s
+Loading persistent took 0.00s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Set script version to: (6, 99, 6)
-Running init code took 0.08s
+Running init code took 0.10s
 Loading analysis data took 0.02s
 Analyze and compile ATL took 0.00s
 Index archives took 0.00s
-Dump and make backups. took 0.03s
+Dump and make backups. took 0.05s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Creating interface object took 0.02s
 Cleaning stores took 0.00s
-Init translation took 0.02s
+Init translation took 0.00s
 Build styles took 0.00s
 Load screen analysis took 0.00s
-Analyze screens took 0.00s
-Save screen analysis took 0.07s
-Prepare screens took 0.04s
+Analyze screens took 0.02s
+Save screen analysis took 0.05s
+Prepare screens took 0.05s
 Save pyanalysis. took 0.00s
 Save bytecode. took 0.04s
 Running _start took 0.00s
 Performance test:
-Interface start took 0.00s
+Interface start took 0.01s
 Couldn't import angle renderer:
 Traceback (most recent call last):
   File "C:\Program Files (x86)\Renpy\renpy\display\core.py", line 1641, in make_draw
@@ -39,7 +39,7 @@ ImportError: DLL load failed: The specified module could not be found.
 Unknown renderer: angle
 
 Windowed mode.
-Screen sizes: virtual=(1920, 1080) physical=(1093, 614) drawable=(1093, 614)
+Screen sizes: virtual=(1920, 1080) physical=(1091, 613) drawable=(1091, 613)
 Vendor: 'Intel'
 Renderer: 'Intel(R) HD Graphics 5500'
 Version: '4.4.0 - Build 10.18.15.4274'
@@ -255,11 +255,25 @@ Texture testing:
 - 512px textures work.
 - 1024px textures work.
 - 2048px textures work.
-Total time until interface ready: 1.30599999428s
+Total time until interface ready: 1.26600003242s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.015000 seconds.
-- Frame drawn at 0.031000 seconds.
-- Frame drawn at 0.034000 seconds.
-- Frame drawn at 0.063000 seconds.
-- 0.063000 seconds to render 5 frames.
+- Frame drawn at 0.022000 seconds.
+- Frame drawn at 0.041000 seconds.
+- Frame drawn at 0.057000 seconds.
+- Frame drawn at 0.075000 seconds.
+- 0.075000 seconds to render 5 frames.
+Cleaning stores took 0.00s
+Init translation took 0.04s
+Build styles took 0.00s
+Load screen analysis took 0.04s
+Analyze screens took 0.00s
+Prepare screens took 0.09s
+Running _start took 0.01s
+Cleaning stores took 0.00s
+Init translation took 0.02s
+Build styles took 0.00s
+Load screen analysis took 0.02s
+Analyze screens took 0.00s
+Prepare screens took 0.05s
+Running _start took 0.00s

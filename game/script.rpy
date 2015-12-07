@@ -1179,6 +1179,8 @@ label examinebedroom:
     angelica "Time to take a look around. I have to be careful not to wake Beatrice."
     
     angelica "I think that's everything in here."
+    if blueprint[0].getViewed() :
+        show screen icons
     menu:
         "Examine Again?":
             jump examinebedroom
