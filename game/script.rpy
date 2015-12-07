@@ -369,8 +369,8 @@ screen flashlight_demo:
     
 # The game starts here.
 label start:    
-    $ a = [Appearing("images/police_news.png", (1320,700), 40, 100)]
-    $ baton = [Appearing("images/baton2.png", (1550,700), 40, 100)]
+    $ a = [Appearing("images/police_news.png", (960,700), 40, 100)]
+    $ baton = [Appearing("images/baton2.png", (300,700), 40, 100)]
     $ glasses = [Appearing("images/SearchItems/glasses.png", (620,570), 40, 100)]
     $ blueprint = [Appearing("images/SearchItems/blueprint.png", (150,1030), 100, 500)]
     $ cipher = [Appearing("images/SearchItems/cipher.png", (1450,490), 40, 100)]
@@ -442,8 +442,6 @@ label start:
     show angelica normal hidden
     show angelica angry hidden
     show angelica normal
-    
-    show screen icons
     
     play music "sounds/Busy_Music.ogg" loop
     show bg chapter1
@@ -1412,11 +1410,8 @@ hide shady shadimation
 with dissolve
 
 stop music
-<<<<<<< HEAD
 queue music ["sounds/Bitter_Intro.ogg", "sounds/Just_Bitter.ogg"] loop
-=======
 play music "sounds/Beatrice_Bitter.ogg" loop
->>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 
 
 show bg cutscene1
