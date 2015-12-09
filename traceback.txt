@@ -1,54 +1,43 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-<<<<<<< HEAD
-  File "game/script.rpy", line 385, in script
-    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
-  File "game/script.rpy", line 385, in <module>
-    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
-TypeError: __init__() takes exactly 4 arguments (3 given)
-=======
-  File "game/script.rpy", line 1388, in script
-    queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
-  File "renpy/common/000statements.rpy", line 166, in execute_queue_music
-    eval(p["file"]),
-SyntaxError: invalid syntax (script.rpy, line 1388)
->>>>>>> d01be370fd71754380281a439c07cbcf070730fb
+  File "game/script.rpy", line 1638, in script
+    ar "We have to get everyone out! We have no idea how large this explosive might be."
+IOError: Couldn't find file 'sounds/VO/uard_Sound_the_Alarm.ogg'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-<<<<<<< HEAD
-  File "game/script.rpy", line 385, in script
-    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
-  File "C:\Program Files (x86)\Renpy\renpy\ast.py", line 805, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Program Files (x86)\Renpy\renpy\python.py", line 1460, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/script.rpy", line 385, in <module>
-    $ icon = [Icon("images/Notes_UI.png", (1719, 0)) ]
-TypeError: __init__() takes exactly 4 arguments (3 given)
-
-Windows-8-6.2.9200
-Ren'Py 6.99.7.858
-=======
-  File "game/script.rpy", line 1388, in script
-    queue music ["sounds/Bitter_Intro", "sounds/Just_Bitter" loop]
-  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1661, in execute
-    self.call("execute")
-  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 1679, in call
-    renpy.statements.call(method, parsed, *args, **kwargs)
-  File "/Applications/renpy-6.99.6-sdk/renpy/statements.py", line 144, in call
-    return method(parsed, *args, **kwargs)
-  File "renpy/common/000statements.rpy", line 166, in execute_queue_music
-    eval(p["file"]),
-  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 1476, in py_eval
-    code = py_compile(code, 'eval')
-  File "/Applications/renpy-6.99.6-sdk/renpy/python.py", line 512, in py_compile
-    raise e
-SyntaxError: invalid syntax (script.rpy, line 1388)
+  File "game/script.rpy", line 1638, in script
+    ar "We have to get everyone out! We have no idea how large this explosive might be."
+  File "/Applications/renpy-6.99.6-sdk/renpy/ast.py", line 594, in execute
+    renpy.exports.say(who, what, interact=self.interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/exports.py", line 1032, in say
+    who(what, interact=interact)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 826, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 688, in do_display
+    **display_args)
+  File "/Applications/renpy-6.99.6-sdk/renpy/character.py", line 491, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/Applications/renpy-6.99.6-sdk/renpy/ui.py", line 277, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2346, in interact
+    repeat, rv = self.interact_core(preloads=preloads, **kwargs)
+  File "/Applications/renpy-6.99.6-sdk/renpy/display/core.py", line 2633, in interact_core
+    renpy.audio.audio.interact()
+  File "/Applications/renpy-6.99.6-sdk/renpy/audio/audio.py", line 790, in interact
+    periodic()
+  File "/Applications/renpy-6.99.6-sdk/renpy/audio/audio.py", line 724, in periodic
+    c.periodic()
+  File "/Applications/renpy-6.99.6-sdk/renpy/audio/audio.py", line 340, in periodic
+    topf = load(self.file_prefix + topq.filename + self.file_suffix)
+  File "/Applications/renpy-6.99.6-sdk/renpy/audio/audio.py", line 74, in load
+    rv = renpy.loader.load(fn)
+  File "/Applications/renpy-6.99.6-sdk/renpy/loader.py", line 517, in load
+    raise IOError("Couldn't find file '%s'." % name)
+IOError: Couldn't find file 'sounds/VO/uard_Sound_the_Alarm.ogg'.
 
 Darwin-14.5.0-x86_64-i386-64bit
 Ren'Py 6.99.6.739
->>>>>>> d01be370fd71754380281a439c07cbcf070730fb
 Angelica Victorian Detective 0.2

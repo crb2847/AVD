@@ -232,6 +232,7 @@ image bg chapter4 = "images/Transitions/Chapter4.png"
 image bg chapter5 = "images/Transitions/Chapter5.png"
 image bg chapter6 = "images/Transitions/Chapter6.png"
 image bg beatriceandshady = "images/beatriceandshady.png"
+image bg beatriceseduce = "images/Beatrice_Seduce.png"
 
 
 #image angelica smile ".png"
@@ -474,13 +475,17 @@ label start:
         show arthur chinanimation at left
         with dissolve
         play sound "sounds/Door_close.ogg"
+        play sound "sounds/VO/Arthur_Ho_Ho.ogg"
         angelica "Sir, what the bloody hell is going on?"
         ar "Miss Hall. This assassin case is our top priority. Absolute top! Nothing else to bother with!"
         angelica "You're awfully excited about an attempted murder..."
+        play sound "sounds/VO/Arthur_Arthur_Laugh.ogg"
         ar "It's remarkable! Unreal! We've detained a member of Parliament for trying to murder the Queen!"
         angelica "Impressive police work, sir. I'm ready to help however I can."
+        play sound "sounds/VO/Arthur_Arthur_Jolly_Good.ogg"
         ar "Great. Tip top! I have an important assignment for you! We've got to investigate all of this man's contacts, you see? There could be a conspiracy... a whole spider web just waiting for Her Majesty to get tangled up in! And I don't like spiders. Not at all."
         angelica "Honestly, the entire force knows you don't like spiders, Commissioner. We've all heard the screams."
+        play sound "sounds/VO/Arthur_Arthur_Scoff.ogg"
         ar "In any case! There's an important part of the web I need you to investigate -- the assassin's wife! Befriend her. See what she knows! She could be withholding key information. Critical stuff, my girl!"
         angelica "(The wife? He can't be serious. This isn't police work!)"
         menu:
@@ -489,12 +494,14 @@ label start:
             "With all due respect, interrogating the wife seems like something one of the younger officers would enjoy.":
                 jump centralCase
     label centralCase:
+        play sound "sounds/VO/Arthur_Arthur_Hmm.ogg"
         ar "Nonsense, my dear girl! Even if you were suitable for... traditional detective work, it simply couldn't happen, my dear! You're still a rookie detective! Support team, you see! You've got to work hard and pay those dues!"
         angelica "(Ugh, pay my dues... Suitable my arse.)"
         menu: 
             "Yes, sir.":
                 jump prettiedUp
             "Well, if you're going to be sending a lady out after dark, how about some actual protection, sir?":
+                play sound "sounds/VO/Arthur_Arthur_Righ_39_O.ogg"
                 ar "Well-well... Very well then. Here, take my night stick -- but be sure to be careful with it! Wouldn't want to scratch that paint!"
                 show policebaton
                 angelica "Thank you very much, Sir. I'll use it with the utmost discretion."
@@ -503,6 +510,7 @@ label start:
                 jump prettiedUp
         
     label prettiedUp:
+        play sound "sounds/VO/Arthur_Ho_Ho.ogg"
         ar "That's what I like to hear! We'll be sending you to a society gathering tonight. Secret idenity! Good chance to get prettied up, eh?"
         menu:
             "Whatever you say, Sir.":
@@ -510,9 +518,12 @@ label start:
             "I'm not here to get prettied up!":
                 jump prettiedUp2
         label prettiedUp2:
+            play sound "sounds/VO/Arthur_Oh_Angelica.ogg"
             ar "Central to the job, my dear! You can get in where no one else can! Gentlemen will spill all kinds of secrets to a pretty lady!"
             angelica "Sir, are you saying you've given up secrets to a pretty lady?."
+            play sound "sounds/VO/Arthur_What_What_What.ogg"
             ar "Well I-"
+            play sound "sounds/VO/Arthur_Arthur_Scoff.ogg"
             ar "Now see here! I-I have never- I've got to be going. Just keep our of trouble, Ms. Hall!"
             hide arthur chinanimation
             with dissolve
@@ -524,6 +535,7 @@ label start:
                     jump captainsOffDead
         label paperwork:
             ar "Yes, Yes. I have some paperwork for you to file in the meantime. Hop to it, now!"
+            play sound "sounds/VO/Arthur_Ho_Ho.ogg"
             hide arthur
             with dissolve
             angelica "I'll file the paperwork later. Surely there's something more I can learn about the case... The commissioner never gives me the truly important information. Maybe I can look in his office. Or... is the assassin still in our holding room?)"
@@ -540,8 +552,8 @@ label start:
         show bg policeCaptainsOffice
         show arthur chinanimation
         with dissolve
+        play sound "sounds/VO/Arthur_Oh_Angelica.ogg"
         ar "Miss Hall! Are you following me? I'm afraid I'm not your governess. Get back to work, won't you?"
-      
         hide arthur chinanimation
         with dissolve
         show bg tryagain
@@ -564,6 +576,7 @@ label holdingRoom:
     "Voice: Who's there?"
     show harold hanimation at right
     with dissolve
+    play sound "sounds/VO/Harold_Angry_Hmm.ogg"
     harold "Ah, you must be the secretary."
     harold "Why on earth would they send you in here?"
     angelica "I just thought I'd bring you some tea."
@@ -579,6 +592,7 @@ label holdingRoom:
                     with dissolve
                     show bg policeInterrogationRoomSpill
                     with dissolve
+                    play sound "sounds/VO/Harold_Ahhh.ogg"
                     harold "BLAST! That's scalding!"
                     angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
                     show bg policeInterrogationRoom
@@ -586,6 +600,7 @@ label holdingRoom:
                     show harold hanimation at right
                     with dissolve
                     angelica "Today must really not be your day!"
+                    play sound "sounds/VO/Harold_head.ogg"
                     harold "Get me a towel, you fool!"
                     angelica "I'm afraid we don't have any."
                     harold "BLAST! Can't get any good help these days"
@@ -594,6 +609,7 @@ label holdingRoom:
                     harold "Why must I always suffer for others' mistakes?"
                     angelica "That must be so hard for you..."
                     angelica "If only you were in charge. Perhaps things would go your way?"
+                    play sound "sounds/VO/Harold_Angry_Hmm.ogg"
                     harold "That's bloody right!"
                     angelica "(The Commissioner was right. He's not working alone. And he isn't the leader...)"
                     angelica "And they all threw you to the dogs"
@@ -603,9 +619,11 @@ label holdingRoom:
                     angelica "(This man is a Member of Parliament. Why would conspirators send him to assassinate the Queen? He didn't have much chance of succeeding.)"
                     angelica "It's a distraction, isn't it?"
                     angelica "There's going to be another assasination attempt!"
+                    play sound "sounds/VO/Harold_Scoff.ogg"
                     harold "What? You ridiculous girl..."
                     angelica "And you don't even know it, do you? They were getting you out of the way."
                     angelica "Why did they want you out of Parliament?"
+                    play sound "sounds/VO/Harold_What.ogg"
                     harold "I don't know what you're talking about."
                     "Angelica throws a towel at Harold."
                     angelica "Clean yourself up, you buffoon."
@@ -617,16 +635,19 @@ label holdingRoom:
 
                 "Tell me what you know or no tea!":
                     harold "You must think me a bloody fool. No tea's that tempting. Off with you!"
+                    play sound "sounds/VO/Harold_Scoff.ogg"
                     angelica "How rude!"
                     hide harold
                     with dissolve
                     show bg policeInterrogationRoomSpill
                     with dissolve
+                    play sound "sounds/VO/Harold_Ahhh.ogg"
                     harold "BLAST! That's scalding! Why am I always suffering for other people's screw ups! Get out of here, I'll call one of the officers!"
                     show bg policeInterrogationRoom
                     with dissolve
                     show harold hanimation at right
                     with dissolve
+                    play sound "sounds/VO/Harold_head.ogg"
                     angelica "(Aha! He's not working alone! That's enough for me.)"
                     angelica "You think hot tea is the worst that's in store for you?"
                     angelica "(Maybe I should check the commissioner's office for more information.)"
@@ -640,6 +661,7 @@ label holdingRoom:
                     with dissolve
                     show bg policeInterrogationRoomSpill
                     with dissolve
+                    play sound "sounds/VO/Harold_Ahhh.ogg"
                     harold "BLAST! That's scalding!"
                     angelica "Oh, I am terribly sorry. How clumsy of me, how dreadful for you!"
                     show bg policeInterrogationRoom
@@ -647,6 +669,7 @@ label holdingRoom:
                     show harold hanimation at right
                     with dissolve
                     angelica "Today must really not be your day!"
+                    play sound "sounds/VO/Harold_head.ogg"
                     harold "Get me a towel, you fool!"
                     angelica "I'm afraid we don't have any."
                     harold "BLAST! Can't get any good help these days"
@@ -655,6 +678,7 @@ label holdingRoom:
                     harold "Why must I always suffer for others' mistakes?"
                     angelica "That must be so hard for you..."
                     angelica "If only you were in charge. Perhaps things would go your way?"
+                    play sound "sounds/VO/Harold_Angry_Hmm.ogg"
                     harold "That's bloody right!"
                     angelica "(The Commissioner was right. He's not working alone. And he isn't the leader...)"
                     angelica "And they all threw you to the dogs."
@@ -664,9 +688,11 @@ label holdingRoom:
                     angelica "(This man is a Member of Parliament. Why would conspirators send him to assassinate the Queen? He didn't have much chance of succeeding.)"
                     angelica "It's a distraction, isn't it?"
                     angelica "There's going to be another assasination attempt!"
+                    play sound "sounds/VO/Harold_scoff.ogg"
                     harold "What? You ridiculous girl..."
                     angelica "And you don't even know it, do you? They were getting you out of the way."
                     angelica "Why did they want you out of Parliament?"
+                    play sound "sounds/VO/Harold_What.ogg"
                     harold "I don't know what you're talking about."
                     "Angelica throws a towel at Harold."
                     angelica "Clean yourself up, you buffoon."
@@ -682,23 +708,28 @@ label chiefsoffice:
     play music "sounds/arthur_song.ogg" loop
     show arthur chinanimation at left
     with dissolve
+    play sound "sounds/VO/Arthur_Ho_Ho.ogg"
     ar "Oho! Did you need something?"
     angelica "I was hoping you could give me more information on my assignment, sir."
     ar "Ah! Of course! Yes, it's quite exciting. I'm sending you to quite a shindig."
     ar "The Countess of Worthington is hosting her annual gala tomorrow night. You will be Miss Elizabeth Kent. Quite brilliant, yes?"
     angelica "What, a fake name?"
+    play sound "sounds/VO/Arthur_Arthur_Jolly_Good.ogg"
     ar "Quite right! No one will know your true identity!"
     angelica "Sir, they didn't know my original identity."
     angelica "In any case, how do you know the suspect's wife will be there?"
+    play sound "sounds/VO/Arthur_Arthur_Hmm.ogg"
     ar "One of our agents has befriended Mrs. Fredrickson's coachman. He says she is intent on going to the party tomorrow."
     angelica "I don't know anything about her. How am I supposed to befriend her?"
     ar "I'm sure you have your ways! Feminine wiles, yes?"
     angelica "My feminine wiles usually work on *men*, sir."
     ar "Of course, my dear! But I did hear quite a rumor. From the coachman, you know! He said Mrs. Fredrickson has been down to entertain many ladies late into the night."
     angelica "I'm not sure I understand. Entertain?"
+    play sound "sounds/VO/Arthur_Oh_Angelica.ogg"
     ar "Quite scandalous, yes? Ha! Well now. Perhaps your feminine wiles will be of service after all!"
     menu:
         "Ohh. Well, I'll, uh, do my best, sir.":
+            play sound "sounds/VO/Arthur_Arthur_Jolly_Good.ogg"
             ar "That's what I like to hear! Find out what she knows!"
             angelica "(Time to go to that party!)"
             hide arthur chinanimation
@@ -706,6 +737,7 @@ label chiefsoffice:
             jump party
                 
         "Sir, this might be an innocent woman... perhaps that's going a bit far.":
+            play sound "sounds/VO/Arthur_Arthur_Laugh.ogg"
             ar "Innocent! Well, perhaps of the crime! Ha! Do as you wish, my dear! Just get any information she knows!"
             angelica "(Time to go to that party!)"
             hide arthur chinanimation
@@ -729,13 +761,16 @@ label party:
             show countess countanimation
             with dissolve
             countess "It's unbecoming to stare, child."
+            play sound "sounds/VO/Countess_Cough.ogg"
             angelica "I'm sure I don't know what you mean."
             countess "You're staring at that woman in the corner, dear. It is most improper."
             countess "You look like a hound waiting for its meal!"
             menu: 
                 "I assure you that was not my intention.":
+                    play sound "sounds/VO/Countess_Laugh_1.ogg"
                     countess "Who cares what you intended, child? I'm the hostess of this gala, and you ought to watch what you do in my company. If you forget your manners, you might end up like the woman you're staring at, and who wants that?"
                     angelica "What, did she pick up the wrong spoon at a fancy dinner?"
+                    play sound "sounds/VO/Countess_Exclamation.ogg"
                     countess "Hmph! Really! But I'm sure you're curious, child? I'll tell you why no one's speaking to her if you'll stop making a scene with your incessant staring."
                     menu:
                         "I don't particularly care to hear your idle prattle":
@@ -743,6 +778,7 @@ label party:
                         "Please, my lady, do share your wisdom with me.":
                             countess "That's Mrs. Fredrickson hiding in the corner over there. Her husband tried to kill the queen, you know."
                             countess "And she still has the gall to come to my party. Clearly she doesn't realize she's nobody of importance anymore! Almost like you, dear!"
+                            play sound "sounds/VO/Countess_Laugh_2.ogg"
                             menu:
                                 "You're more of a scoundrel than a lady, aren't you?":
                                     jump supermean
@@ -753,13 +789,16 @@ label party:
             label hostesses:
                 countess "Hmph! You would think guests might treat their hostesses with a bit more respect!"
                 angelica "So you're the Countess of Worthington?"
+                play sound "sounds/VO/Countess_I_Never.ogg"
                 countess "Hmph! Really! You've come to my party without an inkling of who I am?"
                 angelica "You don't know who I am either!"
                 countess "It hardly matters, does it? I'm somebody of importance... If I don't know you already, then you're clearly no one significant... I know everyone worth knowing. And if you're nobody at all, how on earth were you invited to my gala?"
                 angelica "(uh oh.)"
                 angelica "Isn't it your job to know who's invited to your own party?"
+                play sound "sounds/VO/Countess_Laugh_2.ogg"
                 countess "People like me, child, have other people to do that for us. I'm sure you don't know what that's like. You probably busy yourself with crude embroidery and entertaining your poor marriage prospects."
                 angelica "You seem a little bitter."
+                play sound "sounds/VO/Countess_How_Dare_You.ogg"
                 countess "Bitter! Hmph! How dare you! I'm worth ten of you! No, fifteen!"
                 menu:
                     "I'll keep that in mind for moments when life seems too dull.":
@@ -770,6 +809,7 @@ label party:
                         
                 label lifedull:
                     countess "Hmph! You petulant child! You clearly don't belong at society gatherings."
+                    play sound "sounds/VO/Countess_Exclamation.ogg"
                     countess "Go talk to Mrs. Fredrickson, then-- you should find yourself quite comfortable amongst her and her ilk."
                     angelica "Perhaps I shall show Mrs. Fredrickson some better company."
                     hide countess countanimation
@@ -782,18 +822,23 @@ label party:
         "Oh look, a drunkard in the corner!":
             show shady shadimation
             with dissolve
+            play sound "sounds/VO/Shady_Guy_Greetings.ogg"
             angelica "(Well this should be good for a laugh)"
             angelica "And how are you tonight, good sir?"
+            play sound "sounds/VO/Shady_Guy_Hiccup.ogg"
             shady "Lovely, my fair lady! Everything is lovely! Should you care to drink with me?"
             angelica "Why, I think not. Here we are celebrating after our own Queen was only just subject to an assassination attempt. \ Don't you find it crass?"
+            play sound "sounds/VO/Shady_Guy_Hiccup.ogg"
             shady "This is why we must celebrate, my dear! \ She was not assassinated, she lives on, as must we all!"
             angelica "That is a good way to look at things. \ Poor Lady Fredrickson, I don't suppose she can see it that way!"
             shady "Oh, I think that might be exactly how she sees it!"
+            play sound "sounds/VO/Shady_Guy_Short_Laugh.ogg"
             angelica "What do you mean?"
             shady "The girl despised her husband, I hear! \ All those people thinking she could've had something to do with that. \ They're all daft!"
             angelica "Yes, I suppose so."
             angelica "(I guess I'm not the only one who thinks this assignment is pointless.)"
             shady "Anyone who pays attention knows that the young lady has no appreciation for... a man's company, should I say?"
+            play sound "sounds/VO/Shady_Guy_Longer_Laugh.ogg"
             angelica "Oh, you think?"
             angelica "(Maybe this won't be such a waste...\ For me, anyway.)"
             hide shady shadimation
@@ -805,6 +850,7 @@ label party:
                 "Perhaps I should question other guests first.":
                     show countess countanimation
                     angelica "How are you enjoying the party?"
+                    play sound "sounds/VO/Countess_I_Never.ogg"
                     countess "Certainly I am not. Ilk of all kinds are present here! That disgusting man, and that foolish child of a lady!"
                     menu:
                         "And who are you to cast such harsh judgement?":
@@ -815,6 +861,7 @@ label party:
 label tellsomething:
     countess "That's Mrs. Fredrickson hiding in the corner over there. Her husband tried to kill the queen, you know. \ And she still has the gall to come to my party."
     countess "Clearly she doesn't realize she's nobody of importance anymore! Almost like you, dear!"
+    play sound "sounds/VO/Countess_Laugh_2.ogg"
     menu:
         "You're more of a scoundrel than a lady, aren't you?":
             jump supermean
@@ -823,6 +870,7 @@ label tellsomething:
             jump shesdumb
             
     label supermean:
+        play sound "sounds/VO/Countess_Cough.ogg"
         countess "I didn't make the world this way, darling, that's just the way things are!"
         hide countess countanimation
         with dissolve
@@ -831,6 +879,7 @@ label tellsomething:
     
     label shesdumb:
         countess "Truly! The silly thing doesn't realize her society life is over. It's quite amusing!"
+        play sound "sounds/VO/Countess_Laugh_1.ogg"
         countess "Do you know what would be fun, child? You ought to go talk to her. I'd like to know what she was thinking by coming here tonight. \ But someone of my stature talking to someone like her... ha! \You would be a more appropriate match for her."
         menu:
             "You love to tell terrible tales, don't you?":
@@ -855,10 +904,12 @@ label followbeatrice:
     angelica "Wait, what was that? Is it possible that she had something to do with this after all? I'll strike up a conversation..."
     show beat banimation
     with dissolve
+    play sound "sounds/VO/Beatrice_Hello.ogg"
     menu:
         "Mrs. Fredrickson, what on earth are you doing here?":
             hide beat banimation
             show beat cryanimation
+            play sound "sounds/VO/Beatrice_Cry.ogg"
             angelica "(Oh, lovely.)"
             beat "Are you here to tell me how ashamed I should be of my husband? How I should be embarassed to simply exist?"
             menu:
@@ -881,10 +932,12 @@ label followbeatrice:
                             beat "I'm sure you found my misfortunes quite amusing. Almost as good as the tabloids, yes?"
                             hide beat banimation
                             show beat cryanimation
+                            play sound "sounds/VO/Beatrice_How_Dare_You.ogg"
                             angelica "(Uh oh...)"
                             angelica "I didn't mean to offend, Mrs. Fredrickson! \ Your strength in these times is truly admirable."
                             hide beat cryanimation
                             show beat banimation
+                            play sound "sounds/VO/Beatrice_Oh.ogg"
                             beat "Call me Beatrice, won't you? I appreciate your kindness. Few have shown it to me tonight."
                             angelica "Good friends are hard to come by, and I don't think anyone here is a good friend."
                             beat "No, they're all rotten. Except for you, it seems. \ But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife. So lonely..."
@@ -893,8 +946,10 @@ label followbeatrice:
                         
                 "Maybe you should learn to be a better judge of character.":
                     beat "Judge of character?! Do you think I am clairvoyant? How on earth would I have predicted that my husband would try to kill the Queen? That's insanity!"
+                    play sound "sounds/VO/Beatrice_Cry.ogg"
                     angelica "I spoke out of turn, my apologies. If you could just... stop crying... please."
                     beat "Leave me be!"
+                    play sound "sounds/VO/Beatrice_How_Dare_You.ogg"
                     hide beat cryanimation
                     with dissolve
                     angelica "Lovely. I've wasted my chance to talk to my target. But she's still at the party... maybe if I rush back to her house, I could investigate before she comes home? Then tonight won't be an entire waste."
@@ -920,6 +975,7 @@ label beatriceskip:
     jump sorryignoring
   
 label sorryignoring:
+    play sound "sounds/VO/Beatrice_Hello.ogg"
     beat "I appreciate your kindness. Few have shown it to me tonight. But you probably just don't know who I am..."
     angelica "I do, Mrs. Fredrickson. It just seemed a shame that everyone else here decided to judge you for someone else's crime."
     beat "Call me Beatrice, please. Everyone is rotten here. Except for you, it seems! But I'm sure a young lady like you doesn't care to hear the musings of a lonely wife. So lonely..."
@@ -928,10 +984,12 @@ label sorryignoring:
 label dontcry:
     hide beat banimation
     show beat cryanimation
+    play sound "sounds/VO/Beatrice_Cry.ogg"
     angelica "No, no! I love your musings! Why don't I keep you company?"
     hide beat cryanimation
     show beat banimation
     angelica "I think you need better companions. Perhaps I could escort you from the party?"
+    play sound "sounds/VO/Beatrice_Oh.ogg"
     beat "I know there have been rumors about my ... impropriety ... in the past. \I can assure you that true ladies are never more than friends with one another."
     beat "That said, I am not opposed to recieving ladies in my parlor. Perhaps, if you feel as unwelcome at this party as I do, you might retire with me."
     angelica "(Perhaps Beatrice's 'impropriety' isn't so long past? \ While not entirely sanctioned by my mission,  her invitation is far too... tempting an opportunity. To look into Lord Fredrickson's house, of course!"
@@ -1050,11 +1108,13 @@ label beatricehouse:
     show beat banimation
     with dissolve
     angelica "You have a truly lovely home."
+    play sound "sounds/VO/Beatrice_Sigh.ogg"
     beat "Yes, I've come to like it. \ But who knows how much longer I'll be able to live here."
     hide beat banimation
     show beat cryanimation
     angelica "No no, my dear, your situation is not so bleak! \ A lovely lady like you, with all your husband's money at your disposal...\ You have the world at your fingertips now!"
     beat "Do you think so?"
+    play sound "sounds/VO/Beatrice_Oh.ogg"
     hide beat cryanimation
     show beat banimation
     beat "Yes, maybe now I can travel."
@@ -1075,19 +1135,23 @@ label detectivework:
     show bg parlor
     angelica "This isn't right. I can't do this to you. \ I'm not who I say I am."
     beat "What do you mean?"
+    play sound "sounds/VO/Beatrice_Gasp.ogg"
     angelica "I am a detective assigned to investigate you. I was to see if I could find any leads about the assassination case.  \ I am truly sorry for misleading you, but if you let me, I can help you."
     hide beat banimation
     show beat cryanimation
     angelica "(Not again! Now I've done it...)"
     beat "How can you possibly help me? You're a liar!"
+    play sound "sounds/VO/Beatrice_How_Dare_You.ogg"
     angelica "If you help me to figure out who is behind this mess, it will help clear your name! You will be vindicated in the eyes of the public."
     beat "Do you truly think so?"
     angelica "I do. Will you help me?"
     beat "I... I suppose I will help you. What can I do?"
     angelica "Who was the man you spoke with earlier tonight?"
+    play sound "sounds/VO/Beatrice_Excuse_Me.ogg"
     beat "I do not know him. \ He took me aside and wished the best for my scoundrel husband. \ Surely he's a dangerous man! What if he comes after me?"
     angelica "Don't fret, I will protect you."
     hide beat cryanimation
+    play sound "sounds/VO/Beatrice_Gasp.ogg"
     show beat banimation
     beat "How can I trust you? Were your... advances... towards me just a part of your investigation?"
     menu:
@@ -1098,9 +1162,10 @@ label detectivework:
 
 # make beatrice angry at you
 label angelicanongenuine:
+    play sound "sounds/VO/Beatrice_Get_Out.ogg"
     beat "Then I can't trust you at all! Just get out! Take a look around if you must, but stay away from me!"
     hide beat banimation
-    #door slam
+    play sound "sounds/Door_Close.ogg"
     #show parlor rather than bedroom
     angelica "(Bloody hell. I've made a good mess of things. \ I didn't even ask about the papers! Well, I should still have a look around.)"
     menu:
@@ -1147,6 +1212,7 @@ label angelicagenuine:
     angelica "I'll stay with you all night if I have to."
     beat "Oh will you? \ It will get quite boring, just staying and watching over me."
     angelica "Well, I'm sure we can find other ways to pass the time."
+    play sound "sounds/VO/Beatrice_Sigh.ogg"
     beat "The things you say...\ I wish I you would take responsibility for them."
     jump angelicaandbeatrice
 
@@ -1154,13 +1220,14 @@ label angelicagenuine:
 label angelicaandbeatrice:
     angelica "A virtous young lady entertaining a commoner? \ You seek to truly ruin yourself, my lady! I would love ot be the one who ruins you."
     beat "I'm afraid I've already been tarnished."
+    play sound "sounds/VO/Beatrice_Seductive_Sound.ogg"
     angelica "The one I see before me is nothing but pristine. Let me fix that."
     #fade to black
     hide beat banimation
     with dissolve
     hide bg parlor
     with dissolve
-    show bg bedroom
+    show bg beatriceseduce
     with dissolve
     angelica "She should be sleeping soundly for a good few hours. Suprisingly agressive for such a teary woman...\ Now let me take a look around and see what I can find."
     menu:
@@ -1259,6 +1326,7 @@ label parliamentarianoffice:
     with dissolve
     show assistant asanimation
     with dissolve
+    play sound "sounds/VO/Assistant_Excuse_Me.ogg"
     assistant "What are you doing here?"
     angelica "Er..."
     menu:
@@ -1272,11 +1340,13 @@ label parliamentarianoffice:
             
             
 label fire:
+    play sound "sounds/VO/Assistant_Oh_1.ogg"
     assistant "A fire?! Not again! We must go now!"
     #angryangelicasprite
     show bg parliamenthallway
     with dissolve
     angelica "Please, exit quietly and calmly. \ No need to start a panic."
+    play sound "sounds/VO/Assistant_What.ogg"
     assistant "I can't possibly just leave you behind!"
     angelica " I still have to evacuate the rest of the building. Try to lead out as many people on your way as you can."
     assistant "A-Alright. Be careful, ma'am."
@@ -1318,13 +1388,17 @@ label searchfire:
             
         
 label papers:
+    play sound "sounds/VO/Assistant_What.ogg"
     assistant "What papers?"
     angelica "Sir, I'm just the secretary. How should I know which papers he was referring to?"
     assistant "Who's 'he'? Who do you work for?"
+    play sound "sounds/VO/Assistant_Short_Hmm_2.ogg"
     angelica "Mr... Smith. (The odds are with me, at least)"
+    play sound "sounds/VO/Assistant_Oh_2.ogg"
     assistant "Oh, I see. the one down the hall, then? Or on the fourth floor?"
     angelica "Fourth floor."
     assistant "I see. I certainly don't know what papers you're talking about. I shall check in our filing room, I won't be a moment."
+    play sound "sounds/VO/Assistant_Okay.ogg"
     angelica "Of course. I will wait here for you."
     hide assistant asanimation
     with dissolve
@@ -1363,6 +1437,7 @@ label searchpapers:
             with dissolve
             show assistant asanimation
             with dissolve
+            play sound "sounds/VO/Assistant_Excuse_Me.ogg"
             assistant "What on earth are you doing? These are private documents!"
             angelica "Oh, I'm terribly sorry. I seem to have gotten fidgety waiting."
             assistant "If I told Mr. Aldredge a stranger had looked through his desk, I'd be out of a job! I didn't find any papers in the back, so just get out of here and we'll pretend this never happened!"
@@ -1372,6 +1447,7 @@ label searchpapers:
             
             
 label downstairs:
+    play sound "sounds/VO/Assistant_Long_Hmm.ogg"
     assistant "His lordship isn't in the city right now, so I can hardly believe that."
     angelica "Oh! Well, I assure you I am--"
     assistant "A lying scoundrel?"
@@ -1379,6 +1455,7 @@ label downstairs:
     angelica "I... I am terribly sorry for trying to decieve you but--"
     assistant "I think it's best you leave."
     angelica "No, please, you don't understand!"
+    play sound "sounds/VO/Assistant_Guards_.ogg"
     assistant "Guards!"
     hide assistant asanimation
     with dissolve
@@ -1403,9 +1480,11 @@ angelica "This is their meeting spot. Better hide before someone gets here!"
 
 show shady shadimation at right 
 with dissolve
+play sound "sounds/VO/Shady_Guy_Cough.ogg"
 angelica "(It's the shady man from the party... he's definitely up to skullduggery. \ Is he still drunk, or does he just look like that?)"
 shady "I have confirmed the Queen's meeting with the Prime Minister tomorrow."
 angelica "(Who is he talking to?)"
+play sound "sounds/VO/Beatrice_Evil_Snicker.ogg"
 shady "The weapon has been planted. Tomorrow marks the dawn of a new age."
 
 hide shady shadimation
@@ -1458,9 +1537,9 @@ label buckinghampalace:
 
 #If you warned beatrice or broke into her house
     if blueprint[0].getViewed() == True:
-        jump buckinghamnoblueprint
+        jump buckinghamblueprint
 #if you didn't warn beatrice
-    jump buckinghamblueprint
+    jump buckinghamnoblueprint
     
 label buckinghamblueprint:
     show bg chapter6
@@ -1470,14 +1549,18 @@ label buckinghamblueprint:
     with dissolve
     show guard guardimation at right
     with dissolve
+    play sound "sounds/VO/Guard_Excuse_me.ogg"
     guard "Excuse me, what is your business here?"
     #show angry angelica
     angelica "I'm with the police, this is an emergency!"
+    play sound "sounds/VO/Guard_Madam.ogg"
     guard "Madam--"
     show arthur chinanimation at left
     ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
+    play sound "sounds/VO/Guard_Oh.ogg"
     angelica "Let us through!"
     guard "R-right! Sound the alarms!"
+    play sound "sounds/VO/Guard_Sound_the_Alarm.ogg"
     ar "We have to get everyone out! We have no idea how large this explosive might be."
     angelica "Guard! Take a look at this map. What room is on this blueprint?"
     guard "Ma'am, that's this room. This is where the Queen recieves the Prime Minister for meetings."
@@ -1509,11 +1592,13 @@ label buckinghamblueprint:
     with dissolve
     play music "sounds/Busy_Music.ogg" loop
     if warnbeatrice:
+        play sound "sounds/VO/Arthur_Arthur_Jolly_Good.ogg"
         ar "Absolutely remarkable! Top police work, my dear!"
         ar "We'll be charging Lord Aldredge with heading the conspiracy!"
         angelica "Sorry, who?"
         ar "The man with the mustache, my dear!"
         angelica "But he wasn't in charge-- it was Beatrice!"
+        play sound "sounds/VO/Arthur_Oh_Angelica.ogg"
         ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
         angelica "(Maybe I should'nt have trusted Beatrice...)"
         ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
@@ -1538,14 +1623,18 @@ label buckinghamnoblueprint:
     with dissolve
     show guard guardimation at right
     with dissolve
+    play sound "sounds/VO/Guard_Excuse_me.ogg"
     guard "Excuse me, what is your business here?"
     #show angry angelica
     angelica "I'm with the police, this is an emergency!"
+    play sound "sounds/VO/Guard_Madam.ogg"
     guard "Madam--"
     show arthur chinanimation at left
     ar "I'm police commissioner Charleston. We have intelligence that there is a bomb on the premises-- another attempt on the Queen's life!"
+    play sound "sounds/VO/Guard_Oh.ogg"
     angelica "Let us through!"
     guard "R-right! Sound the alarms!"
+    play sound "sounds/VO/Guard_Sound_the_Alarm.ogg"
     ar "We have to get everyone out! We have no idea how large this explosive might be."
     menu:
         "I'll come with you to evacuate the queen!":
@@ -1577,10 +1666,13 @@ label evacuatevictoria:
     with dissolve
     if warnbeatrice == True:
         ar "Absolutely remarkable! Top police work, my dear!"
+        play sound "sounds/VO/Arthur_Arthur_Jolly_Good.ogg"
         ar "We'll be charging Lord Aldredge with heading the conspiracy!"
         angelica "Sorry, who?"
         ar "The man with the mustache, my dear!"
+        play sound "sounds/VO/Arthur_Arthur_Laugh.ogg"
         angelica "But he wasn't in charge-- it was Beatrice!"
+        play sound "sounds/VO/Arthur_Oh_Angelica.ogg"
         ar "Our men searched her home, and found a stack of papers burnt in the fireplace. We're afraid any evidence we might have had against her was lost in the fire. \Rather strange! It's as if she knew we were coming!"
         angelica "(Maybe I should'nt have trusted Beatrice...)"
         ar "Lord Aldredge confessed to planting the bomb! We're sure to convict him!"
@@ -1590,6 +1682,7 @@ label evacuatevictoria:
         jump betrayedbybeatrice
     ar "Absolutely remarkable! Top police work, my dear!"
     ar "We'll be charging Lady Fredrickson with heading the conspiracy!"
+    play sound "sounds/VO/Arthur_Arthur_Righ_39_O.ogg"
     ar "It's done with! Wrapped up! Thanks to your hard work, my dear, I'm promoting you to a full detective! Secretaries be damned!"
     angelica "Thank you sir. I'm ready for my next assignment!"
     "Congratulations! Maybe you didn't save the palace, but you caught the head conspirator and saved the Queen! Good work, detective."
@@ -1599,6 +1692,8 @@ label evacuatevictoria:
 
 label bombdead:
     hide arthur chinanimation
+    with dissolve
+    hide guard guardimation 
     with dissolve
     show bg youdied
     with dissolve
