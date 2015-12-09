@@ -314,6 +314,12 @@ init:
                                             "images/Arthur_Idle_Edit/Arthur_Idle0010_Filter.png", .08,
                                             "images/Arthur_Idle_Edit/Arthur_Idle0011_Filter.png", .08,
                                             "images/Arthur_Idle_Edit/Arthur_Idle0012_Filter.png", .08)
+    image arthur bashfulanimation = Animation("images/Arthur_Bashful/Arthur_Bashful0001_Filter.png", .16,
+                                            "images/Arthur_Bashful/Arthur_Bashful0002_Filter.png", .16,
+                                            "images/Arthur_Bashful/Arthur_Bashful0003_Filter.png", .16,
+                                            "images/Arthur_Bashful/Arthur_Bashful0004_Filter.png", .16,
+                                            "images/Arthur_Bashful/Arthur_Bashful0005_Filter.png", .16,
+                                            "images/Arthur_Bashful/Arthur_Bashful0006_Filter.png", .16)
     image harold hanimation = Animation("images/harold/Harold1.png", .16,
                                         "images/harold/Harold2.png", .16,
                                         "images/harold/Harold3.png", .16,
@@ -332,6 +338,18 @@ init:
                                           "images/beatricecry/Beatrice_Cry0004_Filter.png", .16,
                                           "images/beatricecry/Beatrice_Cry0005_Filter.png", .16,
                                           "images/beatricecry/Beatrice_Cry0006_Filter.png", .16)
+    image beat happyanimation = Animation("images/Beatrice_Happy_Final/Beatrice_Happy0001_Filter.png", .16,
+                                          "images/Beatrice_Happy_Final/Beatrice_Happy0002_Filter.png", .16,
+                                          "images/Beatrice_Happy_Final/Beatrice_Happy0003_Filter.png", .16,
+                                          "images/Beatrice_Happy_Final/Beatrice_Happy0004_Filter.png", .16,
+                                          "images/Beatrice_Happy_Final/Beatrice_Happy0005_Filter.png", .16,
+                                          "images/Beatrice_Happy_Final/Beatrice_Happy0006_Filter.png", .16)
+    image beat flirtanimation = Animation("images/Beatrice_Flirt_Final/Beatrice_Flirt0001_Filter.png", .16,
+                                          "images/Beatrice_Flirt_Final/Beatrice_Flirt0002_Filter.png", .16,
+                                          "images/Beatrice_Flirt_Final/Beatrice_Flirt0003_Filter.png", .16,
+                                          "images/Beatrice_Flirt_Final/Beatrice_Flirt0004_Filter.png", .16,
+                                          "images/Beatrice_Flirt_Final/Beatrice_Flirt0005_Filter.png", .16,
+                                          "images/Beatrice_Flirt_Final/Beatrice_Flirt0006_Filter.png", .16)
     image countess countanimation = Animation("images/Countess_Indifferent/Countess_Indifferent0001.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0002.png", .16,
                                               "images/Countess_Indifferent/Countess_Indifferent0003.png", .16,
@@ -356,7 +374,6 @@ init:
                                                 "images/Queen_Concerned/Queen_Concerned0004_Filter.png", .16,
                                                 "images/Queen_Concerned/Queen_Concerned0005_Filter.png", .16,
                                                 "images/Queen_Concerned/Queen_Concerned0006_Filter.png", .16,)
-    
     image guard guardimation = Animation ("images/Guard_Neutral/Guard_Neutral0001_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0002_Filter.png", .16,
                                         "images/Guard_Neutral/Guard_Neutral0003_Filter.png", .16,
@@ -1105,18 +1122,18 @@ label beatricehouse:
     show bg parlor
     stop music
     play music "sounds/Beatrice_Sweet.ogg"
-    show beat banimation
+    show beat happyanimation
     with dissolve
     angelica "You have a truly lovely home."
     play sound "sounds/VO/Beatrice_Sigh.ogg"
     beat "Yes, I've come to like it. \ But who knows how much longer I'll be able to live here."
-    hide beat banimation
+    hide beat happyanimation
     show beat cryanimation
     angelica "No no, my dear, your situation is not so bleak! \ A lovely lady like you, with all your husband's money at your disposal...\ You have the world at your fingertips now!"
     beat "Do you think so?"
     play sound "sounds/VO/Beatrice_Oh.ogg"
     hide beat cryanimation
-    show beat banimation
+    show beat happyanimation
     beat "Yes, maybe now I can travel."
     angelica "Of course you can. See exciting things, meet new people..."
     beat "Oh, that sounds nice. \ Away from all these horrible people. But perhaps I can take one familiar face with me..."
@@ -1126,6 +1143,8 @@ label beatricehouse:
         "I have to be honest with her!":
             jump detectivework
         "The mission is more important.":
+            hide beat happyanimation
+            show beat flirtanimation
             jump angelicaandbeatrice
 
 $ warnbeatrice = False
@@ -1134,6 +1153,8 @@ label detectivework:
     $ warnbeatrice = True
     show bg parlor
     angelica "This isn't right. I can't do this to you. \ I'm not who I say I am."
+    hide beat happyanimation
+    show beat banimation
     beat "What do you mean?"
     play sound "sounds/VO/Beatrice_Gasp.ogg"
     angelica "I am a detective assigned to investigate you. I was to see if I could find any leads about the assassination case.  \ I am truly sorry for misleading you, but if you let me, I can help you."
@@ -1210,6 +1231,9 @@ label parlorangrybeatrice:
 #be honest with beatrice but still seduce
 label angelicagenuine:
     angelica "I'll stay with you all night if I have to."
+    hide beat banimation
+    show beat flirtanimation
+    with dissolve
     beat "Oh will you? \ It will get quite boring, just staying and watching over me."
     angelica "Well, I'm sure we can find other ways to pass the time."
     play sound "sounds/VO/Beatrice_Sigh.ogg"
@@ -1223,7 +1247,7 @@ label angelicaandbeatrice:
     play sound "sounds/VO/Beatrice_Seductive_Sound.ogg"
     angelica "The one I see before me is nothing but pristine. Let me fix that."
     #fade to black
-    hide beat banimation
+    hide beat flirtanimation
     with dissolve
     hide bg parlor
     with dissolve
